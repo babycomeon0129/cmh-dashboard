@@ -1,0 +1,16 @@
+//import { ref, computed } from "vue";
+import { defineStore } from "pinia";
+
+export const useDashboardStore = defineStore("dashboard", () => {
+    const colorBlue = "#4CA8FF";
+    const colorYellow = "#FFAE41";
+    const colorGreen = "#4EC478";
+    const colorRed = "#F97F6C";
+
+    return {
+        colorBlue,
+        colorYellow,
+        colorGreen,
+        colorRed,
+    };
+});
