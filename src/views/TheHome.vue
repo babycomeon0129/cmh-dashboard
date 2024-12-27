@@ -8,12 +8,21 @@
         </div>
         <div class="container">
             <YearIncome />
+            <div class="charts">
+                <div class="project">
+                    <ProjectComplate />
+                    <ProjectPlan />
+                </div>
+            </div>
         </div>
     </main>
 </template>
 
 <script setup>
 import YearIncome from "@/components/YearIncome.vue";
+import ProjectComplate from "@/components/ProjectComplate.vue";
+import ProjectPlan from "@/components/ProjectPlan.vue";
+
 </script>
 
 <style lang="scss" scoped>
@@ -36,5 +45,15 @@ h1 {
 
 .date {
   margin-left: 15px;
+}
+
+.charts {
+  margin-top: 14px;
+}
+
+.project {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
 }
 </style>
