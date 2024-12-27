@@ -3,8 +3,8 @@
         <SideBar />
         <RouterView />
     </div>
-
 </template>
+
 <script setup>
 import { RouterView } from "vue-router";
 import SideBar from "@/components/SideBar.vue";
@@ -12,6 +12,6 @@ import SideBar from "@/components/SideBar.vue";
 
 <style lang="scss" scoped>
 .dashboard {
-	display: flex;
+    display: flex;
 }
 </style>

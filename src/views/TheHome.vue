@@ -19,6 +19,7 @@ import YearIncome from "@/components/YearIncome.vue";
 <style lang="scss" scoped>
 main {
     width: calc(100% - var(--side-width));
+    margin-left: var(--side-width);
     padding: 15px;
 }
 

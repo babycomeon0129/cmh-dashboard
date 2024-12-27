@@ -6,26 +6,26 @@
         </div>
         <div class="year__content">
             <div class="year__detail">
-                <div>預案  <span>NTD</span> 400,000</div>
-                <div>成案  <span>NTD</span> 600,000</div>
+                <div>成案  <span>NTD</span> 400,000</div>
+                <div>預案  <span>NTD</span> 600,000</div>
                 <div>年度KPI  <span>NTD</span> 1,200,000</div>
             </div>
             <div class="progress">
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="30"
-                    :color="colorBlue"
+                    :percentage="planMoney"
+                    :color="colorYellow"
                     class="bar plan"
                 />
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="90"
-                    :color="colorYellow"
+                    :percentage="showCompleteMoney"
+                    :color="colorBlue"
                     class="bar complete"
                 >
-                    <span>60%</span>
+                    <span>{{ completeMoney }}%</span>
                 </el-progress>
             </div>
         </div>
@@ -33,9 +33,14 @@
 </template>
 
 <script setup>
+import { computed, ref } from "vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
 const { colorBlue, colorYellow } = useDashboardStore();
+
+let planMoney = ref(30);
+let completeMoney = ref(60);
+let showCompleteMoney = computed(() => planMoney.value + completeMoney.value);
 
 </script>
 

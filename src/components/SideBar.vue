@@ -8,6 +8,9 @@
 
 <style lang="scss" scoped>
 aside {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: var(--side-width);
     padding: 20px 0;
     color: #fff;
