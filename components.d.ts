@@ -12,6 +12,7 @@ declare module 'vue' {
     ComplateProgressChart: typeof import('./src/components/chart/ComplateProgressChart.vue')['default']
     copy: typeof import('./src/components/chart/PieChart copy.vue')['default']
     ElProgress: typeof import('element-plus/es')['ElProgress']
+    ElSegmented: typeof import('element-plus/es')['ElSegmented']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']

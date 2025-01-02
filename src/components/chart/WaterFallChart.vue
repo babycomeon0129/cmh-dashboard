@@ -1,17 +1,28 @@
 <template>
     <div class="dashboard__box chart__waterfall">
+        <div class="chart__waterfall__detail">
+            <img src="@img/icon_general.svg" />
+            <el-segmented
+                v-model="trigger"
+                :options="options"
+            />
+            <div>月預案變化</div>
+        </div>
         <div
             ref="waterfallContainer"
             class="chart__waterfall__container"
         />
     </div>
-
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 import * as echarts from "echarts";
 
+const trigger = ref("成案");
+const options = [
+    "成案", "預案",
+];
 const waterfallContainer = ref(null);
 
 const option = {
@@ -278,9 +289,33 @@ onMounted(() => {
 .chart__waterfall {
     margin-top: 15px;
 
+    &__detail {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        img {
+            margin-right: 10px;
+        }
+    }
+
     &__container {
         width: 100%;
         height: 297px;
     }
 }
+
+:deep(.el-segmented) {
+    --el-segmented-item-selected-bg-color: var(--color-deep-blue);
+    --el-segmented-bg-color: #fff;
+    margin-right: 10px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+
+    .el-segmented__item {
+        padding: 2px 22px;
+    }
+}
+
 </style>
