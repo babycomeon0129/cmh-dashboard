@@ -1,58 +1,149 @@
 <template>
-    <div class="chart chart__progress__complate">
+    <div class="chart chart__progress__plan">
         <ChartTitle
             title="預案進展"
             :type="1"
         />
-        <div class="chart__progress__complate__content">
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0)"
-                :color="colorBlue"
-                class="bar bar__1"
+        <div class="chart__progress__plan__content">
+            <div
+                ref="pieContainer"
+                class="chart__pie__container"
             />
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0) + percentage(1)"
-                :color="colorYellow"
-                class="bar bar__2"
-            >
-                <span>{{ percentage(1) }}%</span>
-            </el-progress>
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0) + percentage(1) + percentage(2)"
-                :color="colorRed"
-                class="bar bar__3"
-            >
-                <span>{{ percentage(2) }}%</span>
-            </el-progress>
         </div>
     </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { ref, onMounted } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
+import * as echarts from "echarts";
 
-const { colorBlue, colorYellow, colorRed } = useDashboardStore();
-/** 成案進展 */
-const progressData = ref([
-    100000, 120000, 180000,
+const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlus } = useDashboardStore();
+
+const colors = [
+    colorDeepBlus, colorYellow, colorRed, colorBlue, colorGray,
+];
+
+const pieContainer = ref(null);
+
+const progressPlanData = ref([
+    {
+        value:100000,
+        name: "待簽約",
+    },
+    {
+        value: 160000,
+        name: "審批中",
+    },
+    {
+        value: 140000,
+        name: "曾被駁回",
+    },
+    {
+        value: 100000,
+        name: "進行中",
+    },
+    {
+        value: 160000,
+        name: "已取消",
+    },
 ]);
-const progressDataTotal = computed(() => progressData.value[0] + progressData.value[1] + progressData.value[2]);
 
-const percentage = (index) => (progressData.value[index] / progressDataTotal.value) * 100;
+const option = {
+    tooltip: {
+        trigger: "item",
+    },
+    // legend: {
+    //     top: "5%",
+    //     left: "center",
+    // },
+    grid: {
+        containLabel: true,
+    },
+    series: [
+        {
+            name: "Access From",
+            type: "pie",
+            radius: [
+                "50%", "100%",
+            ],
+            avoidLabelOverlap: false,
+            label: {
+                show: true,
+                position: "inside",
+                formatter: "{d}%", // 顯示百分比
+                color: "#fff",
+                fontSize: 8,
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: 40,
+                    fontWeight: "bold",
+                },
+            },
+            itemStyle: {
+                borderColor: "#fff", // 分隔線的顏色，可依需求修改
+                borderWidth: 1, // 分隔線的寬度，可依需求調整
+            },
+            labelLine: {
+                show: false,
+            },
+            color: colors,
+            data: progressPlanData.value,
+        },
+        {
+            name: "Access From",
+            type: "pie",
+            radius: [
+                "50%", "100%",
+            ],
+            avoidLabelOverlap: false,
+            label: {
+                show: true,
+                position: "outside",
+                edgeDistance: 5,
+                minMargin: 10,
+                lineHeight: 13,
+                //formatter: "{b}", // 顯示名稱
+                formatter: (params) => {
+                    const formattedValue = params.value.toLocaleString();
+                    return `NTD ${formattedValue}\n${params.name}`;
+                },
+                textStyle: {
+                    fontSize: 10,
+                },
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: 40,
+                    fontWeight: "bold",
+                },
+            },
+            itemStyle: {
+                borderColor: "#fff", // 分隔線的顏色，可依需求修改
+                borderWidth: 1, // 分隔線的寬度，可依需求調整
+            },
+            labelLine: {
+                show: true,
+            },
+            color: colors,
+            data: progressPlanData.value,
+        },
+    ],
+};
 
-console.log(percentage(0));
+onMounted(() => {
+    const chart = echarts.init(pieContainer.value);
+    chart.setOption(option);
+});
+
 </script>
 
 <style lang="scss" scoped>
-.chart__progress__complate {
+.chart__progress__plan {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -60,7 +151,7 @@ console.log(percentage(0));
     aspect-ratio: 2.7;
     margin-top: 15px;
 
-    &__content {
+    &__content{
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -68,31 +159,14 @@ console.log(percentage(0));
     }
 }
 
-.bar {
-    :deep(.el-progress-bar__outer) {
-        background-color: transparent;
-    }
+.chart__pie {
+    width: 100%;
+    height: 310px;
+    margin-left: 10px;
 
-    &__1 {
-        z-index: 2;
-        transform: translateY(18px);
-
-        :deep(.el-progress-bar__inner) {
-          border-radius: 100px 0 0 100px;
-        }
-    }
-
-	&__2 {
-        z-index: 1;
-
-        :deep(.el-progress-bar__inner) {
-          border-radius: 100px 0 0 100px;
-        }
-    }
-
-	&__3 {
-        z-index: 0;
-		transform: translateY(-18px);
+    &__container {
+        height: 100%;
     }
 }
+
 </style>
