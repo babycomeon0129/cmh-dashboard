@@ -55,6 +55,7 @@ console.log(percentage(0));
 .chart__progress__complate {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: 57%;
     aspect-ratio: 2.7;
     margin-top: 15px;

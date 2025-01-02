@@ -18,6 +18,7 @@
             </div>
             <div class="charts__row">
                 <ComplateProgressChart />
+                <PieChartProportion :amount-ratio="sourceProportion" />
             </div>
         </div>
 
@@ -29,6 +30,7 @@ import { ref } from "vue";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
 import ComplateProgressChart from "@/components/chart/ComplateProgressChart.vue";
+import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PieChart from "@/components/chart/PieChart.vue";
 
 /** 服務成案比例-毛利率 */
@@ -57,6 +59,11 @@ const amountRatio = ref([
         value: 160000,
         name: "活動",
     },
+]);
+
+/** 成案來源比例 */
+const sourceProportion = ref([
+    120000, 280000,
 ]);
 </script>
 
