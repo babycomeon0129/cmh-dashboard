@@ -1,7 +1,7 @@
 <template>
     <div class="chart chart__pie">
         <ChartTitle
-            title="成案來源比例"
+            :title="`${titleType}案來源比例`"
             :type="type"
         />
         <div
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
@@ -22,7 +22,7 @@ const { amountRatio, type } = defineProps([
     "amountRatio", "type",
 ]);
 const { colorYellow, colorBlue } = useDashboardStore();
-
+const titleType = computed(() => type == 1 ? "預" : "成");
 const pieContainer = ref(null);
 const option = {
     tooltip: {

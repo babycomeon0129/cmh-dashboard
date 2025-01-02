@@ -75,7 +75,6 @@ const sourceProportion = ref([
 </script>
 
 <style lang="scss" scoped>
-
 .charts {
     margin-top: 15px;
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="chart chart__col">
         <ChartTitle
-            title="成案服務比例"
+            :title="`${titleType}案服務比例`"
             :type="type"
         />
         <div
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
@@ -21,8 +21,9 @@ const { grossProfit, colData, serviceCount, type } = defineProps([
     "grossProfit", "colData", "serviceCount", "type",
 ]);
 const { colorBlue, colorGreen, colorRed, colorYellow } = useDashboardStore();
-
 const colContainer = ref(null);
+
+const titleType = computed(() => type == 1 ? "預" : "成");
 
 const barColors = [
     colorYellow, colorBlue, colorGreen, colorRed,
