@@ -15,10 +15,7 @@
                     :service-count="serviceCount"
                     :type="1"
                 />
-                <PieChart
-                    :amount-ratio="amountRatio"
-                    :type="1"
-                />
+                <SuccessRate />
             </div>
             <div class="charts__row">
                 <PlanProgressChart />
@@ -35,9 +32,9 @@
 import { ref } from "vue";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
+import SuccessRate from "@/components/chart/SuccessRate.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PlanProgressChart from "@/components/chart/PlanProgressChart.vue";
-import PieChart from "@/components/chart/PieChart.vue";
 
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
