@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import * as echarts from "echarts";
 
 const trigger = ref("成案");
@@ -24,6 +24,42 @@ const options = [
     "成案", "預案",
 ];
 const waterfallContainer = ref(null);
+/** 上月留下 */
+const lastMonth = ref([
+    48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000,
+]);
+/** 本月新增 */
+const thisMonth = ref([
+    32000, 30000, 32000, 30000,32000, 30000,32000, 30000,32000, 30000,32000, 30000,
+]);
+/** 本月成案 */
+const thisMonthComplate = ref([
+    26000, 24000, 26000, 24000,26000, 24000,26000, 24000,26000, 24000,26000, 24000,
+]);
+/** 本月取消 */
+const thisMonthCancel = ref([
+    10000, 16000,10000, 16000,10000, 16000,10000, 16000,10000, 16000,10000, 16000,
+]);
+/** 新增件數 */
+const addCount = ref([
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+    "  9", "+7", "-4", "-2",
+]);
+
+/** 上月留下＋本月新增 - 本月成案 */
+const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + thisMonth.value[index] - thisMonthComplate.value[index]));
+/** 上月留下+本月新增 - 本月成案 - 本月取消 */
+const Placeholder4 = computed(() => placeholder3.value.map((data, index) => data - thisMonthCancel.value[index]));
 
 const option = {
     title: {
@@ -82,20 +118,7 @@ const option = {
             type: "category",
             position: "bottom",
             data: (function () {
-                return [
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                    "  9", "+7", "-4", "-2",
-                ];
+                return addCount.value;
             })(),
             axisTick: {
                 show: false, // 不顯示刻度線
@@ -126,9 +149,7 @@ const option = {
             itemStyle: {
                 color: "#345EB4",
             },
-            data: [
-                48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000,
-            ],
+            data: lastMonth.value,
             emphasis: {
                 focus: "series",
             },
@@ -159,9 +180,7 @@ const option = {
                 },
             },
             // 第二個數值：上月留下,
-            data: [
-                48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000,48000, 44000, 48000, 44000,
-            ],
+            data: lastMonth.value,
         },
         {
             name: "本月新增",
@@ -182,9 +201,7 @@ const option = {
             itemStyle: {
                 color: "#4CA8FF",
             },
-            data: [
-                32000, 30000, 32000, 30000,32000, 30000,32000, 30000,32000, 30000,32000, 30000,
-            ],
+            data: thisMonth.value,
         },
         {
             name: "Placeholder3",
@@ -205,9 +222,7 @@ const option = {
                 },
             },
             // 上月留下+本月新增 - 本月成案
-            data: [
-                54000, 50000, 54000, 50000, 54000, 50000, 54000, 50000, 54000, 50000, 54000, 50000,
-            ],
+            data: placeholder3.value,
         },
         {
             name: "本月成案",
@@ -227,9 +242,7 @@ const option = {
             itemStyle: {
                 color: "#EFAB29",
             },
-            data: [
-                26000, 24000, 26000, 24000,26000, 24000,26000, 24000,26000, 24000,26000, 24000,
-            ],
+            data: thisMonthComplate.value,
         },
         {
             name: "Placeholder4",
@@ -250,9 +263,7 @@ const option = {
                 },
             },
             // 上月留下+本月新增 - 本月成案 - 本月取消
-            data: [
-                44000, 34000, 44000, 34000,44000, 34000, 44000, 34000,44000, 34000, 44000, 34000,
-            ],
+            data: Placeholder4.value,
         },
         {
             name: "本月取消",
@@ -272,9 +283,7 @@ const option = {
             itemStyle: {
                 color: "#C5C7CC",
             },
-            data: [
-                10000, 16000,10000, 16000,10000, 16000,10000, 16000,10000, 16000,10000, 16000,
-            ],
+            data: thisMonthCancel.value,
         },
     ],
 };
