@@ -6,26 +6,26 @@
         </div>
         <div class="year__content">
             <div class="year__detail">
-                <div>成案  <span>NTD</span> 400,000</div>
-                <div>預案  <span>NTD</span> 600,000</div>
+                <div>成案  <span>NTD</span> {{ planCount.toLocaleString()}}</div>
+                <div>預案  <span>NTD</span> {{completeCount.toLocaleString()}} </div>
                 <div>年度KPI  <span>NTD</span> 1,200,000</div>
             </div>
             <div class="progress">
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="planMoney"
+                    :percentage="planPercentage"
                     :color="colorYellow"
                     class="bar plan"
                 />
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="showCompleteMoney"
+                    :percentage="completePercentage + planPercentage"
                     :color="colorBlue"
                     class="bar complete"
                 >
-                    <span>{{ completeMoney }}%</span>
+                    <span>{{ completePercentage }}%</span>
                 </el-progress>
             </div>
         </div>
@@ -38,10 +38,12 @@ import { useDashboardStore } from "@/stores/dashboard";
 
 const { colorBlue, colorYellow } = useDashboardStore();
 
-let planMoney = ref(30);
-let completeMoney = ref(60);
-let showCompleteMoney = computed(() => planMoney.value + completeMoney.value);
+let planCount = ref(400000);
+let completeCount = ref(600000);
+let kpiCount = ref(1200000);
 
+let planPercentage = computed(() => (planCount.value / kpiCount.value) * 100);
+let completePercentage = computed(() => (completeCount.value / kpiCount.value) * 100);
 </script>
 
 <style lang="scss" scoped>
