@@ -14,8 +14,14 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
+import { useDashboardStore } from "@/stores/dashboard";
 
 import * as echarts from "echarts";
+
+const { amountRatio } = defineProps([
+    "amountRatio",
+]);
+const { colorBlue, colorGreen, colorRed } = useDashboardStore();
 
 const pieContainer = ref(null);
 const option = {
@@ -34,20 +40,7 @@ const option = {
             //name: "Access From",
             type: "pie",
             radius: "50%",
-            data: [
-                {
-                    value: 100000,
-                    name: "紙本",
-                },
-                {
-                    value: 140000,
-                    name: "數位",
-                },
-                {
-                    value: 160000,
-                    name: "活動",
-                },
-            ],
+            data: amountRatio,
             label: {
                 show: true,
                 position: "outside",
@@ -60,11 +53,11 @@ const option = {
                     return `NTD ${formattedValue}\n${params.name}`;
                 },
                 textStyle: {
-                    fontSize: 6,
+                    fontSize: 10,
                 },
             },
             color: [
-                "#4CA8FF", "#4EC478", "#F97F6C",
+                colorBlue, colorGreen, colorRed,
             ],
             //  高亮樣式
             emphasis: {
@@ -79,20 +72,7 @@ const option = {
             name: "金額比例",
             type: "pie",
             radius: "50%",
-            data: [
-                {
-                    value: 100000,
-                    name: "紙本",
-                },
-                {
-                    value: 140000,
-                    name: "數位",
-                },
-                {
-                    value: 160000,
-                    name: "活動",
-                },
-            ],
+            data: amountRatio,
             itemStyle: {
                 borderColor: "#fff", // 分隔線的顏色，可依需求修改
                 borderWidth: 1, // 分隔線的寬度，可依需求調整

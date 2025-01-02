@@ -6,11 +6,13 @@ export const useDashboardStore = defineStore("dashboard", () => {
     const colorYellow = "#FFAE41";
     const colorGreen = "#4EC478";
     const colorRed = "#F97F6C";
+    const colorPurple = "#D878B1";
 
     return {
         colorBlue,
         colorYellow,
         colorGreen,
         colorRed,
+        colorPurple,
     };
 });

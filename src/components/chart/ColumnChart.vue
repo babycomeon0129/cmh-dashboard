@@ -14,26 +14,26 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
+import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
-const { grossProfit, colData } = defineProps([
-    "grossProfit", "colData",
+const { grossProfit, colData, serviceCount } = defineProps([
+    "grossProfit", "colData", "serviceCount",
 ]);
+const { colorBlue, colorGreen, colorRed, colorYellow } = useDashboardStore();
 
 const colContainer = ref(null);
-const colors = [
-    "#5470C6", "#91CC75", "#EE6666",
-];
 
 const barColors = [
-    "#FAC858", "#4CA8FF", "#91CC75", "#EE6666",
+    colorYellow, colorBlue, colorGreen, colorRed,
 ];
+
 const option = {
     // title: {
     //     text: "成案服務比例",
     //     left: "center",
     // },
-    color: colors,
+    color: barColors,
     tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -73,9 +73,7 @@ const option = {
             axisTick: {
                 alignWithLabel: true,
             },
-            data: [
-                "8筆","9筆", "13筆", "30筆",
-            ],
+            data: serviceCount,
             axisLabel: {
                 fontSize: 8,
             },
@@ -141,7 +139,7 @@ const option = {
                 width: 10,
                 height: 10,
             },
-            style: { fill: "#FAC858" },
+            style: { fill: colorYellow },
         },
         {
             type: "text",
@@ -161,7 +159,7 @@ const option = {
                 width: 10,
                 height: 10,
             },
-            style: { fill: "#4CA8FF" },
+            style: { fill: colorBlue },
         },
         {
             type: "text",
@@ -181,7 +179,7 @@ const option = {
                 width: 10,
                 height: 10,
             },
-            style: { fill: "#91CC75" },
+            style: { fill: colorGreen },
         },
         {
             type: "text",
@@ -201,7 +199,7 @@ const option = {
                 width: 10,
                 height: 10,
             },
-            style: { fill: "#EE6666" },
+            style: { fill: colorRed },
         },
         {
             type: "text",
