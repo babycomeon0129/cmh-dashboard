@@ -13,12 +13,19 @@
                     :gross-profit="colGrossProfit"
                     :col-data="colData"
                     :service-count="serviceCount"
+                    :type="2"
                 />
-                <PieChart :amount-ratio="amountRatio" />
+                <PieChart
+                    :amount-ratio="amountRatio"
+                    :type="2"
+                />
             </div>
             <div class="charts__row">
                 <ComplateProgressChart />
-                <PieChartProportion :amount-ratio="sourceProportion" />
+                <PieChartProportion
+                    :amount-ratio="sourceProportion"
+                    :type="2"
+                />
             </div>
         </div>
 

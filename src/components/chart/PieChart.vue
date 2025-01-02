@@ -2,7 +2,7 @@
     <div class="chart chart__pie">
         <ChartTitle
             title="成案服務比例"
-            :type="2"
+            :type="type"
         />
         <div
             ref="pieContainer"
@@ -18,8 +18,8 @@ import { useDashboardStore } from "@/stores/dashboard";
 
 import * as echarts from "echarts";
 
-const { amountRatio } = defineProps([
-    "amountRatio",
+const { amountRatio, type } = defineProps([
+    "amountRatio", "type",
 ]);
 const { colorBlue, colorGreen, colorRed } = useDashboardStore();
 

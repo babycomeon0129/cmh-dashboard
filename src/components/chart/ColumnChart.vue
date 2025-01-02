@@ -2,7 +2,7 @@
     <div class="chart chart__col">
         <ChartTitle
             title="成案服務比例"
-            :type="2"
+            :type="type"
         />
         <div
             ref="colContainer"
@@ -17,8 +17,8 @@ import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
-const { grossProfit, colData, serviceCount } = defineProps([
-    "grossProfit", "colData", "serviceCount",
+const { grossProfit, colData, serviceCount, type } = defineProps([
+    "grossProfit", "colData", "serviceCount", "type",
 ]);
 const { colorBlue, colorGreen, colorRed, colorYellow } = useDashboardStore();
 
