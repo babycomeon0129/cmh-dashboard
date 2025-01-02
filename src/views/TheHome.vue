@@ -10,8 +10,13 @@
             <YearIncome />
             <div class="charts">
                 <div class="project">
-                    <ProjectComplate />
-                    <ProjectPlan />
+                    <div class="project__detail">
+                        <ProjectComplate />
+                        <ProjectPlan />
+                    </div>
+                    <div class="change">
+                        <WaterFallChart />
+                    </div>
                 </div>
             </div>
         </div>
@@ -22,6 +27,7 @@
 import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
+import WaterFallChart from "@/components/chart/WaterFallChart.vue";
 
 </script>
 
@@ -38,22 +44,27 @@ h1 {
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
 }
 
 .date {
-  margin-left: 15px;
+    margin-left: 15px;
 }
 
 .charts {
-  margin-top: 14px;
+    margin-top: 14px;
 }
 
 .project {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    &__detail {
+		display: flex;
+        width: 100%;
+    }
 }
 </style>

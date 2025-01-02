@@ -27,6 +27,8 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./src/components/SideBar.vue')['default']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']
+    WaterFallChart: typeof import('./src/components/chart/WaterFallChart.vue')['default']
+    WaterFallChart2: typeof import('./src/components/chart/WaterFallChart2.vue')['default']
     WelcomeItem: typeof import('./src/components/WelcomeItem.vue')['default']
     YearIncome: typeof import('./src/components/YearIncome.vue')['default']
   }

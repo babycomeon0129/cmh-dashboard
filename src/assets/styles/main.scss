@@ -8,9 +8,12 @@
 }
 
 .project__box {
-	width: 720px;
+	width: calc(50% - 7.5px);
 	height: 585px;
-	margin-right: 15px;
+
+	&:first-child {
+		margin-right: 15px;
+	}
 }
 
 .charts__row {
@@ -21,4 +24,5 @@
 	padding: 10px;
 	border: 1px solid var(--border-color);
 	border-radius: 8px;
+	background: #fff;
 }
