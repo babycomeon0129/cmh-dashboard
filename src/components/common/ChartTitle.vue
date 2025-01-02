@@ -30,5 +30,9 @@ const { title, type } = defineProps([
         border-radius: 10px;
         background: var(--color-yellow);
     }
+
+    &.plan::before {
+      background: var(--color-blue);
+    }
 }
 </style>

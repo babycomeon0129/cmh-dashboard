@@ -18,6 +18,7 @@
                         <WaterFallChart />
                     </div>
                 </div>
+                <RowChart />
             </div>
         </div>
     </main>
@@ -28,6 +29,7 @@ import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
 import WaterFallChart from "@/components/chart/WaterFallChart.vue";
+import RowChart from "@/components/chart/RowChart.vue";
 
 </script>
 
@@ -54,12 +56,15 @@ h1 {
 }
 
 .charts {
+    display: flex;
+    width: 100%;
     margin-top: 14px;
 }
 
 .project {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: 80%;
 
     &__detail {
