@@ -1,5 +1,5 @@
 <template>
-    <div class="chart__col">
+    <div class="chart chart__col">
         <ChartTitle
             title="成案服務比例"
             :type="2"
@@ -285,9 +285,6 @@ onMounted(() => {
     flex-shrink: 0;
     width: 57%;
     aspect-ratio: 1.32;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
 }
 
 .chart__col__container {

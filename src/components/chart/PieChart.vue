@@ -1,5 +1,5 @@
 <template>
-    <div class="chart__pie">
+    <div class="chart chart__pie">
         <ChartTitle
             title="成案服務比例"
             :type="2"
@@ -109,9 +109,6 @@ onMounted(() => {
     width: 100%;
     height: 310px;
     margin-left: 10px;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
 
     &__container {
         height: 100%;

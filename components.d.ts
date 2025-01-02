@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     ChartTitle: typeof import('./src/components/common/ChartTitle.vue')['default']
     ColumnChart: typeof import('./src/components/chart/ColumnChart.vue')['default']
+    ComplateProgressChart: typeof import('./src/components/chart/ComplateProgressChart.vue')['default']
     copy: typeof import('./src/components/ProjectComplate copy.vue')['default']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']

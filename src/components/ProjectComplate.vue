@@ -16,6 +16,9 @@
                 />
                 <PieChart :amount-ratio="amountRatio" />
             </div>
+            <div class="charts__row">
+                <ComplateProgressChart />
+            </div>
         </div>
 
     </div>
@@ -25,6 +28,7 @@
 import { ref } from "vue";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
+import ComplateProgressChart from "@/components/chart/ComplateProgressChart.vue";
 import PieChart from "@/components/chart/PieChart.vue";
 
 /** 服務成案比例-毛利率 */
