@@ -233,7 +233,8 @@ const option = {
     ],
     series: [
         {
-            name: "毛利",
+            name: "金額",
+            yAxisIndex: 1, // 將指向 y 軸的 index 調整為0 （因為只有兩個 y 軸了）
             type: "bar",
             barWidth: "30%",
             itemStyle: {
@@ -243,33 +244,28 @@ const option = {
             },
             label: {
                 show: true,
-                position: "inside", // 可視情況改成 'top', 'inside', 'insideBottom'等
-                formatter: "{c}%", // {c}會替換為該數值，後面加上%符號
-                // 若需自行計算百分比，可用 formatter callback 函數
-                // formatter: (params) => params.value + '%'
-                color: "#fff",
+                position: "top", // 可視情況改成 'top', 'inside', 'insideBottom'等
+                formatter: (params) => params.value.toLocaleString(),
+                color: "#000",
                 fontSize: 9,
             },
-            data: grossProfit,
+            data: colData,
         },
         {
-            name: "金額",
+            name: "毛利率",
             type: "line",
-            yAxisIndex: 1, // 將指向 y 軸的 index 調整為 1（因為只有兩個 y 軸了）
+            yAxisIndex: 0, // 將指向 y 軸的 index 調整為0 （因為只有兩個 y 軸了）
             itemStyle: {
                 color: "#D878B1",
             },
             label: {
-                show: true,
+                show: false,
                 position: "top", // 可視情況改成 'top', 'inside', 'insideBottom'等
-                formatter: (params) => {
-                    const formattedValue = params.value.toLocaleString("en-US");
-                    return formattedValue;
-                },
+                formatter: "{c}%",
                 color: "#000",
                 fontSize: 8,
             },
-            data: colData,
+            data: grossProfit,
         },
     ],
 };

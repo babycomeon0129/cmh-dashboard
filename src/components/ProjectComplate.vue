@@ -39,7 +39,7 @@ const colGrossProfit = ref([
 ]);
 /** 服務成案比例-金額 */
 const colData = ref([
-    1853794, 1817660, 1433037, 31236841,
+    40000, 60000, 160000, 140000,
 ]);
 /** 服務成案比例-筆樹 */
 const serviceCount = ref([
