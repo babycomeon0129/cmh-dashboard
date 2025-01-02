@@ -23,10 +23,11 @@ const { title, type } = defineProps([
     &::before {
         content: "";
         position: absolute;
-        top: 0;
+        top: 4px;
         left: 0;
         width: 3px;
-        height: 100%;
+        height: 14px;
+        border-radius: 10px;
         background: var(--color-yellow);
     }
 }

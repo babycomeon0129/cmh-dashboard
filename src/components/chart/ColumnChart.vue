@@ -41,7 +41,7 @@ const option = {
         },
     },
     grid: {
-        right: 0,
+        right: 5,
         bottom: 0,
         left: 0,
         containLabel: true,
@@ -212,6 +212,26 @@ const option = {
                 fontSize: 10,
             },
         },
+        // 毛利 (紫色)
+        {
+            type: "rect",
+            left: 290,
+            top: "6.5%",
+            shape: {
+                width: 8,
+                height: 2,
+            },
+            style: { fill: "#D878B1" },
+        },
+        {
+            type: "text",
+            left: 305,
+            top: "5%",
+            style: {
+                text: "毛利率",
+                fontSize: 10,
+            },
+        },
     ],
     series: [
         {
@@ -264,8 +284,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__col {
-    width: 410px;
-    height: 310px;
+    flex-shrink: 0;
+    width: 57%;
+    aspect-ratio: 1.32;
     padding: 10px;
     border: 1px solid var(--border-color);
     border-radius: 8px;

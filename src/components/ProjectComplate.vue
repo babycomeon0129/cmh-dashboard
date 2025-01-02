@@ -8,10 +8,13 @@
             :achievement="64"
         />
         <div class="charts">
-            <ColumnChart
-                :gross-profit="colGrossProfit"
-                :col-data="colData"
-            />
+            <div class="charts__row">
+                <ColumnChart
+                    :gross-profit="colGrossProfit"
+                    :col-data="colData"
+                />
+                <PieChart />
+            </div>
         </div>
 
     </div>
@@ -21,6 +24,7 @@
 import { ref } from "vue";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
+import PieChart from "@/components/chart/PieChart.vue";
 
 const colGrossProfit = ref([
     20, 40, 70, 50,

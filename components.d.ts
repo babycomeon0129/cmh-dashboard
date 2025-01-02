@@ -17,6 +17,7 @@ declare module 'vue' {
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
     IconSupport: typeof import('./src/components/icons/IconSupport.vue')['default']
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
+    PieChart: typeof import('./src/components/chart/PieChart.vue')['default']
     ProjectComplate: typeof import('./src/components/ProjectComplate.vue')['default']
     ProjectPlan: typeof import('./src/components/ProjectPlan.vue')['default']
     ProjectTitle: typeof import('./src/components/common/ProjectTitle.vue')['default']
