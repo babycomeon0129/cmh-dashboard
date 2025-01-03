@@ -35,7 +35,10 @@ import RowChart from "@/components/chart/RowChart.vue";
 
 <style lang="scss" scoped>
 main {
+    display: flex;
+    flex-direction: column;
     width: calc(100% - var(--side-width));
+    height: calc(100vh - 30px);
     margin-left: var(--side-width);
     padding: 15px;
 }
@@ -55,10 +58,17 @@ h1 {
     margin-left: 15px;
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
 .charts {
     display: flex;
     width: 100%;
-    margin-top: 14px;
+    padding-top: 14px;
+    flex-grow: 1;
 }
 
 .project {
@@ -72,5 +82,9 @@ h1 {
         justify-content: space-between;
         width: 100%;
     }
+}
+
+.change {
+    flex-grow: 1;
 }
 </style>

@@ -7,6 +7,13 @@
                 :options="options"
             />
             <div>月預案變化</div>
+            <div class="chart__waterfall__legend">
+                <div
+                    v-for=" legend in legendList"
+                    :key="legend">
+                    {{ legend }}
+                </div>
+            </div>
         </div>
         <div
             ref="waterfallContainer"
@@ -24,6 +31,9 @@ const options = [
     "成案", "預案",
 ];
 const waterfallContainer = ref(null);
+const legendList = [
+    "上月留下", "本月新增", "本月成案", "本月取消",
+];
 /** 上月留下 */
 const lastMonth = ref([
     48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000,
@@ -80,15 +90,16 @@ const option = {
             return tar && tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
         },
     },
-    legend: {
-        data: [
-            "上月留下", "本月新增", "本月成案", "本月取消",
-        ],
-    },
+    // legend: {
+    //     data: [
+    //         "上月留下", "本月新增", "本月成案", "本月取消",
+    //     ],
+    // },
     grid: {
+        top: 30,
         left: 10,
         right: 10,
-        bottom: 10,
+        bottom: 0,
         containLabel: true,
     },
     xAxis: [
@@ -103,7 +114,7 @@ const option = {
             })(),
             // 第二條 x 軸，可以往上或往下偏移
             position: "bottom",
-            offset: 30,
+            offset: 20,
             axisLine: {
                 show: false,
             },
@@ -296,6 +307,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__waterfall {
+    height: calc(100% - 35px);
+    min-height: 181px;
     margin-top: 15px;
 
     &__detail {
@@ -310,7 +323,41 @@ onMounted(() => {
 
     &__container {
         width: 100%;
-        height: 297px;
+        height: calc(100% - 32px)
+    }
+
+    &__legend {
+        display: flex;
+        margin-left: 150px;
+        font-size: 10px;
+        color: var(--text-color);
+
+        div {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 8px;
+                height: 8px;
+                margin-right: 5px;
+                background: var(--color-deep-blue);
+            }
+
+            &:nth-child(2)::before {
+                background: var(--color-blue);
+            }
+
+            &:nth-child(3)::before {
+                background: var(--color-yellow);
+            }
+
+            &:nth-child(4)::before {
+                background: #C5C7CC;
+            }
+        }
     }
 }
 
