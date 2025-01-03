@@ -44,29 +44,23 @@ const colGrossProfit = ref([
 const colData = ref([
     40000, 60000, 160000, 140000,
 ]);
-/** 服務成案比例-筆樹 */
+/** 服務成案比例-筆數 */
 const serviceCount = ref([
     "8筆","9筆", "13筆", "30筆",
 ]);
-/** 成案服務比例 */
-const amountRatio = ref([
-    {
-        value: 100000,
-        name: "紙本",
-    },
-    {
-        value: 140000,
-        name: "數位",
-    },
-    {
-        value: 160000,
-        name: "活動",
-    },
-]);
 
-/** 成案來源比例 */
+/** 預案來源比例 */
 const sourceProportion = ref([
-    120000, 280000,
+    {
+        name: "直客",
+        total: 120000,
+        count: 4,
+    },
+    {
+        name: "代理商",
+        total: 280000,
+        count: 6,
+    },
 ]);
 </script>
 

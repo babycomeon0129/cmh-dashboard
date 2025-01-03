@@ -40,7 +40,7 @@ const option = {
             //name: "Access From",
             type: "pie",
             radius: "70%",
-            data: amountRatio,
+            data: amountRatio.map(data => data.total),
             label: {
                 show: true,
                 position: "outside",
@@ -50,7 +50,8 @@ const option = {
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `NTD ${formattedValue}\n${params.name}`;
+                    console.log(params);
+                    return `NTD ${formattedValue}\n${amountRatio[params.dataIndex].name}(${amountRatio[params.dataIndex].count}筆)`;
                 },
                 textStyle: {
                     fontSize: 10,
@@ -72,10 +73,10 @@ const option = {
             name: "金額比例",
             type: "pie",
             radius: "70%",
-            data: amountRatio,
+            data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 5, // 分隔線的寬度，可依需求調整
+                borderWidth: 3, // 分隔線的寬度，可依需求調整
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",

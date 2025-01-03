@@ -70,7 +70,16 @@ const amountRatio = ref([
 
 /** 成案來源比例 */
 const sourceProportion = ref([
-    120000, 280000,
+    {
+        name: "直客",
+        total: 120000,
+        count: 4,
+    },
+    {
+        name: "代理商",
+        total: 280000,
+        count: 6,
+    },
 ]);
 </script>
 

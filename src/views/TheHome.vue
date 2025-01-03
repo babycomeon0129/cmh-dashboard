@@ -68,7 +68,8 @@ h1 {
     width: 80%;
 
     &__detail {
-		display: flex;
+        display: flex;
+        justify-content: space-between;
         width: 100%;
     }
 }
