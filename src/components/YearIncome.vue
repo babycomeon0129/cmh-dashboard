@@ -42,8 +42,14 @@ let planCount = ref(400000);
 let completeCount = ref(600000);
 let kpiCount = ref(1200000);
 
-let planPercentage = computed(() => (planCount.value / kpiCount.value) * 100);
-let completePercentage = computed(() => (completeCount.value / kpiCount.value) * 100);
+let planPercentage = computed(() => {
+    const value = (planCount.value / kpiCount.value) * 100;
+    return Number(value.toFixed(2));
+});
+let completePercentage = computed(() => {
+    const value = (completeCount.value / kpiCount.value) * 100;
+    return Number(value.toFixed(2));
+});
 </script>
 
 <style lang="scss" scoped>
