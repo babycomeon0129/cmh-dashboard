@@ -58,7 +58,7 @@ const option = {
         },
     },
     grid: {
-        top: 0,
+        top: 20,
         left: 0,
         bottom: 0,
         containLabel: true,
@@ -218,10 +218,12 @@ onMounted(() => {
 
     &__container {
         width: 100%;
-        height: 94%;
+        height: calc(100% - 90px);
+        margin-top: 15px;
     }
 
     &__detail {
+        margin-top: 10px;
         font-size: 14px;
         color: var(--text-color2);
 

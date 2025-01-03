@@ -1,5 +1,5 @@
-@use './base/vars';
-@use './base/base';
+@use "./base/vars";
+@use "./base/base";
 
 .dashboard__box {
 	padding: 10px;
@@ -15,13 +15,13 @@
 	}
 }
 
-.charts__row {
-	display: flex;
-}
-
 .chart {
 	padding: 10px;
 	border: 1px solid var(--border-color);
 	border-radius: 8px;
 	background: #fff;
+}
+
+.charts__row {
+	display: flex;
 }

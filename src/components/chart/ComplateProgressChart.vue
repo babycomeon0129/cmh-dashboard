@@ -69,7 +69,7 @@ console.log(percentage(0));
     flex-shrink: 0;
     width: 57%;
     aspect-ratio: 2.7;
-    margin-top: 15px;
+    margin-top: 10px;
 
     &__content {
         display: flex;

@@ -109,7 +109,7 @@ onMounted(() => {
     width: 100%;
     //height: 170px;
     aspect-ratio: 1.65;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 10px;
 
     &__container {
