@@ -7,8 +7,8 @@ export const useDashboardStore = defineStore("dashboard", () => {
     const colorGreen = "#4EC478";
     const colorRed = "#F97F6C";
     const colorPurple = "#D878B1";
-    const colorDeepBlus = "#345EB4";
-    const colorGray = "#DEE3E9";
+    const colorDeepBlue = "#345EB4";
+    const colorGray = "#C5C7CC";
 
     return {
         colorBlue,
@@ -16,7 +16,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
         colorGreen,
         colorRed,
         colorPurple,
-        colorDeepBlus,
+        colorDeepBlue,
         colorGray,
     };
 });

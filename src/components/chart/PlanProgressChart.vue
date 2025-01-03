@@ -19,10 +19,10 @@ import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
-const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlus } = useDashboardStore();
+const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlue } = useDashboardStore();
 
 const colors = [
-    colorDeepBlus, colorYellow, colorRed, colorBlue, colorGray,
+    colorDeepBlue, colorYellow, colorRed, colorBlue, colorGray,
 ];
 
 const pieContainer = ref(null);
@@ -71,37 +71,6 @@ const option = {
             avoidLabelOverlap: false,
             label: {
                 show: true,
-                position: "inside",
-                formatter: "{d}%", // 顯示百分比
-                color: "#fff",
-                fontSize: 8,
-            },
-            emphasis: {
-                label: {
-                    show: true,
-                    fontSize: 40,
-                    fontWeight: "bold",
-                },
-            },
-            itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 1, // 分隔線的寬度，可依需求調整
-            },
-            labelLine: {
-                show: false,
-            },
-            color: colors,
-            data: progressPlanData.value,
-        },
-        {
-            name: "Access From",
-            type: "pie",
-            radius: [
-                "50%", "100%",
-            ],
-            avoidLabelOverlap: false,
-            label: {
-                show: true,
                 position: "outside",
                 edgeDistance: 5,
                 minMargin: 10,
@@ -118,7 +87,7 @@ const option = {
             emphasis: {
                 label: {
                     show: true,
-                    fontSize: 40,
+                    fontSize: 12,
                     fontWeight: "bold",
                 },
             },
@@ -128,6 +97,37 @@ const option = {
             },
             labelLine: {
                 show: true,
+            },
+            color: colors,
+            data: progressPlanData.value,
+        },
+        {
+            name: "Access From",
+            type: "pie",
+            radius: [
+                "50%", "100%",
+            ],
+            avoidLabelOverlap: false,
+            label: {
+                show: true,
+                position: "inside",
+                formatter: "{d}%", // 顯示百分比
+                color: "#fff",
+                fontSize: 8,
+            },
+            emphasis: {
+                label: {
+                    show: true,
+                    fontSize: 12,
+                    fontWeight: "bold",
+                },
+            },
+            itemStyle: {
+                borderColor: "#fff", // 分隔線的顏色，可依需求修改
+                borderWidth: 1, // 分隔線的寬度，可依需求調整
+            },
+            labelLine: {
+                show: false,
             },
             color: colors,
             data: progressPlanData.value,

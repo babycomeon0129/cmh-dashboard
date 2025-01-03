@@ -24,8 +24,10 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
+import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
+const { colorDeepBlue, colorBlue, colorYellow, colorGray } = useDashboardStore();
 const trigger = ref("成案");
 const options = [
     "成案", "預案",
@@ -127,6 +129,10 @@ const option = {
         },
         {
             type: "category",
+            name: "筆數",
+            nameTextStyle: {
+                fontSize: 11,
+            },
             position: "bottom",
             data: (function () {
                 return addCount.value;
@@ -135,12 +141,47 @@ const option = {
                 show: false, // 不顯示刻度線
             },
             axisLabel: {
+                interval: 0,
                 align: "center",
+                formatter: (value, index) => {
+                    const colorIndex = index % 4;
+                    return `{color${colorIndex}|${value}}`;
+                },
+                rich: {
+                    color0: {
+                        fontSize: 11,
+                        color: colorDeepBlue,
+                    },
+                    color1: {
+                        fontSize: 11,
+                        color: colorBlue,
+                    },
+                    color2: {
+                        fontSize: 11,
+                        color: colorYellow,
+                    },
+                    color3: {
+                        fontSize: 11,
+                        color: colorGray,
+                    },
+                },
             },
         },
     ],
     yAxis: {
         type: "value",
+        name: "金額",
+        nameTextStyle: {
+            fontSize: 11,
+        },
+        splitLine: {
+            show: true,
+            lineStyle: {
+                type: "dashed", // 設置為虛線
+                color: "#DEE3E9", // 可自行調整顏色
+                width: 1, // 可選，設置線條寬度
+            },
+        },
     },
     series: [
         {
@@ -158,7 +199,7 @@ const option = {
                 },
             },
             itemStyle: {
-                color: "#345EB4",
+                color: colorDeepBlue,
             },
             data: lastMonth.value,
             emphasis: {
@@ -210,7 +251,7 @@ const option = {
                 },
             },
             itemStyle: {
-                color: "#4CA8FF",
+                color: colorBlue,
             },
             data: thisMonth.value,
         },
@@ -251,7 +292,7 @@ const option = {
                 },
             },
             itemStyle: {
-                color: "#EFAB29",
+                color: colorYellow,
             },
             data: thisMonthComplate.value,
         },
@@ -292,7 +333,7 @@ const option = {
                 },
             },
             itemStyle: {
-                color: "#C5C7CC",
+                color: colorGray,
             },
             data: thisMonthCancel.value,
         },

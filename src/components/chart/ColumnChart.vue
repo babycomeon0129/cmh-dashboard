@@ -77,6 +77,27 @@ const option = {
             data: serviceCount,
             axisLabel: {
                 fontSize: 8,
+                formatter: (value, index) => {
+                    return `{color${index}|${value}}`;
+                },
+                rich: {
+                    color0: {
+                        fontSize: 11,
+                        color: colorYellow,
+                    },
+                    color1: {
+                        fontSize: 11,
+                        color: colorBlue,
+                    },
+                    color2: {
+                        fontSize: 11,
+                        color: colorGreen,
+                    },
+                    color3: {
+                        fontSize: 11,
+                        color: colorRed,
+                    },
+                },
             },
         },
     ],
@@ -99,6 +120,9 @@ const option = {
                 formatter: "{value}%",
                 fontSize: 11,
             },
+            splitLine: {
+                show: false,
+            },
         },
         // 將原本的 Precipitation Y 軸設定刪除
         {
@@ -120,12 +144,11 @@ const option = {
                 fontSize: 11,
             },
             splitLine: {
-                // 顯示網格線
                 show: true,
-                // 設定成虛線
                 lineStyle: {
-                    type: "dashed", // ★ 改成虛線
+                    type: "dashed", // 設置為虛線
                     color: "#DEE3E9", // 可自行調整顏色
+                    width: 1, // 可選，設置線條寬度
                 },
             },
         },
