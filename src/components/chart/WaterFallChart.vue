@@ -107,6 +107,7 @@ const option = {
     xAxis: [
         {
             type: "category",
+            name: "月份",
             data: (function () {
                 let list = [];
                 for (let i = 1; i <= 12; i++) {
@@ -116,7 +117,7 @@ const option = {
             })(),
             // 第二條 x 軸，可以往上或往下偏移
             position: "bottom",
-            offset: 20,
+            offset: 18,
             axisLine: {
                 show: false,
             },
