@@ -4,32 +4,58 @@
             title="成案進展"
             :type="2"
         />
+        <div class="chart__progress__complate__legend">
+            <div
+                v-for="legend in progressData"
+                :key="legend.name"
+            >
+                {{ legend.name }}
+            </div>
+        </div>
         <div class="chart__progress__complate__content">
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0)"
-                :color="colorBlue"
-                class="bar bar__1"
-            />
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0) + percentage(1)"
-                :color="colorYellow"
-                class="bar bar__2"
-            >
-                <span>{{ percentage(1) }}%</span>
-            </el-progress>
-            <el-progress
-                :text-inside="true"
-                :stroke-width="18"
-                :percentage="percentage(0) + percentage(1) + percentage(2)"
-                :color="colorRed"
-                class="bar bar__3"
-            >
-                <span>{{ percentage(2) }}%</span>
-            </el-progress>
+            <div class="chart__progress__complate__total">
+                <div
+                    v-for="total in progressData"
+                    :key="total.name"
+                >
+                    NTD{{ total.total.toLocaleString() }}
+                </div>
+            </div>
+            <div class="chart__progress__complate__bar">
+                <el-progress
+                    :text-inside="true"
+                    :stroke-width="18"
+                    :percentage="percentage(0)"
+                    :color="colorBlue"
+                    class="bar bar__1"
+                />
+                <el-progress
+                    :text-inside="true"
+                    :stroke-width="18"
+                    :percentage="percentage(0) + percentage(1)"
+                    :color="colorYellow"
+                    class="bar bar__2"
+                >
+                    <span>{{ percentage(1) }}%</span>
+                </el-progress>
+                <el-progress
+                    :text-inside="true"
+                    :stroke-width="18"
+                    :percentage="percentage(0) + percentage(1) + percentage(2)"
+                    :color="colorRed"
+                    class="bar bar__3"
+                >
+                    <span>{{ percentage(2) }}%</span>
+                </el-progress>
+            </div>
+            <div class="chart__progress__complate__total">
+                <div
+                    v-for="count in progressData"
+                    :key="count.name"
+                >
+                    {{ count.count.toLocaleString() }} 筆
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -40,17 +66,21 @@ import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
 const { colorBlue, colorYellow, colorRed } = useDashboardStore();
+
 /** 成案進展 */
 const progressData = ref([
     {
+        name: "進行中",
         total: 100000,
         count: 4,
     },
     {
+        name: "已終止",
         total: 120000,
         count: 6,
     },
     {
+        name: "已結案",
         total: 180000,
         count: 9,
     },
@@ -59,7 +89,6 @@ const progressDataTotal = computed(() => progressData.value[0].total + progressD
 
 const percentage = (index) => (progressData.value[index].total / progressDataTotal.value) * 100;
 
-console.log(percentage(0));
 </script>
 
 <style lang="scss" scoped>
@@ -77,16 +106,64 @@ console.log(percentage(0));
         justify-content: center;
         height: 100%;
     }
+
+    &__legend {
+        display: flex;
+        margin-top: 15px;
+        font-size: 10px;
+
+        div {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 8px;
+                height: 8px;
+                margin-right: 5px;
+                background: var(--color-blue);
+            }
+
+            &:nth-child(2)::before {
+                background: var(--color-yellow);
+            }
+
+            &:nth-child(3)::before {
+                background: var(--color-red);
+            }
+        }
+    }
+
+    &__total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: var(--text-color3);
+    }
+
+    &__bar {
+        position: relative;
+        width: 100%;
+        height: 18px;
+        margin: 5px 0;
+    }
 }
 
 .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
     :deep(.el-progress-bar__outer) {
         background-color: transparent;
     }
 
     &__1 {
         z-index: 2;
-        transform: translateY(18px);
+        //transform: translateY(18px);
 
         :deep(.el-progress-bar__inner) {
           border-radius: 100px 0 0 100px;
@@ -103,7 +180,7 @@ console.log(percentage(0));
 
 	&__3 {
         z-index: 0;
-		transform: translateY(-18px);
+		//transform: translateY(-18px);
     }
 }
 </style>
