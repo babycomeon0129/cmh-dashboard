@@ -42,11 +42,22 @@ import { useDashboardStore } from "@/stores/dashboard";
 const { colorBlue, colorYellow, colorRed } = useDashboardStore();
 /** 成案進展 */
 const progressData = ref([
-    100000, 120000, 180000,
+    {
+        total: 100000,
+        count: 4,
+    },
+    {
+        total: 120000,
+        count: 6,
+    },
+    {
+        total: 180000,
+        count: 9,
+    },
 ]);
-const progressDataTotal = computed(() => progressData.value[0] + progressData.value[1] + progressData.value[2]);
+const progressDataTotal = computed(() => progressData.value[0].total + progressData.value[1].total + progressData.value[2].total);
 
-const percentage = (index) => (progressData.value[index] / progressDataTotal.value) * 100;
+const percentage = (index) => (progressData.value[index].total / progressDataTotal.value) * 100;
 
 console.log(percentage(0));
 </script>

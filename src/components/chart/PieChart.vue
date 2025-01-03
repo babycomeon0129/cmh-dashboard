@@ -4,10 +4,12 @@
             :title="`${titleType}案服務比例`"
             :type="type"
         />
-        <div
-            ref="pieContainer"
-            class="chart__pie__container"
-        />
+        <div class="chart__pie__wrapper">
+            <div
+                ref="pieContainer"
+                class="chart__pie__container"
+            />
+        </div>
     </div>
 </template>
 
@@ -31,16 +33,16 @@ const option = {
         formatter: "{a} <br/>{b} : {c} ({d}%)",
     },
     grid: {
-        // right: 5,
-        // bottom: 0,
-        // left: 0,
-        // containLabel: true,
+        right: 5,
+        bottom: 0,
+        left: 0,
+        containLabel: true,
     },
     series: [
         {
             //name: "Access From",
             type: "pie",
-            radius: "50%",
+            radius: "80%",
             data: amountRatio,
             label: {
                 show: true,
@@ -72,7 +74,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "50%",
+            radius: "80%",
             data: amountRatio,
             itemStyle: {
                 borderColor: "#fff", // 分隔線的顏色，可依需求修改
@@ -108,11 +110,18 @@ onMounted(() => {
 <style lang="scss" scoped>
 .chart__pie {
     width: 100%;
-    height: 310px;
     margin-left: 10px;
 
-    &__container {
+    &__wrapper {
+        display: flex;
+        align-items: center;
+        width: 100%;
         height: 100%;
+    }
+
+    &__container {
+        width: 100%;
+        height: 50%;
     }
 }
 </style>

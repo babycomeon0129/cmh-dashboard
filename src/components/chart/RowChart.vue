@@ -30,7 +30,7 @@ const collectionCount = ref([
 
 const toolCount = computed((() => {
     const maxVal = Math.max(...incomeCount.value);
-    const toolVal = maxVal * 0.006;
+    const toolVal = maxVal * 0.01;
     return new Array(12).fill(toolVal);
 }));
 
@@ -58,9 +58,9 @@ const option = {
         },
     },
     grid: {
-        top: 20,
+        top: 0,
         left: 0,
-        //bottom: 30,
+        bottom: 0,
         containLabel: true,
     },
     xAxis: {
@@ -218,7 +218,7 @@ onMounted(() => {
 
     &__container {
         width: 100%;
-        height: 100%;
+        height: 94%;
     }
 
     &__detail {
