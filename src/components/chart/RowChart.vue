@@ -18,12 +18,15 @@ import ChartTitle from "@/components/common/ChartTitle.vue";
 import * as echarts from "echarts";
 
 const colContainer = ref(null);
+/** 已開發票 */
 const incomeCount = ref([
     130000, 110000, 50000, 70000, 80000, 85436, 108000, 88000, 90000, 70000, 80000, 135436,
 ]);
+/** 已沖帳 */
 const trikeCount = ref([
     100000, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
 ]);
+/** 本月實收 */
 const collectionCount = ref([
     24354, 23424, 35334, 50000, 43354, 23424, 35234, 50000, 22354, 23424, 35334, 50000,
 ]);
