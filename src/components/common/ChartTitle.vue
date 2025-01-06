@@ -16,6 +16,7 @@ const { title, type } = defineProps([
 <style lang="scss" scoped>
 .chartTitle {
     position: relative;
+    width: 100%;
     padding-left: 8px;
     font-size: 14px;
     color: var(--title-color);

@@ -73,11 +73,12 @@ const option = {
             label: {
                 show: true,
                 position: "outer",
+                alignTo: "edge",
                 overflow: "break",
                 edgeDistance: 0,
-                distanceToLabelLine: 5,
+                distanceToLabelLine: -100,
                 minMargin: 10,
-                lineHeight: 13,
+                lineHeight: 17,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
@@ -86,6 +87,10 @@ const option = {
                 textStyle: {
                     fontSize: 10,
                 },
+            },
+            labelLine: {
+                length: 10,
+                length2: 100,
             },
             emphasis: {
                 label: {
@@ -97,9 +102,6 @@ const option = {
             itemStyle: {
                 borderColor: "#fff", // 分隔線的顏色，可依需求修改
                 borderWidth: 1, // 分隔線的寬度，可依需求調整
-            },
-            labelLine: {
-                show: true,
             },
             color: colors,
             data: progressPlanData.value,
@@ -158,18 +160,14 @@ onMounted(() => {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         height: 100%;
     }
 }
 
-.chart__pie {
-    width: 100%;
-    height: 310px;
-    margin-left: 10px;
-
-    &__container {
-        height: 100%;
-    }
+.chart__pie__container {
+    width: 60%;
+    height: 100%;
 }
 
 </style>
