@@ -255,7 +255,7 @@ onMounted(() => {
 
     &__detail {
         display: flex;
-        align-items: center;
+        align-items: baseline;
         font-size: 14px;
         color: var(--text-color2);
 
