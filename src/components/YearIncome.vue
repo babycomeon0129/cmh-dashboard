@@ -6,26 +6,26 @@
         </div>
         <div class="year__content">
             <div class="year__detail">
-                <div>成案  <span>NTD</span> {{ planCount.toLocaleString()}}</div>
-                <div>預案  <span>NTD</span> {{completeCount.toLocaleString()}} </div>
-                <div>年度KPI  <span>NTD</span> 1,200,000</div>
+                <div>成案  <span>NTD</span> {{ completeCount.toLocaleString()}}</div>
+                <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}} </div>
+                <div>年度KPI  <span>NTD</span> {{ kpiCount.toLocaleString() }}</div>
             </div>
             <div class="progress">
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="planPercentage"
+                    :percentage="completePercentage"
                     :color="colorYellow"
                     class="bar plan"
                 />
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
-                    :percentage="completePercentage + planPercentage"
+                    :percentage="planPercentage + completePercentage"
                     :color="colorBlue"
                     class="bar complete"
                 >
-                    <span>{{ completePercentage }}%</span>
+                    <span>{{ planPercentage }}%</span>
                 </el-progress>
             </div>
         </div>
@@ -35,11 +35,12 @@
 <script setup>
 import { computed, ref } from "vue";
 import { useDashboardStore } from "@/stores/dashboard";
+import axios from "axios";
 
 const { colorBlue, colorYellow } = useDashboardStore();
 
-let planCount = ref(400000);
-let completeCount = ref(600000);
+let planCount = ref(600000);
+let completeCount = ref(400000);
 let kpiCount = ref(1200000);
 
 let planPercentage = computed(() => {
@@ -50,6 +51,27 @@ let completePercentage = computed(() => {
     const value = (completeCount.value / kpiCount.value) * 100;
     return Number(value.toFixed(2));
 });
+
+const getTitleData = async () => {
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/title`, {
+            params: {
+                year: 2024,
+            },
+        });
+        if (res.data.code === 1000) {
+            planCount.value = res.data.result.planCount;
+            completeCount.value = res.data.result.completeCount;
+            kpiCount.value = res.data.result.kpiCount;
+            //console.log(res.data.result);
+        }
+    }
+    catch (error) {
+        console.error(error);
+    }
+};
+
+getTitleData();
 </script>
 
 <style lang="scss" scoped>
@@ -120,6 +142,10 @@ let completePercentage = computed(() => {
         z-index: 1;
         //transform: translateY(-14px);
     }
+}
+
+:deep(.el-progress-bar__inner) {
+  font-size: 12px;
 }
 
 </style>

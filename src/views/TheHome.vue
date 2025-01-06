@@ -30,7 +30,6 @@ import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
 import WaterFallChart from "@/components/chart/WaterFallChart.vue";
 import RowChart from "@/components/chart/RowChart.vue";
-
 </script>
 
 <style lang="scss" scoped>
