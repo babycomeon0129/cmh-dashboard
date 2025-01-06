@@ -66,7 +66,7 @@ const option = {
             name: "Access From",
             type: "pie",
             radius: [
-                "50%", "100%",
+                "25%", "65%",
             ],
             avoidLabelOverlap: false,
             label: {
@@ -105,13 +105,13 @@ const option = {
             name: "Access From",
             type: "pie",
             radius: [
-                "50%", "100%",
+                "25%", "65%",
             ],
             avoidLabelOverlap: false,
             label: {
                 show: true,
                 position: "inside",
-                formatter: "{d}%", // 顯示百分比
+                formatter:(params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
                 fontSize: 8,
             },
