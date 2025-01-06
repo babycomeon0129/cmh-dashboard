@@ -52,6 +52,7 @@ const option = {
             },
             data: serviceCount,
             axisLabel: {
+                interval: 0,
                 fontSize: 8,
                 formatter: (value, index) => {
                     return `{color${index}|${value}}`;
