@@ -29,7 +29,7 @@ const pieContainer = ref(null);
 
 const progressPlanData = ref([
     {
-        value:100000,
+        value: 100000,
         name: "待簽約",
     },
     {

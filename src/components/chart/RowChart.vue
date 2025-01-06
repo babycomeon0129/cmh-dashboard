@@ -1,9 +1,12 @@
 <template>
     <div class="dashboard__box chart__row">
-        <ChartTitle
-            title="催收進展"
-            :type="1"
-        />
+        <div class="chart__row__title">
+            <span class="type">成</span>
+            <div class="title">
+                催收進展
+            </div>
+            <div class="chart__row__detail">共計<span>NTD 600,000</span></div>
+        </div>
         <div class="chart__row__detail">已開發票<span>50%</span>，已收回款項<span>25%</span></div>
         <div
             ref="colContainer"
@@ -14,7 +17,6 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import ChartTitle from "@/components/common/ChartTitle.vue";
 import * as echarts from "echarts";
 
 const colContainer = ref(null);
@@ -219,6 +221,32 @@ onMounted(() => {
     width: 100%;
     margin-left: 15px;
 
+    &__title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: var(--main-text-color);
+
+        .type {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+            border-radius: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: var(--color-yellow);
+        }
+
+        .title {
+            margin-right: 12px;
+        }
+    }
+
     &__container {
         width: 100%;
         height: calc(100% - 90px);
@@ -226,7 +254,8 @@ onMounted(() => {
     }
 
     &__detail {
-        margin-top: 10px;
+        display: flex;
+        align-items: center;
         font-size: 14px;
         color: var(--text-color2);
 
