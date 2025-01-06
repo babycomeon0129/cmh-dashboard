@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
@@ -24,6 +24,7 @@ const { amountRatio, type } = defineProps([
 const { colorYellow, colorBlue } = useDashboardStore();
 const titleType = computed(() => type == 1 ? "預" : "成");
 const pieContainer = ref(null);
+let chart = null;
 const option = {
     tooltip: {
         trigger: "item",
@@ -31,15 +32,15 @@ const option = {
     },
     grid: {
         // right: 5,
-        // bottom: 0,
+        bottom: 0,
         // left: 0,
-        // containLabel: true,
+        containLabel: true,
     },
     series: [
         {
             //name: "Access From",
             type: "pie",
-            radius: "70%",
+            radius: "60%",
             data: amountRatio.map(data => data.total),
             label: {
                 show: true,
@@ -74,7 +75,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "70%",
+            radius: "60%",
             data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff", // 分隔線的顏色，可依需求修改
@@ -100,8 +101,27 @@ const option = {
     ],
 };
 
+watch(
+    () => amountRatio,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
 onMounted(() => {
-    const chart = echarts.init(pieContainer.value);
+    chart = echarts.init(pieContainer.value);
     chart.setOption(option);
 });
 

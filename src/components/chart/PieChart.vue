@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
@@ -27,6 +27,8 @@ const { colorBlue, colorGreen, colorRed } = useDashboardStore();
 const titleType = computed(() => type == 1 ? "預" : "成");
 
 const pieContainer = ref(null);
+let chart = null;
+
 const option = {
     tooltip: {
         trigger: "item",
@@ -107,8 +109,27 @@ const option = {
     ],
 };
 
+watch(
+    () => amountRatio,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newValue,
+                    },
+                    {
+                        data: newValue,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
 onMounted(() => {
-    const chart = echarts.init(pieContainer.value);
+    chart = echarts.init(pieContainer.value);
     chart.setOption(option);
 });
 

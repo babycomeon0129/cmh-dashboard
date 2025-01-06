@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
@@ -22,6 +22,7 @@ const { grossProfit, colData, serviceCount, type } = defineProps([
 ]);
 const { colorBlue, colorGreen, colorRed, colorYellow } = useDashboardStore();
 const colContainer = ref(null);
+let chart = null;
 
 const titleType = computed(() => type == 1 ? "預" : "成");
 
@@ -40,7 +41,7 @@ const option = {
     grid: {
         right: 5,
         bottom: 0,
-        left: 0,
+        left: 10,
         containLabel: true,
     },
     xAxis: [
@@ -269,8 +270,62 @@ const option = {
     ],
 };
 
+watch(
+    () => colData,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newValue,
+                    },
+                    {
+                        data: grossProfit,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
+watch(
+    () => grossProfit,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: colData,
+                    },
+                    {
+                        data: newValue,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
+watch(
+    () => grossProfit,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                xAxis: [
+                    {
+                        data: newValue,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
 onMounted(() => {
-    const chart = echarts.init(colContainer.value);
+    chart = echarts.init(colContainer.value);
     chart.setOption(option);
 });
 </script>

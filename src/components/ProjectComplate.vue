@@ -39,6 +39,7 @@ import ColumnChart from "@/components/chart/ColumnChart.vue";
 import ComplateProgressChart from "@/components/chart/ComplateProgressChart.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PieChart from "@/components/chart/PieChart.vue";
+import axios from "axios";
 
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
@@ -48,7 +49,7 @@ const colGrossProfit = ref([
 const colData = ref([
     40000, 60000, 160000, 140000,
 ]);
-/** 服務成案比例-筆樹 */
+/** 服務成案比例-筆數 */
 const serviceCount = ref([
     "8筆","9筆", "13筆", "30筆",
 ]);
@@ -81,6 +82,30 @@ const sourceProportion = ref([
         count: 6,
     },
 ]);
+
+const getProjectInfo = async () => {
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/project-info`, {
+            params: {
+                year: 2024,
+            },
+        });
+        if (res.data.code === 1000) {
+            amountRatio.value = res.data.result.amountRatio;
+            colGrossProfit.value = res.data.result.projectAmount.colGrossProfit;
+            colData.value = res.data.result.projectAmount.olData;
+            serviceCount.value = res.data.result.projectAmount.serviceCount;
+            sourceProportion.value = res.data.result.projectSourceProportion;
+        }
+
+        console.log(res.data.result);
+    }
+    catch (error) {
+        console.error(error);
+    }
+};
+
+getProjectInfo();
 </script>
 
 <style lang="scss" scoped>
