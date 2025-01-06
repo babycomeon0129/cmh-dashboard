@@ -78,8 +78,8 @@ const option = {
             radius: "60%",
             data: amountRatio.map(data => data.total),
             itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 3, // 分隔線的寬度，可依需求調整
+                borderColor: "#fff",
+                borderWidth: 3,
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",
@@ -87,7 +87,7 @@ const option = {
             label: {
                 show: true,
                 position: "inside",
-                formatter: "{d}%", // 顯示百分比
+                formatter: "{d}%",
                 color: "#fff",
             },
             emphasis: {
