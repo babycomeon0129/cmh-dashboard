@@ -5,9 +5,13 @@
             <div class="title">
                 催收進展
             </div>
-            <div class="chart__row__detail">共計<span>NTD 600,000</span></div>
+            <div class="chart__row__detail">
+                共計<span>NTD 600,000</span>
+            </div>
         </div>
-        <div class="chart__row__detail">已開發票<span>50%</span>，已收回款項<span>25%</span></div>
+        <div class="chart__row__detail">
+            已開發票<span>50%</span>，已收回款項<span>25%</span>
+        </div>
         <div
             ref="colContainer"
             class="chart__row__container"
@@ -32,7 +36,7 @@ const trikeCount = ref([
 const collectionCount = ref([
     24354, 23424, 35334, 50000, 43354, 23424, 35234, 50000, 22354, 23424, 35334, 50000,
 ]);
-
+/** 已沖帳 左邊padding用 */
 const toolCount = computed((() => {
     const maxVal = Math.max(...incomeCount.value);
     const toolVal = maxVal * 0.01;
@@ -40,21 +44,15 @@ const toolCount = computed((() => {
 }));
 
 const option = {
-    title: {
-        //text: "Bar Chart with Overlapping Bars",
-    },
-    // aria: {
-    //     enabled: true,
-    //     decal: {
-    //         show: true,
-    //     },
-    // },
     legend: {
         data: [
             "收入", "已冲帳", "已收回款项",
         ],
         itemWidth: 8,
         itemHeight: 8,
+        itemStyle: {
+            borderWidth: 1,
+        },
     },
     tooltip: {
         trigger: "axis",

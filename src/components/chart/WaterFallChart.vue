@@ -74,9 +74,6 @@ const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + 
 const Placeholder4 = computed(() => placeholder3.value.map((data, index) => data - thisMonthCancel.value[index]));
 
 const option = {
-    title: {
-        text: "",
-    },
     tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -89,7 +86,7 @@ const option = {
             } else {
                 tar = params[2];
             }
-            return tar && tar.name + "<br/>" + tar.seriesName + " : " + tar.value;
+            return tar && `${tar.name}<br/>${tar.seriesName}:${tar.value.toLocaleString()}`;
         },
     },
     // legend: {
@@ -131,8 +128,10 @@ const option = {
         {
             type: "category",
             name: "筆數",
+            nameLocation: "end",
+            nameGap: 20,
             nameTextStyle: {
-                fontSize: 11,
+                fontSize: 10,
             },
             position: "bottom",
             data: (function () {

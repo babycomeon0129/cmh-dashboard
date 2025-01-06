@@ -1,7 +1,7 @@
 <template>
     <div class="chart chart__pie">
         <ChartTitle
-            :title="`${titleType}案服務比例`"
+            :title="`${titleType}案服務金額比例`"
             :type="type"
         />
         <div class="chart__pie__wrapper">

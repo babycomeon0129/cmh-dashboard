@@ -30,10 +30,6 @@ const barColors = [
 ];
 
 const option = {
-    // title: {
-    //     text: "成案服務比例",
-    //     left: "center",
-    // },
     color: barColors,
     tooltip: {
         trigger: "axis",
@@ -47,27 +43,6 @@ const option = {
         left: 0,
         containLabel: true,
     },
-    // toolbox: {
-    //     feature: {
-    //         dataView: {
-    //             show: true,
-    //             readOnly: false,
-    //         },
-    //         restore: { show: true },
-    //         saveAsImage: { show: true },
-    //     },
-    // },
-    // legend: {
-    //     data: [
-    //         "毛利", "金額",
-    //     ],
-    //     left: "center",
-    // },
-    // legend: {
-    //     data: [
-    //         "純cue紙本", "純cue數位", "純cue紙本+數位", "企劃",
-    //     ],
-    // },
     xAxis: [
         {
             type: "category",
