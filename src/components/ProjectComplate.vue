@@ -93,7 +93,7 @@ const getProjectInfo = async () => {
         if (res.data.code === 1000) {
             amountRatio.value = res.data.result.amountRatio;
             colGrossProfit.value = res.data.result.projectAmount.colGrossProfit;
-            colData.value = res.data.result.projectAmount.olData;
+            colData.value = res.data.result.projectAmount.colData;
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
         }

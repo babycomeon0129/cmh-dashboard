@@ -275,6 +275,11 @@ watch(
     (newValue) => {
         if (chart) {
             chart.setOption({
+                xAxis: [
+                    {
+                        data: serviceCount,
+                    },
+                ],
                 series: [
                     {
                         data: newValue,
@@ -294,6 +299,11 @@ watch(
     (newValue) => {
         if (chart) {
             chart.setOption({
+                xAxis: [
+                    {
+                        data: serviceCount,
+                    },
+                ],
                 series: [
                     {
                         data: colData,
@@ -309,7 +319,7 @@ watch(
 );
 
 watch(
-    () => grossProfit,
+    () => serviceCount,
     (newValue) => {
         if (chart) {
             chart.setOption({
