@@ -72,9 +72,10 @@ const option = {
             avoidLabelOverlap: false,
             label: {
                 show: true,
-                position: "outside",
+                position: "outer",
                 overflow: "break",
-                edgeDistance: 5,
+                edgeDistance: 0,
+                distanceToLabelLine: 5,
                 minMargin: 10,
                 lineHeight: 13,
                 //formatter: "{b}", // 顯示名稱

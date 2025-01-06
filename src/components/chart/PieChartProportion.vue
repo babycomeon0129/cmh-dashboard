@@ -43,11 +43,13 @@ const option = {
             data: amountRatio.map(data => data.total),
             label: {
                 show: true,
-                position: "outside",
+                position: "outer",
+                alignTo: "edge",
                 overflow: "break",
-                edgeDistance: 5,
+                edgeDistance: 0,
+                distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 10,
+                lineHeight: 20,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
