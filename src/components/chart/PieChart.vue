@@ -47,6 +47,7 @@ const option = {
             label: {
                 show: true,
                 position: "outside",
+                overflow: "break",
                 edgeDistance: 5,
                 minMargin: 10,
                 lineHeight: 10,

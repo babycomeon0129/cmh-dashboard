@@ -59,6 +59,7 @@ const option = {
     //     left: "center",
     // },
     grid: {
+        bottom: 0,
         containLabel: true,
     },
     series: [
@@ -66,12 +67,13 @@ const option = {
             name: "Access From",
             type: "pie",
             radius: [
-                "25%", "65%",
+                "25%", "62%",
             ],
             avoidLabelOverlap: false,
             label: {
                 show: true,
                 position: "outside",
+                overflow: "break",
                 edgeDistance: 5,
                 minMargin: 10,
                 lineHeight: 13,
