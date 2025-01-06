@@ -271,61 +271,25 @@ const option = {
 };
 
 watch(
-    () => colData,
-    (newValue) => {
+    [
+        () => colData, () => grossProfit, () => serviceCount,
+    ],
+    ([
+        newColData, newGrossProfit, newServiceCount,
+    ]) => {
         if (chart) {
             chart.setOption({
                 xAxis: [
                     {
-                        data: serviceCount,
+                        data: newServiceCount, // 更新 x 軸數據
                     },
                 ],
                 series: [
                     {
-                        data: newValue,
+                        data: newColData, // 更新金額數據
                     },
                     {
-                        data: grossProfit,
-                    },
-                ],
-            });
-        }
-    },
-    { deep: true },
-);
-
-watch(
-    () => grossProfit,
-    (newValue) => {
-        if (chart) {
-            chart.setOption({
-                xAxis: [
-                    {
-                        data: serviceCount,
-                    },
-                ],
-                series: [
-                    {
-                        data: colData,
-                    },
-                    {
-                        data: newValue,
-                    },
-                ],
-            });
-        }
-    },
-    { deep: true },
-);
-
-watch(
-    () => serviceCount,
-    (newValue) => {
-        if (chart) {
-            chart.setOption({
-                xAxis: [
-                    {
-                        data: newValue,
+                        data: newGrossProfit, // 更新毛利率數據
                     },
                 ],
             });
