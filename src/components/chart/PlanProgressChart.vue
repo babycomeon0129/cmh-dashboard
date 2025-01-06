@@ -76,7 +76,7 @@ const option = {
                 alignTo: "edge",
                 overflow: "break",
                 edgeDistance: 0,
-                distanceToLabelLine: -100,
+                distanceToLabelLine: -300,
                 minMargin: 10,
                 lineHeight: 17,
                 //formatter: "{b}", // 顯示名稱
