@@ -20,12 +20,12 @@ import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
 const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlue } = useDashboardStore();
-
 const colors = [
     colorDeepBlue, colorYellow, colorRed, colorBlue, colorGray,
 ];
 
 const pieContainer = ref(null);
+let chart = null;
 
 const progressPlanData = ref([
     {
@@ -54,10 +54,6 @@ const option = {
     tooltip: {
         trigger: "item",
     },
-    // legend: {
-    //     top: "5%",
-    //     left: "center",
-    // },
     grid: {
         bottom: 0,
         containLabel: true,
@@ -79,7 +75,6 @@ const option = {
                 distanceToLabelLine: -300,
                 minMargin: 10,
                 lineHeight: 17,
-                //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${params.name}`;
@@ -100,8 +95,8 @@ const option = {
                 },
             },
             itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 1, // 分隔線的寬度，可依需求調整
+                borderColor: "#fff",
+                borderWidth: 1,
             },
             color: colors,
             data: progressPlanData.value,
@@ -128,8 +123,8 @@ const option = {
                 },
             },
             itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 1, // 分隔線的寬度，可依需求調整
+                borderColor: "#fff",
+                borderWidth: 1,
             },
             labelLine: {
                 show: false,
@@ -141,7 +136,7 @@ const option = {
 };
 
 onMounted(() => {
-    const chart = echarts.init(pieContainer.value);
+    chart = echarts.init(pieContainer.value);
     chart.setOption(option);
 });
 

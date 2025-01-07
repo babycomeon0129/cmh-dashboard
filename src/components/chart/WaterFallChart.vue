@@ -396,7 +396,7 @@ onMounted(() => {
             }
 
             &:nth-child(4)::before {
-                background: #C5C7CC;
+                background: var(--color-gray);
             }
         }
     }

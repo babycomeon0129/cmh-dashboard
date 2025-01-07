@@ -18,7 +18,7 @@
                 <SuccessRate />
             </div>
             <div class="charts__row">
-                <PlanProgressChart />
+                <PlanProgressChart :progress-plan="progressPlanData" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="1"
@@ -62,6 +62,30 @@ const sourceProportion = ref([
         name: "代理商",
         total: 280000,
         count: 6,
+    },
+]);
+
+/** 預案進展 */
+const progressPlanData = ref([
+    {
+        value: 100000,
+        name: "待簽約",
+    },
+    {
+        value: 160000,
+        name: "審批中",
+    },
+    {
+        value: 140000,
+        name: "曾被駁回",
+    },
+    {
+        value: 100000,
+        name: "進行中",
+    },
+    {
+        value: 160000,
+        name: "已取消",
     },
 ]);
 
