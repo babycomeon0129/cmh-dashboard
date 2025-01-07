@@ -3,7 +3,7 @@
         <div class="title">
             <h1>專案管理</h1>
             <div class="date">
-                數據更新時間：2024-11-05 14:50: 01
+                數據更新時間： {{ updateTime }}
             </div>
         </div>
         <div class="container">
@@ -25,11 +25,17 @@
 </template>
 
 <script setup>
+import { useDashboardStore } from "@/stores/dashboard";
 import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
 import WaterFallChart from "@/components/chart/WaterFallChart.vue";
 import RowChart from "@/components/chart/RowChart.vue";
+import { storeToRefs } from "pinia";
+
+const store = useDashboardStore();
+const { updateTime } = storeToRefs(store);
+
 </script>
 
 <style lang="scss" scoped>

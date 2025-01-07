@@ -36,10 +36,12 @@
 import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import axios from "axios";
 
 const route = useRoute();
 const { colorBlue, colorYellow } = useDashboardStore();
+const { updateTime } = storeToRefs(useDashboardStore());
 
 let planCount = ref(600000);
 let completeCount = ref(400000);
@@ -65,6 +67,8 @@ const getTitleData = async () => {
             planCount.value = res.data.result.planCount;
             completeCount.value = res.data.result.completeCount;
             kpiCount.value = res.data.result.kpiCount;
+            updateTime.value = res.data.result.time;
+
         }
     }
     catch (error) {
