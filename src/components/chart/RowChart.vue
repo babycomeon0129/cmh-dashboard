@@ -13,17 +13,19 @@
             已開發票<span>50%</span>，已收回款項<span>25%</span>
         </div>
         <div
-            ref="colContainer"
+            ref="rowContainer"
             class="chart__row__container"
         />
     </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import * as echarts from "echarts";
 
-const colContainer = ref(null);
+const rowContainer = ref(null);
+let chart = null;
+
 /** 已開發票 */
 const incomeCount = ref([
     130000, 110000, 50000, 70000, 80000, 85436, 108000, 88000, 90000, 70000, 80000, 135436,
@@ -208,8 +210,36 @@ const option = {
     ],
 };
 
+watch([
+    () => incomeCount, () => trikeCount, () => collectionCount,
+], ([
+    newIncomeCount, newTrikeCount, newCollectionCount,
+]) => {
+    if (chart) {
+        chart.setOption({
+            series: [
+                {
+                    data: newIncomeCount,
+                },
+                {
+                    data: toolCount.value,
+                },
+                {
+                    data: newTrikeCount,
+                },
+                {
+                    data: newCollectionCount,
+                },
+                {
+                    data: newCollectionCount,
+                },
+            ],
+        });
+    }
+});
+
 onMounted(() => {
-    const chart = echarts.init(colContainer.value);
+    chart = echarts.init(rowContainer.value);
     chart.setOption(option);
 });
 </script>
