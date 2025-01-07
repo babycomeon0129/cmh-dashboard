@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <div class="page">
         <div class="title">
             <h1>專案管理</h1>
             <div class="date">
@@ -21,7 +21,7 @@
                 <RowChart />
             </div>
         </div>
-    </main>
+    </div>
 </template>
 
 <script setup>
@@ -33,14 +33,6 @@ import RowChart from "@/components/chart/RowChart.vue";
 </script>
 
 <style lang="scss" scoped>
-main {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - var(--side-width));
-    height: calc(100vh - 30px);
-    margin-left: var(--side-width);
-    padding: 15px;
-}
 
 h1 {
     margin: 0;
