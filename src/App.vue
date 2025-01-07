@@ -2,15 +2,25 @@
     <div class="dashboard">
         <SideBar />
         <main>
-            <RouterView />
+            <router-view v-slot="{ Component }">
+                <transition
+                    name="slide-fade"
+                    mode="out-in"
+                >
+                    <div :key="route.name">
+                        <component :is="Component" />
+                    </div>
+                </transition>
+            </router-view>
         </main>
 
     </div>
 </template>
 
 <script setup>
-import { RouterView } from "vue-router";
+import { RouterView, useRoute } from "vue-router";
 import SideBar from "@/components/SideBar.vue";
+const route = useRoute();
 </script>
 
 <style lang="scss" scoped>

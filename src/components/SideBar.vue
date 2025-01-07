@@ -2,24 +2,56 @@
     <aside>
         <ul>
             <li class="logo"><img src="@img/logo_bw.svg" /></li>
-            <li>
-                <el-icon :size="size">
-                    <Platform />
-                </el-icon>
-                專案看板
-            </li>
-            <li>
-                <el-icon :size="size">
-                    <TrendCharts />
-                </el-icon>
-                專案管理
+            <li
+                v-for="icon in iconList"
+                :key="icon.name"
+                :class="{active: route.name === icon.routeName}"
+                @click="goToLink(icon.url, icon.route)"
+            >
+                <component :is="icon.component" />
+                {{ icon.name }}
             </li>
         </ul>
     </aside>
 </template>
 
 <script setup>
-const size = 30;
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
+
+console.log(route);
+const iconList = [
+    {
+        routeName: "board",
+        name: "專案看板",
+        url: "https://dasherptest.cmh.com.tw/",
+        route: "",
+        img: "icon_project_board",
+        component: "Platform",
+    },
+    {
+        routeName: "home",
+        name: "專案管理",
+        url: "",
+        route: "/",
+        img: "icon_customer_board",
+        component: "TrendCharts",
+    },
+    {
+        routeName: "test",
+        name: "測試數據",
+        url: "",
+        route: "/test",
+        img: "",
+        component: "IceDrink",
+    },
+];
+
+const goToLink = (url, route) => {
+    url ? window.open(url) : router.push({ path: route });
+};
 
 </script>
 
@@ -45,8 +77,24 @@ li:not(.logo) {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
-    font-size: 12px;
+    padding: 20px 0;
+    font-size: 16px;
+    transition: .3s;
+    cursor: pointer;
+
+    svg {
+        width: 28px;
+        stroke: #fff;
+    }
+
+    &.active {
+        color:  var(--main-bg-color);
+        background: #fff;
+
+        svg {
+            stroke: var(--main-bg-color);
+        }
+    }
 }
 
 </style>
