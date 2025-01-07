@@ -24,9 +24,12 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
+import axios from "axios";
 
+const route = useRoute();
 const { colorDeepBlue, colorBlue, colorYellow, colorGray } = useDashboardStore();
 const trigger = ref("成案");
 const options = [
@@ -46,7 +49,7 @@ const thisMonth = ref([
     32000, 30000, 32000, 30000,32000, 30000,32000, 30000,32000, 30000,32000, 30000,
 ]);
 /** 本月成案 */
-const thisMonthComplate = ref([
+const thisMonthComplete = ref([
     26000, 24000, 26000, 24000,26000, 24000,26000, 24000,26000, 24000,26000, 24000,
 ]);
 /** 本月取消 */
@@ -70,7 +73,7 @@ const addCount = ref([
 ]);
 
 /** 上月留下＋本月新增 - 本月成案 */
-const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + thisMonth.value[index] - thisMonthComplate.value[index]));
+const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + thisMonth.value[index] - thisMonthComplete.value[index]));
 /** 上月留下+本月新增 - 本月成案 - 本月取消 */
 const Placeholder4 = computed(() => placeholder3.value.map((data, index) => data - thisMonthCancel.value[index]));
 
@@ -293,7 +296,7 @@ const option = {
             itemStyle: {
                 color: colorYellow,
             },
-            data: thisMonthComplate.value,
+            data: thisMonthComplete.value,
         },
         {
             name: "Placeholder4",
@@ -339,43 +342,59 @@ const option = {
     ],
 };
 
+const getMonthInfo = async () => {
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/month-info`, {
+            params: {
+                year: 2024,
+            },
+        });
+        if (res.data.code === 1000) {
+            lastMonth.value = res.data.result.lastMonth;
+            thisMonth.value = res.data.result.thisMonth;
+            thisMonthCancel.value = res.data.result.thisMonthCancel;
+            thisMonthComplete.value = res.data.result.thisMonthComplete;
+            addCount.value = res.data.result.addCount;
+        }
+        console.log(res.data.result);
+    }
+    catch (error) {
+        console.error(error);
+    }
+};
+
+if (route.name !== "test") getMonthInfo();
 watch(
     [
-        () => lastMonth, () => thisMonth, () => thisMonthComplate, () =>thisMonthCancel, () =>addCount,
+        lastMonth, thisMonth, thisMonthComplete, thisMonthCancel, placeholder3, Placeholder4, addCount,
     ],
     ([
-        newLastMonth, newThisMonth, newThisMonthComplate, newThisMonthCancel, newAddCount,
+        newLastMonth, newThisMonth, newthisMonthComplete, newThisMonthCancel, newPlaceholder3, newPlaceholder4, newAddCount,
     ]) => {
         if (chart) {
             chart.setOption({
                 xAxis: [
-                    ...option.xAxis[0],
                     {
-                        data: newAddCount, // 更新 x 軸數據
+                        data: (function () {
+                            let list = [];
+                            for (let i = 1; i <= 12; i++) {
+                                list.push(`${i}月`);
+                            }
+                            return list;
+                        })(),
+                    },
+                    {
+                        data: newAddCount,
                     },
                 ],
                 series: [
-                    {
-                        data: newLastMonth,
-                    },
-                    {
-                        data: newLastMonth,
-                    },
-                    {
-                        data: newThisMonth,
-                    },
-                    {
-                        data: placeholder3.value,
-                    },
-                    {
-                        data: newThisMonthComplate.value,
-                    },
-                    {
-                        data: Placeholder4.value,
-                    },
-                    {
-                        data: newThisMonthCancel,
-                    },
+                    { data: newLastMonth },
+                    { data: newLastMonth },
+                    { data: newThisMonth },
+                    { data: newPlaceholder3 },
+                    { data: newthisMonthComplete },
+                    { data: newPlaceholder4 },
+                    { data: newThisMonthCancel },
                 ],
             });
         }
