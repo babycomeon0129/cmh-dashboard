@@ -34,9 +34,11 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import axios from "axios";
 
+const route = useRoute();
 const { colorBlue, colorYellow } = useDashboardStore();
 
 let planCount = ref(600000);
@@ -63,7 +65,6 @@ const getTitleData = async () => {
             planCount.value = res.data.result.planCount;
             completeCount.value = res.data.result.completeCount;
             kpiCount.value = res.data.result.kpiCount;
-            //console.log(res.data.result);
         }
     }
     catch (error) {
@@ -71,7 +72,7 @@ const getTitleData = async () => {
     }
 };
 
-getTitleData();
+if (route.name !== "test") getTitleData();
 </script>
 
 <style lang="scss" scoped>

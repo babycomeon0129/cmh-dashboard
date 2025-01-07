@@ -30,14 +30,15 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
 import SuccessRate from "@/components/chart/SuccessRate.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PlanProgressChart from "@/components/chart/PlanProgressChart.vue";
-
 import axios from "axios";
 
+const route = useRoute();
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
     20, 40, 70, 50,
@@ -136,7 +137,7 @@ const getProjectInfo = async () => {
     }
 };
 
-getProjectInfo();
+if (route.name !== "test") getProjectInfo();
 </script>
 
 <style lang="scss" scoped>
