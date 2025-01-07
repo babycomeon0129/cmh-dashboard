@@ -18,7 +18,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	width: calc(100% - var(--side-width));
-	height: calc(100vh - 30px);
+	height: 100vh;
 	margin-left: var(--side-width);
 	padding: 15px;
 }

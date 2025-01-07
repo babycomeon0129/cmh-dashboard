@@ -348,8 +348,8 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__waterfall {
-    height: calc(100% - 35px);
-    min-height: 181px;
+    height: calc(100% - 15px);
+    min-height: 190px;
     margin-top: 15px;
 
     &__detail {

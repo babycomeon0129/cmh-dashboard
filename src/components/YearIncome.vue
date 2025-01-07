@@ -78,6 +78,7 @@ getTitleData();
 
 .year {
     display: flex;
+    height: 74px;
     margin-top: 11px;
     padding: 15px 20px 16px 29px;
 }
