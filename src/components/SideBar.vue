@@ -85,6 +85,7 @@ li:not(.logo) {
     svg {
         width: 28px;
         stroke: #fff;
+        transition: .3s;
     }
 
     &.active {
@@ -93,6 +94,13 @@ li:not(.logo) {
 
         svg {
             stroke: var(--main-bg-color);
+        }
+    }
+
+    &:hover {
+
+        svg {
+            transform: scale(1.2) rotate(-10deg);
         }
     }
 }
