@@ -8,14 +8,14 @@
         </div>
         <div class="project__type2">{{  type === 1 ? "預" : "成" }}案</div>
         <div class="detail">共計
-            <span>NTD {{ money }}</span>，<span>{{ count }}</span>筆，毛利率 <span>{{grossMargin}}%</span>，達成率 <span>{{achievement}}%</span>
+            <span>NTD {{ totalAmount.toLocaleString() }}</span>，<span>{{ totalCount }}</span>筆，毛利率 <span>{{grossMargin}}%</span>，達成率 <span>{{confirmRate}}%</span>
         </div>
     </div>
 </template>
 
 <script setup>
-const { type, money,count, grossMargin, achievement } = defineProps([
-    "type", "money", "count", "grossMargin", "achievement",
+const { type, totalAmount, totalCount, grossMargin, confirmRate } = defineProps([
+    "type", "totalAmount", "totalCount", "grossMargin", "confirmRate",
 ]);
 </script>
 

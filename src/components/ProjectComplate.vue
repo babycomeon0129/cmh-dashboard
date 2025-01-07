@@ -2,10 +2,10 @@
     <div class="dashboard__box project__box ">
         <ProjectTitle
             :type="2"
-            :money="400000"
-            :count="10"
-            :gross-margin="45"
-            :achievement="64"
+            :total-amount="titleInfo.totalAmount"
+            :total-count="titleInfo.totalCount"
+            :gross-margin="titleInfo.grossMargin"
+            :confirm-rate="titleInfo.confirmRate"
         />
         <div class="charts">
             <div class="charts__row">
@@ -43,6 +43,13 @@ import PieChart from "@/components/chart/PieChart.vue";
 import axios from "axios";
 
 const route = useRoute();
+/** 標題資訊 */
+const titleInfo = ref({
+    totalAmount: 400000,
+    totalCount: 10,
+    grossMargin: 45,
+    confirmRate: 64,
+});
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
     20, 40, 70, 50,
