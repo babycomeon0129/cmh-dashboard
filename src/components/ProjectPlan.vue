@@ -126,8 +126,6 @@ const getProjectInfo = async () => {
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
             successRate.value = res.data.result.successRate;
-            console.log(res.data.result.projectProgressData);
-            console.log(progressPlan.value);
             progressPlan.value = res.data.result.projectProgressData;
         }
 
