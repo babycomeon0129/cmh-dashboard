@@ -194,7 +194,7 @@ const option = {
                 position: "top",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `+${formattedValue}`;
+                    return params.value === 0 ? "" : `+${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -245,8 +245,7 @@ const option = {
                 position: "top",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `+${formattedValue}`;
-
+                    return params.value === 0 ? "" : `+${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -287,7 +286,7 @@ const option = {
                 position: "bottom",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `-${formattedValue}`;
+                    return params.value === 0 ? "" : `-${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -328,7 +327,7 @@ const option = {
                 position: "bottom",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `- ${formattedValue}`;
+                    return params.value === 0 ? "" : `-${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
