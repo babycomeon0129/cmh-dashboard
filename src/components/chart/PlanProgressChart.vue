@@ -14,11 +14,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
+const { progressPlan } = defineProps([
+    "progressPlan",
+]);
 const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlue } = useDashboardStore();
 const colors = [
     colorDeepBlue, colorYellow, colorRed, colorBlue, colorGray,
@@ -26,29 +29,6 @@ const colors = [
 
 const pieContainer = ref(null);
 let chart = null;
-
-const progressPlanData = ref([
-    {
-        value: 100000,
-        name: "待簽約",
-    },
-    {
-        value: 160000,
-        name: "審批中",
-    },
-    {
-        value: 140000,
-        name: "曾被駁回",
-    },
-    {
-        value: 100000,
-        name: "進行中",
-    },
-    {
-        value: 160000,
-        name: "已取消",
-    },
-]);
 
 const option = {
     tooltip: {
@@ -66,6 +46,7 @@ const option = {
                 "25%", "62%",
             ],
             avoidLabelOverlap: false,
+            minShowLabelAngle: 0,
             label: {
                 show: true,
                 position: "outer",
@@ -77,7 +58,8 @@ const option = {
                 lineHeight: 17,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `NTD ${formattedValue}\n${params.name}`;
+                    const index = params.dataIndex;
+                    return `NTD ${formattedValue}\n${progressPlan[index].name}`;
                 },
                 textStyle: {
                     fontSize: 10,
@@ -99,7 +81,7 @@ const option = {
                 borderWidth: 1,
             },
             color: colors,
-            data: progressPlanData.value,
+            data: progressPlan.map(data => data.total),
         },
         {
             name: "Access From",
@@ -107,6 +89,7 @@ const option = {
             radius: [
                 "25%", "65%",
             ],
+            minShowLabelAngle: 0,
             avoidLabelOverlap: false,
             label: {
                 show: true,
@@ -130,10 +113,29 @@ const option = {
                 show: false,
             },
             color: colors,
-            data: progressPlanData.value,
+            data: progressPlan.map(data => data.total),
         },
     ],
 };
+
+watch(
+    () => progressPlan,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
 
 onMounted(() => {
     chart = echarts.init(pieContainer.value);

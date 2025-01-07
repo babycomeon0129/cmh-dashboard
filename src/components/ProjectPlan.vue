@@ -18,7 +18,7 @@
                 <SuccessRate :success-rate="successRate" />
             </div>
             <div class="charts__row">
-                <PlanProgressChart :progress-plan="progressPlanData" />
+                <PlanProgressChart :progress-plan="progressPlan" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="1"
@@ -66,29 +66,34 @@ const sourceProportion = ref([
 ]);
 
 /** 預案進展 */
-const progressPlanData = ref([
+const progressPlan = ref([
     {
-        value: 100000,
         name: "待簽約",
+        total: 100000,
+        count: 1,
     },
     {
-        value: 160000,
         name: "審批中",
+        total: 160000,
+        count: 1,
     },
     {
-        value: 140000,
         name: "曾被駁回",
+        total: 140000,
+        count: 1,
     },
     {
-        value: 100000,
         name: "進行中",
+        total: 100000,
+        count: 1,
     },
     {
-        value: 160000,
         name: "已取消",
+        total: 160000,
+        count: 1,
     },
 ]);
-/** 預案服務成案律 */
+/** 預案服務成案率 */
 const successRate = ref([
     {
         name: "純CUE<br />紙本",
@@ -121,6 +126,9 @@ const getProjectInfo = async () => {
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
             successRate.value = res.data.result.successRate;
+            console.log(res.data.result.projectProgressData);
+            console.log(progressPlan.value);
+            progressPlan.value = res.data.result.projectProgressData;
         }
 
         console.log(res.data.result);
