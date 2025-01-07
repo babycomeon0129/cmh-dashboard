@@ -21,7 +21,7 @@
                 />
             </div>
             <div class="charts__row">
-                <ComplateProgressChart />
+                <ComplateProgressChart :progress-data="progressData" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="2"
@@ -78,6 +78,25 @@ const amountRatio = ref([
     },
 ]);
 
+/** 成案進展 */
+const progressData = ref([
+    {
+        name: "進行中",
+        total: 100000,
+        count: 4,
+    },
+    {
+        name: "已終止",
+        total: 120000,
+        count: 6,
+    },
+    {
+        name: "已結案",
+        total: 180000,
+        count: 9,
+    },
+]);
+
 /** 成案來源比例 */
 const sourceProportion = ref([
     {
@@ -105,6 +124,11 @@ const getProjectInfo = async () => {
             colData.value = res.data.result.projectAmount.colData;
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
+            titleInfo.value.totalCount = res.data.result.totalCount;
+            titleInfo.value.totalAmount = res.data.result.totalAmount;
+            titleInfo.value.grossMargin = res.data.result.grossMargin;
+            titleInfo.value.confirmRate = res.data.result.confirmRate;
+            progressData.value = res.data.result.projectProgressData;
         }
 
         console.log(res.data.result);

@@ -18,7 +18,7 @@
                     v-for="total in progressData"
                     :key="total.name"
                 >
-                    NTD{{ total.total.toLocaleString() }}
+                    NTD {{ total.total.toLocaleString() }}
                 </div>
             </div>
             <div class="chart__progress__complate__bar">
@@ -65,29 +65,14 @@ import { computed, ref } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
+const { progressData } = defineProps([
+    "progressData",
+]);
 const { colorBlue, colorYellow, colorRed } = useDashboardStore();
 
-/** 成案進展 */
-const progressData = ref([
-    {
-        name: "進行中",
-        total: 100000,
-        count: 4,
-    },
-    {
-        name: "已終止",
-        total: 120000,
-        count: 6,
-    },
-    {
-        name: "已結案",
-        total: 180000,
-        count: 9,
-    },
-]);
-const progressDataTotal = computed(() => progressData.value[0].total + progressData.value[1].total + progressData.value[2].total);
+const progressDataTotal = computed(() => progressData[0].total + progressData[1].total + progressData[2].total);
 
-const percentage = (index) => (progressData.value[index].total / progressDataTotal.value) * 100;
+const percentage = (index) => (progressData[index].total / progressDataTotal.value) * 100;
 
 </script>
 
