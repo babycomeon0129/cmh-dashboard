@@ -15,7 +15,7 @@
                     :service-count="serviceCount"
                     :type="1"
                 />
-                <SuccessRate />
+                <SuccessRate :success-rate="successRate" />
             </div>
             <div class="charts__row">
                 <PlanProgressChart :progress-plan="progressPlanData" />
@@ -88,6 +88,25 @@ const progressPlanData = ref([
         name: "已取消",
     },
 ]);
+/** 預案服務成案律 */
+const successRate = ref([
+    {
+        name: "純CUE<br />紙本",
+        rate: 10,
+    },
+    {
+        name: "純CUE<br />數位",
+        rate: 20,
+    },
+    {
+        name: "純CUE<br />數位＋紙本",
+        rate: 40,
+    },
+    {
+        name: "企劃案",
+        rate: 30,
+    },
+]);
 
 const getProjectInfo = async () => {
     try {
@@ -101,6 +120,7 @@ const getProjectInfo = async () => {
             colData.value = res.data.result.projectAmount.colData;
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
+            successRate.value = res.data.result.successRate;
         }
 
         console.log(res.data.result);

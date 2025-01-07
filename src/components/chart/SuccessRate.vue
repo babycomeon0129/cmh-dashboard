@@ -6,7 +6,7 @@
         />
         <div class="chart__successRate__container">
             <div
-                v-for="(rate, index) in successRateData"
+                v-for="(rate, index) in successRate"
                 :key="rate.name"
                 class="chart__successRate__list"
             >
@@ -25,30 +25,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
-const { colorYellow, colorBlue, colorGreen, colorRed } = useDashboardStore();
-
-const successRateData = ref([
-    {
-        name: "純CUE<br />紙本",
-        rate: 10,
-    },
-    {
-        name: "純CUE<br />數位",
-        rate: 20,
-    },
-    {
-        name: "純CUE<br />數位＋紙本",
-        rate: 40,
-    },
-    {
-        name: "企劃案",
-        rate: 30,
-    },
+const { successRate } = defineProps([
+    "successRate",
 ]);
+const { colorYellow, colorBlue, colorGreen, colorRed } = useDashboardStore();
 
 const colors = [
     colorYellow, colorBlue, colorGreen, colorRed,
