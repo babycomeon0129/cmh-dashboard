@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
@@ -33,6 +33,7 @@ const options = [
     "成案", "預案",
 ];
 const waterfallContainer = ref(null);
+let chart = null;
 const legendList = [
     "上月留下", "本月新增", "本月成案", "本月取消",
 ];
@@ -134,9 +135,7 @@ const option = {
                 fontSize: 10,
             },
             position: "bottom",
-            data: (function () {
-                return addCount.value;
-            })(),
+            data: addCount.value,
             axisTick: {
                 show: false, // 不顯示刻度線
             },
@@ -340,8 +339,52 @@ const option = {
     ],
 };
 
+watch(
+    [
+        () => lastMonth, () => thisMonth, () => thisMonthComplate, () =>thisMonthCancel, () =>addCount,
+    ],
+    ([
+        newLastMonth, newThisMonth, newThisMonthComplate, newThisMonthCancel, newAddCount,
+    ]) => {
+        if (chart) {
+            chart.setOption({
+                xAxis: [
+                    ...option.xAxis[0],
+                    {
+                        data: newAddCount, // 更新 x 軸數據
+                    },
+                ],
+                series: [
+                    {
+                        data: newLastMonth,
+                    },
+                    {
+                        data: newLastMonth,
+                    },
+                    {
+                        data: newThisMonth,
+                    },
+                    {
+                        data: placeholder3.value,
+                    },
+                    {
+                        data: newThisMonthComplate.value,
+                    },
+                    {
+                        data: Placeholder4.value,
+                    },
+                    {
+                        data: newThisMonthCancel,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
 onMounted(() => {
-    const chart = echarts.init(waterfallContainer.value);
+    chart = echarts.init(waterfallContainer.value);
     chart.setOption(option);
 });
 </script>
