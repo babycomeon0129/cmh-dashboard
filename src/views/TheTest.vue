@@ -35,55 +35,55 @@ import RowChart from "@/components/chart/RowChart.vue";
 <style lang="scss" scoped>
 
 h1 {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1;
+    margin: 0;
+    font-size: 28px;
+    line-height: 1;
 }
 
 .page {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
 }
 
 .title {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
 }
 
 .date {
-  margin-left: 15px;
+    margin-left: 15px;
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .charts {
-  display: flex;
-  width: 100%;
-  padding-top: 14px;
-  flex-grow: 1;
+    display: flex;
+    width: 100%;
+    padding-top: 14px;
+    flex-grow: 1;
 }
 
 .project {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  width: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 80%;
 
-  &__detail {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-  }
+    &__detail {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
 }
 
 .change {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 </style>
