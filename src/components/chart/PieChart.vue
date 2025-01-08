@@ -137,8 +137,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__pie {
-    width: 100%;
-    margin-left: 10px;
+    width: calc(40% - 5px);
 
     &__wrapper {
         display: flex;

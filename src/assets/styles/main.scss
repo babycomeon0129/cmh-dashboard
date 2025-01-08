@@ -3,22 +3,23 @@
 @use "./base/animations";
 
 .dashboard__box {
-	padding: 10px;
-	border-radius: 8px;
-	background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    background: #fff;
 }
 
 .project__box {
-	width: calc(50% - 7.5px);
+    width: calc(50% - 7.5px);
 }
 
 .chart {
-	padding: 10px;
-	border: 1px solid var(--border-color);
-	border-radius: 8px;
-	background: #fff;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: #fff;
 }
 
 .charts__row {
-	display: flex;
+    display: flex;
+    justify-content: space-between;
 }

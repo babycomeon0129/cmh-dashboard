@@ -308,7 +308,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .chart__col {
     flex-shrink: 0;
-    width: 57%;
+    width: calc(60% - 5px);
     aspect-ratio: 1.32;
 }
 

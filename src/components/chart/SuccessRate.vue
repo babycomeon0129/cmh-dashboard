@@ -41,8 +41,7 @@ const colors = [
 
 <style lang="scss" scoped>
 .chart__successRate {
-    width: 100%;
-    margin-left: 10px;
+    width: calc(40% - 5px);
 
     &__container {
         display: flex;

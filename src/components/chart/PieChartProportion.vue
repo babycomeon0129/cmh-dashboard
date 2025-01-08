@@ -129,11 +129,9 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__pie {
-    width: 100%;
-    //height: 170px;
+    width: calc(40% - 5px);
     aspect-ratio: 1.65;
     margin-top: 10px;
-    margin-left: 10px;
 
     &__container {
         height: 100%;

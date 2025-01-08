@@ -81,7 +81,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: 57%;
+    width: calc(60% - 5px);
     min-height: 128px;
     margin-top: 10px;
 
