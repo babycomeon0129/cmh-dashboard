@@ -49,9 +49,9 @@ const option = {
     xAxis: [
         {
             type: "category",
-            name: "筆數",
-            nameLocation: "end",
-            nameGap: 20,
+            //name: "筆數",
+            nameLocation: "start",
+            nameGap: 0,
             nameTextStyle: {
                 fontSize: 10,
             },
@@ -113,6 +113,7 @@ const option = {
                 // },
             },
             axisLabel: {
+                interval: 1,
                 formatter: "{value}",
                 fontSize: 11,
             },
