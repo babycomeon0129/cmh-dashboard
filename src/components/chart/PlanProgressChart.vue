@@ -163,7 +163,7 @@ onMounted(() => {
 }
 
 .chart__pie__container {
-    width: 60%;
+    width: 65%;
     height: 100%;
 }
 
