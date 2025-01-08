@@ -1,7 +1,7 @@
 <template>
     <aside>
         <ul>
-            <li class="logo"><img src="@img/logo_bw.svg" /></li>
+            <li class="logo"><img src="@img/logo_bw.png" /></li>
             <li
                 v-for="icon in iconList"
                 :key="icon.name"
@@ -71,6 +71,10 @@ aside {
     width: 100%;
     margin-bottom: 15px;
     text-align: center;
+
+    img {
+        width: 72px;
+    }
 }
 
 li:not(.logo) {
