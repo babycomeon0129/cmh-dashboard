@@ -13,6 +13,7 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSegmented: typeof import('element-plus/es')['ElSegmented']
+    MonthlyTrendViewer: typeof import('./src/components/MonthlyTrendViewer.vue')['default']
     PieChart: typeof import('./src/components/chart/PieChart.vue')['default']
     PieChartProportion: typeof import('./src/components/chart/PieChartProportion.vue')['default']
     PlanProgressChart: typeof import('./src/components/chart/PlanProgressChart.vue')['default']
