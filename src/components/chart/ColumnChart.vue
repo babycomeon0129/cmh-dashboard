@@ -20,7 +20,7 @@ import * as echarts from "echarts";
 const { grossProfit, colData, serviceCount, type } = defineProps([
     "grossProfit", "colData", "serviceCount", "type",
 ]);
-const { colorBlue, colorGreen, colorRed, colorYellow } = useDashboardStore();
+const { colorBlue, colorGreen, colorRed, colorYellow, colorPurple } = useDashboardStore();
 const colContainer = ref(null);
 let chart = null;
 
@@ -220,7 +220,7 @@ const option = {
                 width: 8,
                 height: 2,
             },
-            style: { fill: "#D878B1" },
+            style: { fill: colorPurple },
         },
         {
             type: "text",
@@ -257,7 +257,7 @@ const option = {
             type: "line",
             yAxisIndex: 0, // 將指向 y 軸的 index 調整為0 （因為只有兩個 y 軸了）
             itemStyle: {
-                color: "#D878B1",
+                color: colorPurple,
             },
             label: {
                 show: false,

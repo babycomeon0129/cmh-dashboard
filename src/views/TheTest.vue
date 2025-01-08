@@ -15,7 +15,7 @@
                         <ProjectPlan />
                     </div>
                     <div class="change">
-                        <WaterFallChart />
+                        <MonthlyTrendViewer />
                     </div>
                 </div>
                 <RowChart />
@@ -28,7 +28,7 @@
 import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
-import WaterFallChart from "@/components/chart/WaterFallChart.vue";
+import MonthlyTrendViewer from "@/components/MonthlyTrendViewer.vue";
 import RowChart from "@/components/chart/RowChart.vue";
 </script>
 

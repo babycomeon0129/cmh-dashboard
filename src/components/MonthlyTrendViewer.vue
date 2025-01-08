@@ -5,9 +5,16 @@
             <el-segmented
                 v-model="trigger"
                 :options="options"
+                :class="{
+                    project: trigger === '成案'
+                }"
             />
-            <div>月預案變化</div>
-            <div class="MonthlyTrendViewer__legend">
+            <div>{{ showRemark }}</div>
+            <div
+                class="MonthlyTrendViewer__legend"
+                :class="{
+                    project: trigger === '成案'
+                }">
                 <div
                     v-for=" legend in legendList"
                     :key="legend">
@@ -15,22 +22,30 @@
                 </div>
             </div>
         </div>
-        <component :is="WaterFallChart" />
+        <KeepAlive>
+            <component :is="componentChange" />
+        </KeepAlive>
     </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import MonthlyColumnChart from "@/components/chart/MonthlyColumnChart.vue";
 import WaterFallChart from "@/components/chart/WaterFallChart.vue";
 
 const trigger = ref("成案");
 const options = [
     "成案", "預案",
 ];
-
-const legendList = [
+const preProjectList = [
     "上月留下", "本月新增", "本月成案", "本月取消",
 ];
+const projectList = [
+    "成案", "毛利率",
+];
+const legendList = computed(() => trigger.value === "成案" ? projectList : preProjectList);
+const componentChange = computed(() => trigger.value === "成案" ? MonthlyColumnChart : WaterFallChart);
+const showRemark = computed(() => trigger.value === "成案" ? "月新增成案" : "月預案變化");
 </script>
 
 <style lang="scss" scoped>
@@ -81,6 +96,20 @@ const legendList = [
                 background: var(--color-gray);
             }
         }
+
+        &.project {
+            div {
+
+                &::before {
+                    background: var(--color-yellow);
+                }
+
+                &:nth-child(2)::before {
+                    height: 2px;
+                    background: var(--color-purple);
+            }
+            }
+        }
     }
 }
 
@@ -91,6 +120,10 @@ const legendList = [
     padding: 0;
     border: 1px solid var(--border-color);
     font-size: 14px;
+
+    &.project {
+        --el-segmented-item-selected-bg-color: var(--color-yellow);
+    }
 
     .el-segmented__item {
         padding: 2px 22px;
