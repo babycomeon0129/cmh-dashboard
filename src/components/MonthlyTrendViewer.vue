@@ -23,7 +23,12 @@
             </div>
         </div>
         <KeepAlive>
-            <component :is="componentChange" />
+            <transition
+                name="fade"
+                mode="out-in"
+            >
+                <component :is="componentChange" />
+            </transition>
         </KeepAlive>
     </div>
 </template>
