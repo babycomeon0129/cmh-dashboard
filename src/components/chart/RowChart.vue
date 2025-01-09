@@ -256,13 +256,19 @@ watch(
         () => incomeCount, () => trikeCount, () => collectionCount, () => toolCount,
     ],
     ([
-        newColData, newTrikeCount, newCollectionCount, newToolCount,
+        newIncomeCount, newTrikeCount, newCollectionCount, newToolCount,
     ]) => {
         if (chart) {
             chart.setOption({
                 series: [
                     {
-                        data: newColData.value, // 更新金額數據
+                        data: newIncomeCount.value.map(value => ({
+                            value,
+                            itemStyle: {
+                                borderWidth: value === 0 ? 0 : 1, // 動態設定 borderWidth
+                                borderColor: value === 0 ? "transparent" : "#0098FA", // 當數值為 0 時隱藏邊框
+                            },
+                        })),
                     },
                     {
                         data: newToolCount.value,
