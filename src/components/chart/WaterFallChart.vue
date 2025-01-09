@@ -340,7 +340,8 @@ const getMonthInfo = async () => {
 };
 
 if (route.name !== "test") getMonthInfo();
-watch(formateYear, () => getMonthInfo());
+watch(formateYear, () => route.name !== "test" && getMonthInfo());
+
 watch(
     [
         lastMonth, thisMonth, thisMonthComplete, thisMonthCancel, placeholder3, Placeholder4, addCount,

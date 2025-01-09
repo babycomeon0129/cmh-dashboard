@@ -82,7 +82,7 @@ const getTitleData = async () => {
 
 if (route.name !== "test") getTitleData();
 
-watch(formateYear, () => getTitleData());
+watch(formateYear, () => route.name !== "test" && getTitleData());
 </script>
 
 <style lang="scss" scoped>

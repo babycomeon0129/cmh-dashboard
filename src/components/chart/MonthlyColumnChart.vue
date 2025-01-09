@@ -191,7 +191,7 @@ const getmonthConfirm = async () => {
 
 if (route.name !== "test") getmonthConfirm();
 
-watch(formateYear, () => getmonthConfirm());
+watch(formateYear, () => route.name !== "test" && getmonthConfirm());
 
 watch(
     [

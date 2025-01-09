@@ -143,7 +143,7 @@ const getProjectInfo = async () => {
 
 if (route.name !== "test") getProjectInfo();
 
-watch(formateYear, () => getProjectInfo());
+watch(formateYear, () => route.name !== "test" && getProjectInfo());
 </script>
 
 <style lang="scss" scoped>
