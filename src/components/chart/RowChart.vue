@@ -6,11 +6,11 @@
                 催收進展
             </div>
             <div class="chart__row__detail">
-                共計<span>NTD 600,000</span>
+                共計<span>NTD {{ totalAmount.toLocaleString() }}</span>
             </div>
         </div>
         <div class="chart__row__detail">
-            已開發票<span>50%</span>，已收回款項<span>25%</span>
+            已開發票<span>{{ invoiceRate.toFixed(2) }}%</span>，已收回款項<span>{{ actualRate.toFixed(2) }}%</span>
         </div>
         <div
             ref="rowContainer"
@@ -21,10 +21,22 @@
 
 <script setup>
 import { computed, onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import * as echarts from "echarts";
+import axios from "axios";
 
+const route = useRoute();
+const { formateYear } = storeToRefs(useDashboardStore());
 const rowContainer = ref(null);
 let chart = null;
+/**已開發票比例*/
+const invoiceRate = ref(50);
+/** 已收回款項比例 */
+const actualRate = ref(25);
+/** 總金額 */
+const totalAmount = ref(6000000);
 
 /** 已開發票 */
 const incomeCount = ref([
@@ -152,7 +164,7 @@ const option = {
                 position: "inside",
                 formatter: (params) => {
                     const formattedValue = (params.value / incomeCount.value[params.dataIndex]) * 100 ;
-                    return `${formattedValue.toFixed(0)}%`;
+                    return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
                 fontSize: 8,
             },
@@ -210,33 +222,65 @@ const option = {
     ],
 };
 
-watch([
-    () => incomeCount, () => trikeCount, () => collectionCount,
-], ([
-    newIncomeCount, newTrikeCount, newCollectionCount,
-]) => {
-    if (chart) {
-        chart.setOption({
-            series: [
-                {
-                    data: newIncomeCount,
-                },
-                {
-                    data: toolCount.value,
-                },
-                {
-                    data: newTrikeCount,
-                },
-                {
-                    data: newCollectionCount,
-                },
-                {
-                    data: newCollectionCount,
-                },
-            ],
+const getNonAccrual = async () => {
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/non-accrual`, {
+            params: {
+                year: formateYear.value,
+            },
         });
+
+        if (res.data.code === 1000) {
+            incomeCount.value = res.data.result.incomeCount;
+            trikeCount.value = res.data.result.trikeCount;
+            collectionCount.value = res.data.result.collectionCount;
+            totalAmount.value = res.data.result.totalAmount;
+            invoiceRate.value = res.data.result.invoiceRate;
+            actualRate.value = res.data.result.actualRate;
+        }
+
+        console.log(res.data);
     }
-});
+    catch (error) {
+        console.error(error);
+    }
+};
+
+if (route.name !== "test") getNonAccrual();
+
+watch(formateYear, () => route.name !== "test" && getNonAccrual());
+
+watch(
+    [
+        () => incomeCount, () => trikeCount, () => collectionCount, () => toolCount,
+    ],
+    ([
+        newColData, newTrikeCount, newCollectionCount, newToolCount,
+    ]) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newColData.value, // 更新金額數據
+                    },
+                    {
+                        data: newToolCount.value,
+                    },
+                    {
+                        data: newTrikeCount.value,
+                    },
+                    {
+                        data: newCollectionCount.value,
+                    },
+                    {
+                        data: newCollectionCount.value,
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
 
 onMounted(() => {
     chart = echarts.init(rowContainer.value);
