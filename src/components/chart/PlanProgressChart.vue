@@ -45,7 +45,7 @@ const option = {
             radius: [
                 "25%", "62%",
             ],
-            avoidLabelOverlap: false, // 設true可以強制所有label顯示
+            avoidLabelOverlap: true, // 設true可以強制所有label顯示
             minShowLabelAngle: 0,
             label: {
                 show: true,
@@ -66,9 +66,16 @@ const option = {
                 },
             },
             labelLine: {
+                showAbove: true,
                 length: 10,
                 length2: 100,
                 //maxSurfaceAngle: 130,
+            },
+            labelLayout: {
+                draggable: true,
+                // hideOverlap: true,
+                // moveOverlap: "shiftY",
+                //align: "right",
             },
             emphasis: {
                 label: {
