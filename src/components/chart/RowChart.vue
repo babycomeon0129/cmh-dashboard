@@ -76,6 +76,7 @@ const option = {
     },
     grid: {
         top: 20,
+        right: 75,
         left: 0,
         bottom: 0,
         containLabel: true,
