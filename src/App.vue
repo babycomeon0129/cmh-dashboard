@@ -35,14 +35,14 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: calc(1920px -  var(--side-width));
+    min-width: 1920px;
     height: 100vh;
     margin-left: 0;
     padding: 15px;
     transition: margin-left 0.3s ease-in-out;
 
 	&.show {
-		margin-left: var(--side-width);
+        margin-left: var(--side-width);
 	}
 }
 
