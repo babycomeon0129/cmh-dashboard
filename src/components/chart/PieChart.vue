@@ -46,6 +46,7 @@ const option = {
             type: "pie",
             radius: "80%",
             data: amountRatio,
+            avoidLabelOverlap: true,
             label: {
                 show: true,
                 position: "outer",

@@ -45,7 +45,7 @@ const option = {
             radius: [
                 "25%", "62%",
             ],
-            avoidLabelOverlap: false,
+            avoidLabelOverlap: true,
             minShowLabelAngle: 0,
             label: {
                 show: true,

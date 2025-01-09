@@ -42,6 +42,7 @@ const option = {
             type: "pie",
             radius: "60%",
             data: amountRatio.map(data => data.total),
+            avoidLabelOverlap: true,
             label: {
                 show: true,
                 position: "outer",
@@ -134,7 +135,9 @@ onMounted(() => {
     margin-top: 10px;
 
     &__container {
+        width: 100%;
         height: 100%;
+        max-height: 99%;
     }
 }
 </style>
