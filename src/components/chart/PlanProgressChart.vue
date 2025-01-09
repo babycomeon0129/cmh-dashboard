@@ -45,7 +45,7 @@ const option = {
             radius: [
                 "25%", "62%",
             ],
-            avoidLabelOverlap: true,
+            avoidLabelOverlap: false, // 設true可以強制所有label顯示
             minShowLabelAngle: 0,
             label: {
                 show: true,
@@ -68,6 +68,7 @@ const option = {
             labelLine: {
                 length: 10,
                 length2: 100,
+                //maxSurfaceAngle: 130,
             },
             emphasis: {
                 label: {
