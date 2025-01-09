@@ -150,7 +150,7 @@ onMounted(() => {
     flex-direction: column;
     flex-shrink: 0;
     width: calc(60% - 5px);
-    aspect-ratio: 2.7;
+    min-height: 143px;
     margin-top: 10px;
 
     &__content{
