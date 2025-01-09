@@ -35,7 +35,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-width: 1920px;
+    min-width: 1800px;
     height: 100vh;
     margin-left: 0;
     padding: 15px;
