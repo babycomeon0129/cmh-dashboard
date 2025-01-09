@@ -1,5 +1,5 @@
 <template>
-    <aside>
+    <aside :class="{ show: showSideBar}">
         <ul>
             <li class="logo"><img src="@img/logo_bw.png" /></li>
             <li
@@ -12,16 +12,26 @@
                 {{ icon.name }}
             </li>
         </ul>
+        <el-icon
+            class="arrow"
+            :size="16"
+            @click="showSideBar = !showSideBar"
+        >
+            <ArrowRightBold />
+        </el-icon>
     </aside>
 </template>
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 
 const route = useRoute();
 const router = useRouter();
+const store = useDashboardStore();
+const { showSideBar } = storeToRefs(store);
 
-console.log(route);
 const iconList = [
     {
         routeName: "board",
@@ -59,12 +69,32 @@ const goToLink = (url, route) => {
 aside {
     position: fixed;
     top: 0;
-    left: 0;
+    left: calc(-1 * var(--side-width));
     width: var(--side-width);
     padding: 20px 0;
     color: #fff;
     background: var(--main-bg-color);
     height: 100vh;
+    transition: .3s;
+
+    &.show {
+        left: 0;
+    }
+
+    .arrow {
+        content: ">";
+        position: absolute;
+        top: 53px;
+        left: var(--side-width);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 35px;
+        border-radius: 0  100% 100% 0;
+        background: var(--main-bg-color);
+        cursor: pointer;
+    }
 }
 
 .logo {
