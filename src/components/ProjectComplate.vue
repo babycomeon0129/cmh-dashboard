@@ -33,16 +33,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
 import ComplateProgressChart from "@/components/chart/ComplateProgressChart.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PieChart from "@/components/chart/PieChart.vue";
+import { storeToRefs } from "pinia";
 import axios from "axios";
 
 const route = useRoute();
+const { formateYear } = storeToRefs(useDashboardStore());
 /** 標題資訊 */
 const titleInfo = ref({
     totalAmount: 400000,
@@ -115,7 +118,7 @@ const getProjectInfo = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/project-info`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
@@ -140,6 +143,7 @@ const getProjectInfo = async () => {
 
 if (route.name !== "test") getProjectInfo();
 
+watch(formateYear, () => getProjectInfo());
 </script>
 
 <style lang="scss" scoped>

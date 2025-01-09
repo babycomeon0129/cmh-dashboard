@@ -10,6 +10,7 @@ declare module 'vue' {
     ChartTitle: typeof import('./src/components/common/ChartTitle.vue')['default']
     ColumnChart: typeof import('./src/components/chart/ColumnChart.vue')['default']
     ComplateProgressChart: typeof import('./src/components/chart/ComplateProgressChart.vue')['default']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSegmented: typeof import('element-plus/es')['ElSegmented']

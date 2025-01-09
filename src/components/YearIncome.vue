@@ -1,7 +1,11 @@
 <template>
     <div class="dashboard__box year">
         <div class="year__title">
-            2024
+            <el-date-picker
+                v-model="year"
+                type="year"
+                placeholder="Pick a year"
+            />
             <span>年度收入</span>
         </div>
         <div class="year__content">
@@ -33,7 +37,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
@@ -41,7 +45,7 @@ import axios from "axios";
 
 const route = useRoute();
 const { colorBlue, colorYellow } = useDashboardStore();
-const { updateTime } = storeToRefs(useDashboardStore());
+const { updateTime, year, formateYear } = storeToRefs(useDashboardStore());
 
 let planCount = ref(600000);
 let completeCount = ref(400000);
@@ -49,24 +53,24 @@ let kpiCount = ref(1200000);
 
 let planPercentage = computed(() => {
     const value = (planCount.value / kpiCount.value) * 100;
-    return Number(value.toFixed(2));
+    return Number(value.toFixed(2)) || 0;
 });
 let completePercentage = computed(() => {
     const value = (completeCount.value / kpiCount.value) * 100;
-    return Number(value.toFixed(2));
+    return Number(value.toFixed(2)) || 0;
 });
 
 const getTitleData = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/title`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
-            planCount.value = res.data.result.planCount;
-            completeCount.value = res.data.result.completeCount;
-            kpiCount.value = res.data.result.kpiCount;
+            planCount.value = res.data.result.planCount || 0;
+            completeCount.value = res.data.result.completeCount || 0;
+            kpiCount.value = res.data.result.kpiCount || 0;
             updateTime.value = res.data.result.time;
 
         }
@@ -77,6 +81,8 @@ const getTitleData = async () => {
 };
 
 if (route.name !== "test") getTitleData();
+
+watch(formateYear, () => getTitleData());
 </script>
 
 <style lang="scss" scoped>

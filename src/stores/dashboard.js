@@ -1,5 +1,6 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
+import moment from "moment";
 
 export const useDashboardStore = defineStore("dashboard", () => {
     const colorBlue = "#4CA8FF";
@@ -13,6 +14,9 @@ export const useDashboardStore = defineStore("dashboard", () => {
     const updateTime = ref("2024-11-05 14:50: 01");
     /** 是否顯示側邊欄 */
     const showSideBar = ref(false);
+    /** 資料年份 */
+    const year = ref("2024-01-01T00:00:00+08:00");
+    const formateYear = computed(() => moment(year.value).format("YYYY"));
 
     return {
         colorBlue,
@@ -24,5 +28,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
         colorGray,
         updateTime,
         showSideBar,
+        year,
+        formateYear,
     };
 });

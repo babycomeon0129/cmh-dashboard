@@ -11,11 +11,14 @@
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import * as echarts from "echarts";
 import axios from "axios";
 
 const route = useRoute();
 const { colorDeepBlue, colorBlue, colorYellow, colorGray } = useDashboardStore();
+const { formateYear } = storeToRefs(useDashboardStore());
+
 const waterfallContainer = ref(null);
 let chart = null;
 
@@ -72,11 +75,6 @@ const option = {
             return tar && `${tar.name}<br/>${tar.seriesName}:${tar.value.toLocaleString()}`;
         },
     },
-    // legend: {
-    //     data: [
-    //         "上月留下", "本月新增", "本月成案", "本月取消",
-    //     ],
-    // },
     grid: {
         top: 30,
         left: 10,
@@ -324,7 +322,7 @@ const getMonthInfo = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/month-info`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
@@ -342,6 +340,7 @@ const getMonthInfo = async () => {
 };
 
 if (route.name !== "test") getMonthInfo();
+watch(formateYear, () => getMonthInfo());
 watch(
     [
         lastMonth, thisMonth, thisMonthComplete, thisMonthCancel, placeholder3, Placeholder4, addCount,

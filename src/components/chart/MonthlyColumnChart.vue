@@ -11,11 +11,13 @@
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import * as echarts from "echarts";
 import axios from "axios";
 
 const route = useRoute();
 const { colorYellow, colorPurple } = useDashboardStore();
+const { formateYear } = storeToRefs(useDashboardStore());
 const monthlyColContainer = ref(null);
 let chart = null;
 
@@ -168,7 +170,7 @@ const getmonthConfirm = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/month-confirm`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
 
@@ -188,6 +190,8 @@ const getmonthConfirm = async () => {
 };
 
 if (route.name !== "test") getmonthConfirm();
+
+watch(formateYear, () => getmonthConfirm());
 
 watch(
     [
