@@ -115,7 +115,7 @@ const successRate = ref([
         rate: 20,
     },
     {
-        name: "純CUE<br />數位＋紙本",
+        name: "純CUE<br />紙數",
         rate: 40,
     },
     {

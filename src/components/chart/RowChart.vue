@@ -48,7 +48,7 @@ const toolCount = computed((() => {
 const option = {
     legend: {
         data: [
-            "收入", "已冲帳", "已收回款项",
+            "已開發票金額", "已冲帳", "本月實收金額",
         ],
         itemWidth: 8,
         itemHeight: 8,
@@ -97,7 +97,7 @@ const option = {
     ],
     series: [
         {
-            name: "收入",
+            name: "已開發票金額",
             type: "bar",
             z: 2,
             label: {
@@ -184,7 +184,7 @@ const option = {
             data: collectionCount.value,
         },
         {
-            name: "已收回款项",
+            name: "本月實收金額",
             type: "bar",
             yAxisIndex: 1,
             z: 3, // 在上方

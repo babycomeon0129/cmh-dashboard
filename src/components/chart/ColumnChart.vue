@@ -187,7 +187,7 @@ const option = {
             left: 165,
             top: "5%",
             style: {
-                text: "純cue紙本+數位",
+                text: "純cue_紙數",
                 fontSize: 10,
             },
         },
