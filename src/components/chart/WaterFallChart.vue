@@ -67,11 +67,7 @@ const option = {
         },
         formatter: function (params) {
             let tar;
-            if (params[1] && params[1].value !== "-") {
-                tar = params[1];
-            } else {
-                tar = params[2];
-            }
+            tar = params[1] && params[1].value !== "-" ? params[1] : params[2];
             return tar && `${tar.name}<br/>${tar.seriesName}:${tar.value.toLocaleString()}`;
         },
     },
