@@ -35,6 +35,7 @@ main {
     display: flex;
     flex-direction: column;
     width: 100%;
+    min-width: calc(1920px -  var(--side-width));
     height: 100vh;
     margin-left: 0;
     padding: 15px;
