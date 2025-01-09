@@ -1,9 +1,9 @@
 <template>
     <div class="page">
         <div class="title">
-            <h1>專案管理</h1>
+            <h1>專案管理(測試數據)</h1>
             <div class="date">
-                數據更新時間：2024-11-05 14:50: 01
+                數據更新時間：xxxx-xx-xx xx:xx: xx
             </div>
         </div>
         <div class="container">

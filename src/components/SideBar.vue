@@ -14,7 +14,6 @@
         </ul>
         <el-icon
             class="arrow"
-            :size="16"
             @click="showSideBar = !showSideBar"
         >
             <ArrowRightBold />
@@ -60,6 +59,7 @@ const iconList = [
 ];
 
 const goToLink = (url, route) => {
+    showSideBar.value = !showSideBar.value;
     url ? window.open(url) : router.push({ path: route });
 };
 
@@ -69,7 +69,7 @@ const goToLink = (url, route) => {
 aside {
     position: fixed;
     top: 0;
-    left: calc(-1 * var(--side-width));
+    left: calc(-1 * var(--side-width) + 5px);
     width: var(--side-width);
     padding: 20px 0;
     color: #fff;
@@ -92,8 +92,15 @@ aside {
         width: 30px;
         height: 35px;
         border-radius: 0  100% 100% 0;
+        font-size: 16px;
         background: var(--main-bg-color);
         cursor: pointer;
+        transition: .3s;
+
+        &:hover {
+            font-size: 20px;
+            font-weight: bold;
+        }
     }
 }
 
