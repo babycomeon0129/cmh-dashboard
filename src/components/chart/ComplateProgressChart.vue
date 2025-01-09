@@ -72,7 +72,7 @@ const { colorBlue, colorYellow, colorRed } = useDashboardStore();
 
 const progressDataTotal = computed(() => progressData[0].total + progressData[1].total + progressData[2].total);
 
-const percentage = (index) => (progressData[index].total / progressDataTotal.value) * 100;
+const percentage = (index) => (progressData[index].total / progressDataTotal.value) * 100 || 0;
 
 </script>
 
@@ -141,13 +141,12 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     left: 0;
     width: 100%;
 
-    :deep(.el-progress-bar__outer) {
-        background-color: transparent;
-    }
-
     &__1 {
         z-index: 2;
-        //transform: translateY(18px);
+
+        :deep(.el-progress-bar__outer) {
+            background-color: transparent;
+        }
 
         :deep(.el-progress-bar__inner) {
           border-radius: 100px 0 0 100px;
@@ -157,6 +156,10 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
 	&__2 {
         z-index: 1;
 
+        :deep(.el-progress-bar__outer) {
+            background-color: transparent;
+        }
+
         :deep(.el-progress-bar__inner) {
           border-radius: 100px 0 0 100px;
         }
@@ -164,7 +167,6 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
 
 	&__3 {
         z-index: 0;
-		//transform: translateY(-18px);
     }
 }
 </style>
