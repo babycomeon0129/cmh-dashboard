@@ -51,7 +51,7 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 20,
+                lineHeight: 17,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
@@ -76,7 +76,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "70%",
+            radius: "60%",
             data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff",

@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
