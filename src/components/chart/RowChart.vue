@@ -44,7 +44,7 @@ const incomeCount = ref([
 ]);
 /** 已沖帳 */
 const trikeCount = ref([
-    100000, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
+    130000, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
 ]);
 /** 本月實收 */
 const collectionCount = ref([
@@ -134,7 +134,7 @@ const option = {
             data: incomeCount.value,
         },
         {
-            name: "已冲账工具",
+            name: "已沖帳工具",
             stack: "incomeStack",
             type: "bar",
             z: 2, // 在上方
@@ -164,7 +164,7 @@ const option = {
                 // formatter: "{c}",
                 position: "inside",
                 formatter: (params) => {
-                    const formattedValue = (params.value / incomeCount.value[params.dataIndex]) * 100 ;
+                    const formattedValue = (trikeCount.value[params.dataIndex] / incomeCount.value[params.dataIndex]) * 100 ;
                     return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
                 fontSize: 8,
@@ -177,7 +177,7 @@ const option = {
             },
             barWidth: "10px", // 保证宽度一致
             barGap: "-85%",
-            data: trikeCount.value,
+            data: trikeCount.value.map(data => data * 0.975),
         },
         {
             name: "工具",
@@ -274,7 +274,7 @@ watch(
                         data: newToolCount.value,
                     },
                     {
-                        data: newTrikeCount.value,
+                        data: newTrikeCount.value.map(data => data * 0.9),
                     },
                     {
                         data: newCollectionCount.value,

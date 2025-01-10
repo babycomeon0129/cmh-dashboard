@@ -8,7 +8,7 @@
         </div>
         <div class="project__type2">{{  type === 1 ? "預" : "成" }}案</div>
         <div class="detail">共計
-            <span>NTD {{ totalAmount.toLocaleString() }}</span>，<span>{{ totalCount }}</span>筆，毛利率 <span>{{grossMargin}}%</span>，達成率 <span>{{confirmRate}}%</span>
+            <span>NTD {{ totalAmount.toLocaleString() }}</span>，<span>{{ totalCount }}</span>筆，毛利率 <span>{{grossMargin.toFixed(2)}}%</span>，達成率 <span>{{confirmRate.toFixed(2)}}%</span>
         </div>
     </div>
 </template>

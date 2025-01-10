@@ -70,6 +70,7 @@ aside {
     position: fixed;
     top: 0;
     left: calc(-1 * var(--side-width) + 5px);
+    z-index: 10;
     width: var(--side-width);
     padding: 20px 0;
     color: #fff;
