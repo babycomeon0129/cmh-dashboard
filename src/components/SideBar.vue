@@ -16,7 +16,7 @@
             class="arrow"
             @click="showSideBar = !showSideBar"
         >
-            <ArrowRightBold />
+            <ArrowRightBold :class="{close: showSideBar}" />
         </el-icon>
     </aside>
 </template>
@@ -101,6 +101,14 @@ aside {
         &:hover {
             font-size: 20px;
             font-weight: bold;
+        }
+
+        svg {
+            transition: .5s;
+
+            &.close {
+                transform: rotateY(180deg);
+            }
         }
     }
 }
