@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
@@ -52,9 +52,10 @@ const collectionCount = ref([
 ]);
 /** 已沖帳 左邊padding用 */
 const toolCount = computed((() => {
-    const maxVal = Math.max(...incomeCount.value);
-    const toolVal = maxVal * 0.01;
-    return new Array(12).fill(toolVal);
+    // const maxVal = Math.max(...incomeCount.value);
+    // const toolVal = maxVal * 0.01;
+    // return new Array(12).fill(toolVal);
+    return incomeCount.value.map(data => data * 0.01);
 }));
 
 const option = {
@@ -177,7 +178,7 @@ const option = {
             },
             barWidth: "10px", // 保证宽度一致
             barGap: "-85%",
-            data: trikeCount.value.map(data => data * 0.975),
+            data: trikeCount.value.map((data, index) => data - toolCount.value[index] * 2),
         },
         {
             name: "工具",
@@ -271,10 +272,10 @@ watch(
                         })),
                     },
                     {
-                        data: newToolCount.value,
+                        data: newTrikeCount.value.map((data) => data * 0.04),
                     },
                     {
-                        data: newTrikeCount.value.map(data => data * 0.9),
+                        data: newTrikeCount.value.map((data, index) => data - newToolCount.value[index] * 2),
                     },
                     {
                         data: newCollectionCount.value,
