@@ -194,7 +194,7 @@ const option = {
         // 企劃 (紅色)
         {
             type: "rect",
-            left: 245,
+            left: 225,
             top: "5%",
             shape: {
                 width: 10,
@@ -204,7 +204,7 @@ const option = {
         },
         {
             type: "text",
-            left: 260,
+            left: 240,
             top: "5%",
             style: {
                 text: "企劃",
@@ -214,7 +214,7 @@ const option = {
         // 毛利 (紫色)
         {
             type: "rect",
-            left: 290,
+            left: 270,
             top: "6.5%",
             shape: {
                 width: 8,
@@ -224,7 +224,7 @@ const option = {
         },
         {
             type: "text",
-            left: 305,
+            left: 285,
             top: "5%",
             style: {
                 text: "毛利率",
