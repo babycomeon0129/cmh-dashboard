@@ -272,7 +272,7 @@ watch(
                         })),
                     },
                     {
-                        data: newTrikeCount.value.map((data) => data * 0.04),
+                        data: newToolCount.value,
                     },
                     {
                         data: newTrikeCount.value.map((data, index) => data - newToolCount.value[index] * 2),
