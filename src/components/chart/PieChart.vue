@@ -84,10 +84,12 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "50%",
+            radius: "60%",
             data: amountRatio,
             itemStyle: {
                 fontSize: 8,
+                borderColor: "#fff",
+                borderWidth: 1,
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",
