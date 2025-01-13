@@ -39,23 +39,23 @@ const actualRate = ref(25);
 const totalAmount = ref(6000000);
 
 /** 已開發票 */
-const incomeCount = ref([
+const amountInvoice = ref([
     130000, 110000, 50000, 70000, 80000, 85436, 108000, 88000, 90000, 70000, 80000, 135436,
 ]);
 /** 已沖帳 */
-const trikeCount = ref([
+const amountRush = ref([
     130000, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
 ]);
 /** 本月實收 */
-const collectionCount = ref([
+const amountIncome = ref([
     24354, 23424, 35334, 50000, 43354, 23424, 35234, 50000, 22354, 23424, 35334, 50000,
 ]);
 /** 已沖帳 左邊padding用 */
 const toolCount = computed((() => {
-    // const maxVal = Math.max(...incomeCount.value);
+    // const maxVal = Math.max(...amountInvoice.value);
     // const toolVal = maxVal * 0.01;
     // return new Array(12).fill(toolVal);
-    return incomeCount.value.map(data => data * 0.01);
+    return amountInvoice.value.map(data => data * 0.01);
 }));
 
 const option = {
@@ -132,7 +132,7 @@ const option = {
                 borderColor: "#0098FA", // 边框颜色
             },
             barWidth: "14px",
-            data: incomeCount.value,
+            data: amountInvoice.value,
         },
         {
             name: "已沖帳工具",
@@ -165,7 +165,7 @@ const option = {
                 // formatter: "{c}",
                 position: "inside",
                 formatter: (params) => {
-                    const formattedValue = (trikeCount.value[params.dataIndex] / incomeCount.value[params.dataIndex]) * 100 ;
+                    const formattedValue = (amountRush.value[params.dataIndex] / amountInvoice.value[params.dataIndex]) * 100 ;
                     return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
                 fontSize: 8,
@@ -178,7 +178,7 @@ const option = {
             },
             barWidth: "10px", // 保证宽度一致
             barGap: "-85%",
-            data: trikeCount.value.map((data, index) => data - toolCount.value[index] * 2),
+            data: amountRush.value.map((data, index) => data - toolCount.value[index] * 2),
         },
         {
             name: "工具",
@@ -195,7 +195,7 @@ const option = {
                 show: false, // 禁用滑鼠懸停提示
             },
             barWidth: "2px", // 保持宽度一致
-            data: collectionCount.value,
+            data: amountIncome.value,
         },
         {
             name: "本月實收金額",
@@ -219,7 +219,7 @@ const option = {
             },
             barWidth: "14px", // 保持宽度一致
             barGap: 20,
-            data: collectionCount.value,
+            data: amountIncome.value,
         },
     ],
 };
@@ -233,9 +233,9 @@ const getNonAccrual = async () => {
         });
 
         if (res.data.code === 1000) {
-            incomeCount.value = res.data.result.incomeCount;
-            trikeCount.value = res.data.result.trikeCount;
-            collectionCount.value = res.data.result.collectionCount;
+            amountInvoice.value = res.data.result.amountInvoice;
+            amountRush.value = res.data.result.amountRush;
+            amountIncome.value = res.data.result.amountIncome;
             totalAmount.value = res.data.result.totalAmount;
             invoiceRate.value = res.data.result.invoiceRate;
             actualRate.value = res.data.result.actualRate;
@@ -254,16 +254,16 @@ watch(formateYear, () => route.name !== "test" && getNonAccrual());
 
 watch(
     [
-        () => incomeCount, () => trikeCount, () => collectionCount, () => toolCount,
+        () => amountInvoice, () => amountRush, () => amountIncome, () => toolCount,
     ],
     ([
-        newIncomeCount, newTrikeCount, newCollectionCount, newToolCount,
+        newAmountInvoice, newAmountRush, newAmountIncome, newToolCount,
     ]) => {
         if (chart) {
             chart.setOption({
                 series: [
                     {
-                        data: newIncomeCount.value.map(value => ({
+                        data: newAmountInvoice.value.map(value => ({
                             value,
                             itemStyle: {
                                 borderWidth: value === 0 ? 0 : 1, // 動態設定 borderWidth
@@ -275,13 +275,13 @@ watch(
                         data: newToolCount.value,
                     },
                     {
-                        data: newTrikeCount.value.map((data, index) => data - newToolCount.value[index] * 2),
+                        data: newAmountRush.value.map((data, index) => data - newToolCount.value[index] * 2),
                     },
                     {
-                        data: newCollectionCount.value,
+                        data: newAmountIncome.value,
                     },
                     {
-                        data: newCollectionCount.value,
+                        data: newAmountIncome.value,
                     },
                 ],
             });
