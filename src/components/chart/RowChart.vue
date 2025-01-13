@@ -165,7 +165,7 @@ const option = {
                 position: "inside",
                 formatter: (params) => {
                     const formattedValue = (amountRush.value[params.dataIndex] / amountInvoice.value[params.dataIndex]) * 100 ;
-                    return formattedValue ? `${formattedValue.toFixed(0)}%` : "       0%";
+                    return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
                 fontSize: 8,
             },
