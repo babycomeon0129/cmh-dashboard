@@ -44,7 +44,7 @@ const option = {
         {
             //name: "Access From",
             type: "pie",
-            radius: "60%",
+            radius: "55%",
             data: amountRatio,
             avoidLabelOverlap: true,
             label: {
@@ -84,7 +84,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "60%",
+            radius: "55%",
             data: amountRatio,
             itemStyle: {
                 fontSize: 8,
