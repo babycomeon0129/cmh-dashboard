@@ -313,22 +313,35 @@ onMounted(() => {
         font-size: 20px;
         color: var(--main-text-color);
 
+        @media (max-width: 1500px) {
+            font-size: 16px;
+        }
+
         .type {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 32px;
-            height: 32px;
+            width: 25px;
+            height: 25px;
             margin-right: 12px;
             border-radius: 100%;
             font-size: 18px;
             font-weight: bold;
             color: #fff;
             background: var(--color-yellow);
+
+            @media (max-width: 1500px) {
+                margin-right: 5px;
+                font-size: 16px;
+            }
         }
 
         .title {
             margin-right: 12px;
+
+            @media (max-width: 1500px) {
+                margin-right: 5px;
+            }
         }
     }
 
@@ -344,10 +357,18 @@ onMounted(() => {
         font-size: 14px;
         color: var(--text-color2);
 
+        @media (max-width: 1500px) {
+                font-size: 10px;
+        }
+
         span {
             font-size: 20px;
             font-weight: bold;
             color: var(--color-deep-blue);
+
+            @media (max-width: 1500px) {
+                font-size: 16px;
+            }
         }
     }
 }

@@ -39,6 +39,11 @@ const { type, totalAmount, totalCount, grossMargin, confirmRate } = defineProps(
     color: #fff;
     background: var(--color-yellow);
 
+    @media (max-width: 1500px) {
+        margin-right: 5px;
+        font-size: 16px;
+    }
+
     &.plan {
         background: var(--color-deep-blue);
     }
@@ -48,16 +53,28 @@ const { type, totalAmount, totalCount, grossMargin, confirmRate } = defineProps(
     margin-right: 6px;
     font-size: 20px;
     color: var(--main-text-color);
+
+    @media (max-width: 1500px) {
+        font-size: 14px;
+    }
 }
 
 .detail {
     font-size: 14px;
     color: var(--text-color2);
 
+    @media (max-width: 1500px) {
+        font-size: 10px;
+    }
+
     span {
         font-size: 20px;
         font-weight: bold;
         color: var(--color-deep-blue);
+
+        @media (max-width: 1500px) {
+        font-size: 16px;
+    }
     }
 }
 </style>
