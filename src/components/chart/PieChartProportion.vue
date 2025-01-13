@@ -58,7 +58,7 @@ const option = {
                     return `NTD ${formattedValue}\n${amountRatio[params.dataIndex].name}(${amountRatio[params.dataIndex].count}筆)`;
                 },
                 textStyle: {
-                    fontSize: 8,
+                    fontSize: innerWidth > 1500 ? 10 : 8,
                 },
             },
             color: [
@@ -91,7 +91,7 @@ const option = {
                 formatter: "{d}%",
                 color: "#fff",
                 textStyle: {
-                    fontSize: 5,
+                    fontSize: innerWidth > 1500 ? 10 : 5 ,
                 },
             },
             emphasis: {
