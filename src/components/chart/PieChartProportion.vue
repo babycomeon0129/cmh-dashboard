@@ -82,6 +82,7 @@ const option = {
             name: "金額比例",
             type: "pie",
             radius: "60%",
+            z: 1,
             data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff",
