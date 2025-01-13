@@ -63,7 +63,7 @@ const option = {
                     return `NTD ${formattedValue}\n${progressPlan[index].name}`;
                 },
                 textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 7,
+                    fontSize: innerWidth > 1500 ? 10 : 8,
                 },
             },
             labelLine: {
@@ -102,7 +102,7 @@ const option = {
                 position: "inside",
                 formatter:(params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
-                fontSize: innerWidth > 1500 ? 10 : 5,
+                fontSize: innerWidth > 1500 ? 10 : 7,
             },
             emphasis: {
                 label: {
