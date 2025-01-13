@@ -179,7 +179,7 @@ const option = {
             barGap: "-85%",
             data: amountRush.value.map((data, index) => {
                 const res = data - toolCount.value[index] * 2;
-                return res < 0 ? 0 : res;
+                return data === 0 ? 0 : res;
             }),
         },
         {
@@ -277,7 +277,10 @@ watch(
                         data: newToolCount.value,
                     },
                     {
-                        data: newAmountRush.value.map((data, index) => data - newToolCount.value[index] * 2),
+                        data: newAmountRush.value.map((data, index) => {
+                            const res = data - toolCount.value[index] * 2;
+                            return data === 0 ? 0 : res;
+                        }),
                     },
                     {
                         data: newAmountIncome.value,
