@@ -55,14 +55,14 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -300,
                 minMargin: 10,
-                lineHeight: 17,
+                lineHeight: 11,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     const index = params.dataIndex;
                     return `NTD ${formattedValue}\n${progressPlan[index].name}`;
                 },
                 textStyle: {
-                    fontSize: 10,
+                    fontSize: 8,
                 },
             },
             labelLine: {
@@ -83,10 +83,6 @@ const option = {
                     fontSize: 12,
                     fontWeight: "bold",
                 },
-            },
-            itemStyle: {
-                borderColor: "#fff",
-                borderWidth: 1,
             },
             color: colors,
             data: progressPlan.map(data => data.total),
