@@ -44,7 +44,7 @@ const amountInvoice = ref([
 ]);
 /** 已沖帳 */
 const amountRush = ref([
-    130000, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
+    0, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
 ]);
 /** 本月實收 */
 const amountIncome = ref([
@@ -162,11 +162,10 @@ const option = {
             z: 2, // 在上方
             label: {
                 show: true,
-                // formatter: "{c}",
                 position: "inside",
                 formatter: (params) => {
                     const formattedValue = (amountRush.value[params.dataIndex] / amountInvoice.value[params.dataIndex]) * 100 ;
-                    return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
+                    return formattedValue ? `${formattedValue.toFixed(0)}%` : "       0%";
                 },
                 fontSize: 8,
             },
@@ -178,7 +177,10 @@ const option = {
             },
             barWidth: "10px", // 保证宽度一致
             barGap: "-85%",
-            data: amountRush.value.map((data, index) => data - toolCount.value[index] * 2),
+            data: amountRush.value.map((data, index) => {
+                const res = data - toolCount.value[index] * 2;
+                return res < 0 ? 0 : res;
+            }),
         },
         {
             name: "工具",
