@@ -55,14 +55,14 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 20,
+                lineHeight: 14,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${params.name}`;
                 },
                 textStyle: {
-                    fontSize: 10,
+                    fontSize: 8,
                 },
             },
             labelLine: {

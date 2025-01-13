@@ -51,14 +51,14 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 17,
+                lineHeight: 14,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${amountRatio[params.dataIndex].name}(${amountRatio[params.dataIndex].count}筆)`;
                 },
                 textStyle: {
-                    fontSize: 10,
+                    fontSize: 8,
                 },
             },
             color: [
@@ -90,6 +90,9 @@ const option = {
                 position: "inside",
                 formatter: "{d}%",
                 color: "#fff",
+                textStyle: {
+                    fontSize: 8,
+                },
             },
             emphasis: {
                 itemStyle: {
