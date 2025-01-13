@@ -32,4 +32,7 @@ export default defineConfig({
             "@data": fileURLToPath(new URL("./src/assets/data", import.meta.url)),
         },
     },
+    server: {
+        host: true,
+    },
 });

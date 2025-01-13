@@ -4,6 +4,13 @@
             :title="`${titleType}案服務比例`"
             :type="type"
         />
+        <div class="chart__col__legend">
+            <div
+                v-for=" legend in legendList"
+                :key="legend">
+                {{ legend }}
+            </div>
+        </div>
         <div
             ref="colContainer"
             class="chart__col__container"
@@ -25,6 +32,10 @@ const colContainer = ref(null);
 let chart = null;
 
 const titleType = computed(() => type == 1 ? "預" : "成");
+
+const legendList = [
+    "純CUE_紙本", "純CUE_數位", "純CUE_紙數", "企劃案", "毛利率",
+];
 
 const barColors = [
     colorYellow, colorBlue, colorGreen, colorRed,
@@ -130,108 +141,108 @@ const option = {
             },
         },
     ],
-    graphic: [
-        // 純cue紙本 (黃色)
-        {
-            type: "rect",
-            left: 10,
-            top: "5%",
-            shape: {
-                width: 10,
-                height: 10,
-            },
-            style: { fill: colorYellow },
-        },
-        {
-            type: "text",
-            left: 25,
-            top: "5%",
-            style: {
-                text: "純cue紙本",
-                fontSize: 10,
-            },
-        },
-        // 純cue數位 (藍色)
-        {
-            type: "rect",
-            left: 80,
-            top: "5%",
-            shape: {
-                width: 10,
-                height: 10,
-            },
-            style: { fill: colorBlue },
-        },
-        {
-            type: "text",
-            left: 95,
-            top: "5%",
-            style: {
-                text: "純cue數位",
-                fontSize: 10,
-            },
-        },
-        // 純cue紙本+數位 (綠色)
-        {
-            type: "rect",
-            left: 150,
-            top: "5%",
-            shape: {
-                width: 10,
-                height: 10,
-            },
-            style: { fill: colorGreen },
-        },
-        {
-            type: "text",
-            left: 165,
-            top: "5%",
-            style: {
-                text: "純cue_紙數",
-                fontSize: 10,
-            },
-        },
-        // 企劃 (紅色)
-        {
-            type: "rect",
-            left: 225,
-            top: "5%",
-            shape: {
-                width: 10,
-                height: 10,
-            },
-            style: { fill: colorRed },
-        },
-        {
-            type: "text",
-            left: 240,
-            top: "5%",
-            style: {
-                text: "企劃",
-                fontSize: 10,
-            },
-        },
-        // 毛利 (紫色)
-        {
-            type: "rect",
-            left: 270,
-            top: "6.5%",
-            shape: {
-                width: 8,
-                height: 2,
-            },
-            style: { fill: colorPurple },
-        },
-        {
-            type: "text",
-            left: 285,
-            top: "5%",
-            style: {
-                text: "毛利率",
-                fontSize: 10,
-            },
-        },
-    ],
+    // graphic: [
+    //     // 純cue紙本 (黃色)
+    //     {
+    //         type: "rect",
+    //         left: 0,
+    //         top: "5%",
+    //         shape: {
+    //             width: 8,
+    //             height: 8,
+    //         },
+    //         style: { fill: colorYellow },
+    //     },
+    //     {
+    //         type: "text",
+    //         left: 10,
+    //         top: "5%",
+    //         style: {
+    //             text: "純cue紙本",
+    //             fontSize: 8,
+    //         },
+    //     },
+    //     // 純cue數位 (藍色)
+    //     {
+    //         type: "rect",
+    //         left: 55,
+    //         top: "5%",
+    //         shape: {
+    //             width: 8,
+    //             height: 8,
+    //         },
+    //         style: { fill: colorBlue },
+    //     },
+    //     {
+    //         type: "text",
+    //         left: 65,
+    //         top: "5%",
+    //         style: {
+    //             text: "純cue數位",
+    //             fontSize: 8,
+    //         },
+    //     },
+    //     // 純cue紙本+數位 (綠色)
+    //     {
+    //         type: "rect",
+    //         left: 110,
+    //         top: "5%",
+    //         shape: {
+    //             width: 8,
+    //             height: 8,
+    //         },
+    //         style: { fill: colorGreen },
+    //     },
+    //     {
+    //         type: "text",
+    //         left: 120,
+    //         top: "5%",
+    //         style: {
+    //             text: "純cue_紙數",
+    //             fontSize: 8,
+    //         },
+    //     },
+    //     // 企劃 (紅色)
+    //     {
+    //         type: "rect",
+    //         left: 165,
+    //         top: "5%",
+    //         shape: {
+    //             width: 8,
+    //             height: 8,
+    //         },
+    //         style: { fill: colorRed },
+    //     },
+    //     {
+    //         type: "text",
+    //         left: 175,
+    //         top: "5%",
+    //         style: {
+    //             text: "企劃",
+    //             fontSize: 8,
+    //         },
+    //     },
+    //     // 毛利 (紫色)
+    //     {
+    //         type: "rect",
+    //         left: 195,
+    //         top: "6%",
+    //         shape: {
+    //             width: 8,
+    //             height: 2,
+    //         },
+    //         style: { fill: colorPurple },
+    //     },
+    //     {
+    //         type: "text",
+    //         left: 205,
+    //         top: "5%",
+    //         style: {
+    //             text: "毛利率",
+    //             fontSize: 8,
+    //         },
+    //     },
+    // ],
     series: [
         {
             name: "金額",
@@ -310,10 +321,59 @@ onMounted(() => {
     flex-shrink: 0;
     width: calc(60% - 5px);
     aspect-ratio: 1.32;
+
+    &__legend {
+        display: flex;
+        margin-top: 20px;
+        font-size: 10px;
+
+        @media (max-width: 1500px) {
+            font-size: 8px;
+        }
+
+        div {
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 8px;
+                height: 8px;
+                margin-right: 3px;
+                background: var(--color-yellow);
+
+                @media (max-width: 1500px) {
+                    width: 5px;
+                    height: 5px;
+                    font-size: 7px;
+                }
+            }
+
+            &:nth-child(2)::before {
+                background: var(--color-blue);
+            }
+
+            &:nth-child(3)::before {
+                background: var(--color-green);
+            }
+
+            &:nth-child(4)::before {
+                background: var(--color-red);
+            }
+
+            &:nth-child(5)::before {
+                height: 2px;
+                background: var(--color-purple);
+            }
+        }
+    }
+
+    &__container {
+        height: 270px;
+        margin-top: 5px;
+    }
 }
 
-.chart__col__container {
-    height: 270px;
-    margin-top: 5px;
-}
 </style>

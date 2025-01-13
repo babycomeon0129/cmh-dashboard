@@ -62,7 +62,7 @@ const option = {
                     return `NTD ${formattedValue}\n${params.name}`;
                 },
                 textStyle: {
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             },
             labelLine: {
@@ -100,7 +100,7 @@ const option = {
                 formatter: "{d}%", // 顯示百分比
                 color: "#fff",
                 textStyle: {
-                    fontSize: 8,
+                    fontSize: 5,
                 },
             },
             emphasis: {

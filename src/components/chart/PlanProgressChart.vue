@@ -55,14 +55,14 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -300,
                 minMargin: 10,
-                lineHeight: 11,
+                lineHeight: 10,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     const index = params.dataIndex;
                     return `NTD ${formattedValue}\n${progressPlan[index].name}`;
                 },
                 textStyle: {
-                    fontSize: 8,
+                    fontSize: 7,
                 },
             },
             labelLine: {
@@ -100,7 +100,7 @@ const option = {
                 position: "inside",
                 formatter:(params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
-                fontSize: 8,
+                fontSize: 5,
             },
             emphasis: {
                 label: {

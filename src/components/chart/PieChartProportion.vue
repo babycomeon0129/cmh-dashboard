@@ -91,7 +91,7 @@ const option = {
                 formatter: "{d}%",
                 color: "#fff",
                 textStyle: {
-                    fontSize: 8,
+                    fontSize: 5,
                 },
             },
             emphasis: {
