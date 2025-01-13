@@ -44,7 +44,7 @@ const option = {
         {
             //name: "Access From",
             type: "pie",
-            radius: "80%",
+            radius: "60%",
             data: amountRatio,
             avoidLabelOverlap: true,
             label: {
@@ -84,11 +84,10 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "80%",
+            radius: "50%",
             data: amountRatio,
             itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 1, // 分隔線的寬度，可依需求調整
+                fontSize: 8,
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",
@@ -98,6 +97,9 @@ const option = {
                 position: "inside",
                 formatter: "{d}%", // 顯示百分比
                 color: "#fff",
+                textStyle: {
+                    fontSize: 8,
+                },
             },
             emphasis: {
                 itemStyle: {
