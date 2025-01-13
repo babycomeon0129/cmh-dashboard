@@ -94,6 +94,7 @@ const option = {
             radius: [
                 "25%", "70%",
             ],
+            z: 1,
             minShowLabelAngle: 0,
             avoidLabelOverlap: false,
             label: {
@@ -101,7 +102,7 @@ const option = {
                 position: "inside",
                 formatter:(params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
-                fontSize: innerWidth > 1500 ? 8 : 5,
+                fontSize: innerWidth > 1500 ? 10 : 5,
             },
             emphasis: {
                 label: {
