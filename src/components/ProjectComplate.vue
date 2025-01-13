@@ -68,15 +68,15 @@ const serviceCount = ref([
 /** 成案服務比例 */
 const amountRatio = ref([
     {
-        value: 100000,
+        value: 1000000,
         name: "紙本",
     },
     {
-        value: 140000,
+        value: 1400000,
         name: "數位",
     },
     {
-        value: 160000,
+        value: 1600000,
         name: "活動",
     },
 ]);

@@ -129,7 +129,7 @@ const option = {
             },
             axisLabel: {
                 formatter: "{value}",
-                fontSize: 11,
+                ffontSize: innerWidth > 1500 ? 11 : 7,
             },
             splitLine: {
                 show: true,
@@ -141,7 +141,6 @@ const option = {
             },
         },
     ],
-    // graphic: [
     //     // 純cue紙本 (黃色)
     //     {
     //         type: "rect",

@@ -43,10 +43,11 @@ const option = {
             name: "Access From",
             type: "pie",
             radius: [
-                "25%", "62%",
+                "25%", "70%",
             ],
             avoidLabelOverlap: true, // 設true可以強制所有label顯示
             minShowLabelAngle: 0,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -73,7 +74,7 @@ const option = {
             },
             labelLayout: {
                 draggable: true,
-                // hideOverlap: true,
+                hideOverlap: true,
                 // moveOverlap: "shiftY",
                 //align: "right",
             },
@@ -91,7 +92,7 @@ const option = {
             name: "Access From",
             type: "pie",
             radius: [
-                "25%", "65%",
+                "25%", "70%",
             ],
             minShowLabelAngle: 0,
             avoidLabelOverlap: false,

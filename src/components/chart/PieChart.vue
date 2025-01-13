@@ -47,6 +47,7 @@ const option = {
             radius: "55%",
             data: amountRatio,
             avoidLabelOverlap: true,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -69,6 +70,10 @@ const option = {
                 length: 10,
                 length2: 5,
             },
+            labelLayout: {
+                hideOverlap: false, // 確保標籤不會因重疊而隱藏
+                //moveOverlap: "shiftY", // 遇到重疊時移動標籤
+            },
             color: [
                 colorBlue, colorGreen, colorRed,
             ],
@@ -86,6 +91,7 @@ const option = {
             type: "pie",
             radius: "55%",
             data: amountRatio,
+            z: 1, // 設定為更高層級
             itemStyle: {
                 fontSize: 8,
                 borderColor: "#fff",
@@ -100,7 +106,7 @@ const option = {
                 formatter: "{d}%", // 顯示百分比
                 color: "#fff",
                 textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 5,
+                    fontSize: innerWidth > 1500 ? 10 : 8,
                 },
             },
             emphasis: {

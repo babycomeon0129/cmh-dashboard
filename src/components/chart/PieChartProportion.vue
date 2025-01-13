@@ -43,6 +43,7 @@ const option = {
             radius: "60%",
             data: amountRatio.map(data => data.total),
             avoidLabelOverlap: true,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -60,6 +61,10 @@ const option = {
                 textStyle: {
                     fontSize: innerWidth > 1500 ? 10 : 8,
                 },
+            },
+            labelLayout: {
+                hideOverlap: false, // 確保標籤不會因重疊而隱藏
+                //moveOverlap: "shiftY", // 遇到重疊時移動標籤
             },
             color: [
                 colorYellow ,colorBlue,
@@ -91,7 +96,7 @@ const option = {
                 formatter: "{d}%",
                 color: "#fff",
                 textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 5 ,
+                    fontSize: innerWidth > 1500 ? 10 : 8 ,
                 },
             },
             emphasis: {
