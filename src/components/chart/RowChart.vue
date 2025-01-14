@@ -44,7 +44,7 @@ const amountInvoice = ref([
 ]);
 /** 已沖帳 */
 const amountRush = ref([
-    0, 80000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
+    0, 110000, 30000, 50000, 70000, 35436, 100000, 80000, 30000, 50000, 70000, 23536,
 ]);
 /** 本月實收 */
 const amountIncome = ref([
@@ -52,10 +52,10 @@ const amountIncome = ref([
 ]);
 /** 已沖帳 左邊padding用 */
 const toolCount = computed((() => {
-    // const maxVal = Math.max(...amountInvoice.value);
-    // const toolVal = maxVal * 0.01;
-    // return new Array(12).fill(toolVal);
-    return amountInvoice.value.map(data => data * 0.01);
+    const maxVal = Math.max(...amountInvoice.value);
+    const toolVal = maxVal * 0.01;
+    return new Array(12).fill(toolVal);
+    //return amountInvoice.value.map(data => data * 0.01);
 }));
 
 const option = {
