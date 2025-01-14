@@ -1,11 +1,7 @@
 <template>
     <div class="dashboard__box year">
         <div class="year__title">
-            <el-date-picker
-                v-model="year"
-                type="year"
-                placeholder="Pick a year"
-            />
+            {{ formateYear }}
             <span>年度收入</span>
         </div>
         <div class="year__content">
@@ -45,7 +41,7 @@ import axios from "axios";
 
 const route = useRoute();
 const { colorBlue, colorYellow } = useDashboardStore();
-const { updateTime, year, formateYear } = storeToRefs(useDashboardStore());
+const { updateTime, formateYear } = storeToRefs(useDashboardStore());
 
 let planCount = ref(600000);
 let completeCount = ref(400000);

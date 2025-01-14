@@ -1,11 +1,6 @@
 <template>
     <div class="page">
-        <div class="title">
-            <h1>專案管理</h1>
-            <div class="date">
-                數據更新時間： {{ updateTime }}
-            </div>
-        </div>
+        <HomeHeader />
         <div class="container">
             <YearIncome />
             <div class="charts">
@@ -25,42 +20,21 @@
 </template>
 
 <script setup>
-import { useDashboardStore } from "@/stores/dashboard";
+import HomeHeader from "@/components/common/HomeHeader.vue";
 import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplate from "@/components/ProjectComplate.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
 import MonthlyTrendViewer from "@/components/MonthlyTrendViewer.vue";
 import RowChart from "@/components/chart/RowChart.vue";
-import { storeToRefs } from "pinia";
-
-const store = useDashboardStore();
-const { updateTime } = storeToRefs(store);
 
 </script>
 
 <style lang="scss" scoped>
-
-h1 {
-    margin: 0;
-    font-size: 28px;
-    line-height: 1;
-}
-
 .page {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-}
-
-.title {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.date {
-    margin-left: 15px;
 }
 
 .container {

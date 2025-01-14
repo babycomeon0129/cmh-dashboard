@@ -14,6 +14,7 @@ declare module 'vue' {
     ElIcon: typeof import('element-plus/es')['ElIcon']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSegmented: typeof import('element-plus/es')['ElSegmented']
+    HomeHeader: typeof import('./src/components/common/HomeHeader.vue')['default']
     MonthlyColumnChart: typeof import('./src/components/chart/MonthlyColumnChart.vue')['default']
     MonthlyTrendViewer: typeof import('./src/components/MonthlyTrendViewer.vue')['default']
     PieChart: typeof import('./src/components/chart/PieChart.vue')['default']

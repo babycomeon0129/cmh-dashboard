@@ -15,7 +15,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
     /** 是否顯示側邊欄 */
     const showSideBar = ref(false);
     /** 資料年份 */
-    const year = ref("2024-01-01T00:00:00+08:00");
+    const year = ref(new Date());
     const formateYear = computed(() => moment(year.value).format("YYYY"));
 
     return {
