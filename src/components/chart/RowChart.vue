@@ -53,7 +53,8 @@ const amountIncome = ref([
 /** 已沖帳 左邊padding用 */
 const toolCount = computed((() => {
     const maxVal = Math.max(...amountInvoice.value);
-    const toolVal = maxVal * 0.01;
+    const percentage = innerWidth > 1500 ? 0.01 : 0.02;
+    const toolVal = maxVal * percentage;
     return new Array(12).fill(toolVal);
     //return amountInvoice.value.map(data => data * 0.01);
 }));
@@ -122,6 +123,7 @@ const option = {
                 },
                 position: "right",
                 color: "#0098FA",
+                fontSize: 11,
             },
             itemStyle: {
                 color: "rgba(255, 255, 255, 0)", // 完全透明
@@ -129,7 +131,7 @@ const option = {
                     50, 50, 50, 50,
                 ],
                 borderWidth: 1,
-                borderColor: "#0098FA", // 边框颜色
+                borderColor: "#0098FA",
             },
             barWidth: "14px",
             data: amountInvoice.value,
@@ -212,6 +214,7 @@ const option = {
                 },
                 position: "right",
                 color: "#F99606",
+                fontSize: 11,
             },
             itemStyle: {
                 color: "#F99606",

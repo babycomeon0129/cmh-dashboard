@@ -44,7 +44,7 @@ const option = {
         {
             //name: "Access From",
             type: "pie",
-            radius: "55%",
+            radius: innerWidth > 1500 ? "70%" : "55%",
             data: amountRatio,
             avoidLabelOverlap: true,
             z: 1,
@@ -89,7 +89,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "55%",
+            radius: innerWidth > 1500 ? "70%" : "55%",
             data: amountRatio,
             z: 1, // 設定為更高層級
             itemStyle: {

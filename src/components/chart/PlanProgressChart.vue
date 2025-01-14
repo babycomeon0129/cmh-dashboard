@@ -78,13 +78,13 @@ const option = {
                 // moveOverlap: "shiftY",
                 //align: "right",
             },
-            emphasis: {
-                label: {
-                    show: true,
-                    fontSize: 12,
-                    fontWeight: "bold",
-                },
-            },
+            // emphasis: {
+            //     label: {
+            //         show: true,
+            //         fontSize: 12,
+            //         fontWeight: "bold",
+            //     },
+            // },
             color: colors,
             data: progressPlan.map(data => data.total),
         },
@@ -171,6 +171,10 @@ onMounted(() => {
 .chart__pie__container {
     width: 65%;
     height: 100%;
+
+    @media (max-width: 1500px)  {
+      width: 80%;
+    }
 }
 
 </style>
