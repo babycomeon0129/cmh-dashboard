@@ -56,14 +56,11 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 14,
-                //formatter: "{b}", // 顯示名稱
+                lineHeight: innerWidth > 1500 ? 20 : 13,
+                fontSize: innerWidth > 1500 ? 12 : 8,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${params.name}`;
-                },
-                textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 7,
                 },
             },
             labelLine: {
@@ -105,9 +102,7 @@ const option = {
                 position: "inside",
                 formatter: "{d}%", // 顯示百分比
                 color: "#fff",
-                textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 8,
-                },
+                fontSize: innerWidth > 1500 ? 10 : 8,
             },
             emphasis: {
                 itemStyle: {

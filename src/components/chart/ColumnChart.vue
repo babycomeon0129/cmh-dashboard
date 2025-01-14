@@ -50,9 +50,9 @@ const option = {
         },
     },
     grid: {
-        right: 0,
+        right: 1,
         bottom: 0,
-        left: 0,
+        left: 1,
         containLabel: true,
     },
     xAxis: [

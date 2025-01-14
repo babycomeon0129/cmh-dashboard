@@ -57,13 +57,11 @@ const option = {
                 distanceToLabelLine: -300,
                 minMargin: 10,
                 lineHeight: innerWidth > 1500 ? 14 : 10,
+                fontSize: innerWidth > 1500 ? 10 : 8,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     const index = params.dataIndex;
                     return `NTD ${formattedValue}\n${progressPlan[index].name}`;
-                },
-                textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 8,
                 },
             },
             labelLine: {
@@ -75,7 +73,7 @@ const option = {
             labelLayout: {
                 draggable: true,
                 hideOverlap: true,
-                // moveOverlap: "shiftY",
+                //moveOverlap: "shiftY",
                 //align: "right",
             },
             // emphasis: {

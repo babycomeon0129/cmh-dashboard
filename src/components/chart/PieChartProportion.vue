@@ -40,7 +40,7 @@ const option = {
         {
             //name: "Access From",
             type: "pie",
-            radius: "60%",
+            radius: innerWidth > 1500 ? "70%" : "60%",
             data: amountRatio.map(data => data.total),
             avoidLabelOverlap: true,
             z: 1,
@@ -52,14 +52,12 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 14,
+                lineHeight: innerWidth > 1500 ? 20 : 13,
+                fontSize: innerWidth > 1500 ? 12 : 8,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${amountRatio[params.dataIndex].name}(${amountRatio[params.dataIndex].count}筆)`;
-                },
-                textStyle: {
-                    fontSize: innerWidth > 1500 ? 10 : 8,
                 },
             },
             labelLayout: {
@@ -81,7 +79,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "60%",
+            radius: innerWidth > 1500 ? "70%" : "60%",
             z: 1,
             data: amountRatio.map(data => data.total),
             itemStyle: {

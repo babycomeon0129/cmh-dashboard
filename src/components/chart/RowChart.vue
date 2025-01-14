@@ -69,6 +69,9 @@ const option = {
         itemStyle: {
             borderWidth: 1,
         },
+        textStyle: {
+            fontSize: innerWidth > 1500 ? 10 : 9,
+        },
     },
     tooltip: {
         trigger: "axis",
