@@ -17,7 +17,9 @@
                     :percentage="completePercentage"
                     :color="colorYellow"
                     class="bar plan"
-                />
+                >
+                    {{  completePercentage === 0 ? "" : `${completePercentage} %` }}
+                </el-progress>
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
