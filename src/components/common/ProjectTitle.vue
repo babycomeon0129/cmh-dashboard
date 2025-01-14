@@ -40,8 +40,10 @@ const { type, totalAmount, totalCount, grossMargin, confirmRate } = defineProps(
     background: var(--color-yellow);
 
     @media (max-width: 1500px) {
-        margin-right: 5px;
-        font-size: 16px;
+        width: 25px;
+        height: 25px;
+        margin-right: 3px;
+        font-size: 13px;
     }
 
     &.plan {
