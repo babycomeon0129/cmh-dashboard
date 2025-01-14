@@ -55,7 +55,7 @@ const option = {
             nameLocation: "start",
             nameGap: 0,
             nameTextStyle: {
-                fontSize: 10,
+                fontSize: 9,
             },
             position: "bottom",
             data: serviceCount.value,
@@ -66,9 +66,10 @@ const option = {
                 interval: 0,
                 align: "center",
                 formatter: (value, index) => `{color|${value}}\n${index + 1}月`,
+                fontSize: 11,
                 rich: {
                     color: {
-                        fontSize: 12,
+                        fontSize: 9,
                         lineHeight: 16,
                         color: colorYellow,
                     },
@@ -83,7 +84,7 @@ const option = {
             position: "right",
             alignTicks: true,
             nameTextStyle: {
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 9,
             },
             axisLine: {
                 show: false,
@@ -93,7 +94,7 @@ const option = {
             },
             axisLabel: {
                 formatter: "{value}%",
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 9 : 8,
             },
             splitLine: {
                 show: false,
@@ -106,7 +107,7 @@ const option = {
             position: "left",
             alignTicks: true,
             nameTextStyle: {
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 9,
             },
             axisLine: {
                 show: false,
@@ -117,7 +118,7 @@ const option = {
             axisLabel: {
                 interval: 1,
                 formatter: "{value}",
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 9 : 8,
             },
             splitLine: {
                 show: true,

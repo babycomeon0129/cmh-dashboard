@@ -50,6 +50,7 @@ const option = {
         },
     },
     grid: {
+        top: 30,
         right: 1,
         bottom: 0,
         left: 1,
@@ -70,19 +71,19 @@ const option = {
                 },
                 rich: {
                     color0: {
-                        fontSize: 11,
+                        fontSize: innerWidth > 1500 ? 11 : 8,
                         color: colorYellow,
                     },
                     color1: {
-                        fontSize: 11,
+                        fontSize: innerWidth > 1500 ? 11 : 8,
                         color: colorBlue,
                     },
                     color2: {
-                        fontSize: 11,
+                        fontSize: innerWidth > 1500 ? 11 : 8,
                         color: colorGreen,
                     },
                     color3: {
-                        fontSize: 11,
+                        fontSize: innerWidth > 1500 ? 11 : 8,
                         color: colorRed,
                     },
                 },
@@ -96,7 +97,7 @@ const option = {
             position: "right",
             alignTicks: true,
             nameTextStyle: {
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 7,
             },
             axisLine: {
                 show: false,
@@ -106,7 +107,7 @@ const option = {
             },
             axisLabel: {
                 formatter: "{value}%",
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 7,
             },
             splitLine: {
                 show: false,
@@ -119,7 +120,7 @@ const option = {
             position: "left",
             alignTicks: true,
             nameTextStyle: {
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 7,
             },
             axisLine: {
                 show: false,
@@ -129,7 +130,7 @@ const option = {
             },
             axisLabel: {
                 formatter: "{value}",
-                ffontSize: innerWidth > 1500 ? 11 : 7,
+                fontSize: innerWidth > 1500 ? 11 : 7,
             },
             splitLine: {
                 show: true,
@@ -157,7 +158,7 @@ const option = {
                 position: "top", // 可視情況改成 'top', 'inside', 'insideBottom'等
                 formatter: (params) => params.value.toLocaleString(),
                 color: "#000",
-                fontSize: 9,
+                fontSize: innerWidth > 1500 ? 9 : 7,
             },
             data: colData,
         },
@@ -170,10 +171,6 @@ const option = {
             },
             label: {
                 show: false,
-                position: "top", // 可視情況改成 'top', 'inside', 'insideBottom'等
-                formatter: "{c}%",
-                color: "#000",
-                fontSize: 8,
             },
             data: grossProfit,
         },
@@ -269,8 +266,13 @@ onMounted(() => {
     }
 
     &__container {
-        height: 270px;
+        //height: 230px;
+        aspect-ratio: 16 / 9;
         margin-top: 5px;
+
+        @media (max-width: 1500px) {
+            aspect-ratio: 4 / 3;
+        }
     }
 }
 

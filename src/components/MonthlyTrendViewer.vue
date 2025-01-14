@@ -54,7 +54,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
 </script>
 
 <style lang="scss" scoped>
-.MonthlyTrendViewer {
+.MonthlyTrendViewer  {
     height: calc(100% - 15px);
     min-height: 190px;
     margin-top: 15px;

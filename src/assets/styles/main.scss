@@ -2,6 +2,12 @@
 @use "./base/base";
 @use "./base/animations";
 
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .dashboard__box {
     overflow: hidden;
     padding: 10px;

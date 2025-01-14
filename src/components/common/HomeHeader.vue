@@ -28,6 +28,7 @@ const { updateTime, year } = storeToRefs(store);
 header {
     display: flex;
     justify-content: space-between;
+    flex-shrink: 0;
 }
 
 h1 {

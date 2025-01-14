@@ -157,6 +157,9 @@ const option = {
                 width: 1, // 可選，設置線條寬度
             },
         },
+        axisLabel: {
+            fontSize: innerWidth > 1500 ? 9 : 8,
+        },
     },
     series: [
         {
