@@ -34,10 +34,6 @@ const option = {
     tooltip: {
         trigger: "item",
     },
-    grid: {
-        bottom: 0,
-        containLabel: true,
-    },
     series: [
         {
             name: "Access From",

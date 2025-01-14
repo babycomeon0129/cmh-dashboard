@@ -30,12 +30,6 @@ const option = {
         trigger: "item",
         formatter: "{a} <br/>{b} : {c} ({d}%)",
     },
-    grid: {
-        // right: 5,
-        bottom: 0,
-        // left: 0,
-        containLabel: true,
-    },
     series: [
         {
             //name: "Access From",
