@@ -34,7 +34,7 @@ const option = {
         {
             //name: "Access From",
             type: "pie",
-            radius: innerWidth > 1500 ? "70%" : "60%",
+            radius: "60%",
             data: amountRatio.map(data => data.total),
             avoidLabelOverlap: true,
             z: 1,
@@ -73,7 +73,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: innerWidth > 1500 ? "70%" : "60%",
+            radius: "60%",
             z: 1,
             data: amountRatio.map(data => data.total),
             itemStyle: {
