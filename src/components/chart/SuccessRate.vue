@@ -57,7 +57,7 @@ const colors = [
 
     &__title {
         flex-shrink: 0;
-        margin-right: 10%;
+        margin-right: 10px;
         font-size: 10px;
         color: var(--text-color3);
     }
