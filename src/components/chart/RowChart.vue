@@ -184,7 +184,15 @@ const option = {
             barGap: "-85%",
             data: amountRush.value.map((data, index) => {
                 const res = data - toolCount.value[index] * 2;
-                return data === 0 ? 0 : res;
+                const percentage = (amountRush.value[index] / amountInvoice.value[index]) * 100;
+
+                return {
+                    value: data === 0 ? 0 : res,
+                    label: {
+                        position: percentage > 50 ? "inside" : "right",
+                        color: percentage > 50 ? "#fff" : "#0098FA",
+                    },
+                };
             }),
         },
         {
@@ -285,7 +293,15 @@ watch(
                     {
                         data: newAmountRush.value.map((data, index) => {
                             const res = data - toolCount.value[index] * 2;
-                            return data === 0 ? 0 : res;
+                            const percentage = (amountRush.value[index] / amountInvoice.value[index]) * 100;
+
+                            return {
+                                value: data === 0 ? 0 : res,
+                                label: {
+                                    position: percentage > 50 ? "inside" : "right",
+                                    color: percentage > 50 ? "#fff" : "#0098FA",
+                                },
+                            };
                         }),
                     },
                     {
