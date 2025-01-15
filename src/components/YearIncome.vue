@@ -7,7 +7,7 @@
         <div class="year__content">
             <div class="year__detail">
                 <div>成案
-                    <span>NTD</span> {{ completeCount.toLocaleString()}}（{{  completePercentage }}%）
+                    <span>NTD</span>{{ completeCount.toLocaleString()}}（{{  completePercentage }}%）
                 </div>
                 <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}}（{{  planPercentage }}%）</div>
                 <div>年度KPI  <span>NTD</span> {{ kpiCount.toLocaleString() }}</div>
@@ -122,8 +122,8 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     div {
         display: flex;
         align-items: center;
-		font-size: 14px;
-		font-weight: bold;
+        font-size: 14px;
+        font-weight: bold;
 
         &::before {
             content: "";
@@ -139,11 +139,12 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
         }
 
         &:nth-child(3)::before  {
-          background: #ECECEC;
+            background: #ECECEC;
         }
     }
 
     span {
+        margin: 0 5px 0 13px;
         font-size: 12px;
         font-weight: normal;
     }
@@ -171,7 +172,6 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 
     &.complete {
         z-index: 1;
-        //transform: translateY(-14px);
     }
 }
 
