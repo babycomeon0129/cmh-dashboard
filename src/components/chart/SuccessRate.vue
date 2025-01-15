@@ -56,8 +56,8 @@ const colors = [
     }
 
     &__title {
-        width: 22.5%;
         flex-shrink: 0;
+        margin-right: 10%;
         font-size: 10px;
         color: var(--text-color3);
     }
