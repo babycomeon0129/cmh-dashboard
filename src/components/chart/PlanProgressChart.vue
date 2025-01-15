@@ -31,12 +31,13 @@ const pieContainer = ref(null);
 let chart = null;
 
 const option = {
+
     tooltip: {
         trigger: "item",
     },
     series: [
         {
-            name: "Access From",
+            name: "進展金額",
             type: "pie",
             radius: [
                 "25%", "70%",
@@ -72,18 +73,11 @@ const option = {
                 //moveOverlap: "shiftY",
                 //align: "right",
             },
-            // emphasis: {
-            //     label: {
-            //         show: true,
-            //         fontSize: 12,
-            //         fontWeight: "bold",
-            //     },
-            // },
             color: colors,
             data: progressPlan.map(data => data.total),
         },
         {
-            name: "Access From",
+            name: "進展比例",
             type: "pie",
             radius: [
                 "25%", "70%",

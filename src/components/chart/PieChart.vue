@@ -36,7 +36,7 @@ const option = {
     },
     series: [
         {
-            //name: "Access From",
+            name: "金額",
             type: "pie",
             radius: innerWidth > 1500 ? "70%" : "55%",
             data: amountRatio,

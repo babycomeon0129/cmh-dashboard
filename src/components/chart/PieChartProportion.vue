@@ -32,7 +32,7 @@ const option = {
     },
     series: [
         {
-            //name: "Access From",
+            name: "金額（筆數）",
             type: "pie",
             radius: "60%",
             data: amountRatio.map(data => data.total),
