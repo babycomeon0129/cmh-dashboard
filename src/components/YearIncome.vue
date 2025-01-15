@@ -139,7 +139,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
         }
 
         &:nth-child(3)::before  {
-            display: none;
+          background: #ECECEC;
         }
     }
 
