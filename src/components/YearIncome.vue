@@ -6,8 +6,10 @@
         </div>
         <div class="year__content">
             <div class="year__detail">
-                <div>成案  <span>NTD</span> {{ completeCount.toLocaleString()}}</div>
-                <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}} </div>
+                <div>成案
+                    <span>NTD</span> {{ completeCount.toLocaleString()}}（{{  completePercentage }}%）
+                </div>
+                <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}}（{{  planPercentage }}%）</div>
                 <div>年度KPI  <span>NTD</span> {{ kpiCount.toLocaleString() }}</div>
             </div>
             <div class="progress">
@@ -18,7 +20,7 @@
                     :color="colorYellow"
                     class="bar plan"
                 >
-                    {{  completePercentage === 0 ? "" : `${completePercentage} %` }}
+                    <span />
                 </el-progress>
                 <el-progress
                     :text-inside="true"
@@ -27,7 +29,7 @@
                     :color="colorBlue"
                     class="bar complete"
                 >
-                    <span>{{ planPercentage }}%</span>
+                    <span />
                 </el-progress>
             </div>
         </div>
@@ -118,8 +120,27 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     color: var(--text-color);
 
     div {
+        display: flex;
+        align-items: center;
 		font-size: 14px;
 		font-weight: bold;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            margin-right: 5px;
+            background: var(--color-yellow);
+        }
+
+        &:nth-child(2)::before  {
+            background: var(--color-blue);
+        }
+
+        &:nth-child(3)::before  {
+            display: none;
+        }
     }
 
     span {

@@ -6,9 +6,10 @@
                 數據更新時間： {{ updateTime }}
             </div>
         </div>
-        <div>
+        <div class="date-picker">
             <el-date-picker
                 v-model="year"
+                :clearable="false"
                 type="year"
                 placeholder="Pick a year"
             />
@@ -45,5 +46,20 @@ h1 {
 
 .date {
     margin-left: 15px;
+}
+
+:deep(.el-input) {
+    width: 30px !important;
+    border: none;
+    cursor: pointer;
+    --el-input-border-color: none;
+    --el-input-bg-color: none;
+    --el-input-focus-border: none;
+    --el-input-hover-border: none;
+    --el-input-focus-border-color: none;
+    --el-input-hover-border-color: none;
+    --el-input-placeholder-color: none;
+    --el-input-clear-hover-color: none;
+
 }
 </style>
