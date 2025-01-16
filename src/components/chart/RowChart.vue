@@ -1,7 +1,6 @@
 <template>
     <div class="dashboard__box chart__row">
         <div class="chart__row__title">
-            <span class="type">成</span>
             <div class="title">
                 催收進展
             </div>
@@ -337,27 +336,6 @@ onMounted(() => {
 
         @media (max-width: 1500px) {
             font-size: 16px;
-        }
-
-        .type {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            margin-right: 12px;
-            border-radius: 100%;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            background: var(--color-yellow);
-
-            @media (max-width: 1500px) {
-                width: 25px;
-                height: 25px;
-                margin-right: 3px;
-                font-size: 13px;
-            }
         }
 
         .title {

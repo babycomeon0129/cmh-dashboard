@@ -10,6 +10,7 @@
             <el-date-picker
                 v-model="year"
                 :clearable="false"
+                :disabled-date="disabledDate"
                 type="year"
                 placeholder="Pick a year"
             />
@@ -23,6 +24,13 @@ import { storeToRefs } from "pinia";
 
 const store = useDashboardStore();
 const { updateTime, year } = storeToRefs(store);
+
+const disabledDate = (date) => {
+    const currentYear = new Date().getFullYear();
+    const selectedYear = date.getFullYear();
+    return selectedYear < 2024 || selectedYear > currentYear;
+};
+
 </script>
 
 <style lang="scss" scoped>
