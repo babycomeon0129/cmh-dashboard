@@ -215,7 +215,7 @@ onMounted(() => {
 .chart__col {
     flex-shrink: 0;
     width: calc(60% - 5px);
-    aspect-ratio: 1.32;
+    aspect-ratio: 16 / 9;
 
     &__legend {
         display: flex;
@@ -266,13 +266,8 @@ onMounted(() => {
     }
 
     &__container {
-        //height: 230px;
-        aspect-ratio: 16 / 9;
+        height: 100%;
         margin-top: 5px;
-
-        @media (max-width: 1500px) {
-            aspect-ratio: 4 / 3;
-        }
     }
 }
 
