@@ -63,6 +63,7 @@ const option = {
         data: [
             "已開發票金額", "已冲帳", "本月實收金額",
         ],
+        left: "left",
         itemWidth: 8,
         itemHeight: 8,
         itemStyle: {
