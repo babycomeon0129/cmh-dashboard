@@ -61,14 +61,6 @@ const option = {
             color: [
                 colorYellow ,colorBlue,
             ],
-            //  高亮樣式
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
         },
         {
             name: "金額比例",
@@ -90,13 +82,6 @@ const option = {
                 color: "#fff",
                 textStyle: {
                     fontSize: innerWidth > 1500 ? 10 : 8 ,
-                },
-            },
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
                 },
             },
         },
