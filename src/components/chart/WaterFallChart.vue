@@ -1,20 +1,5 @@
 <template>
-    <div class="dashboard__box chart__waterfall">
-        <div class="chart__waterfall__detail">
-            <img src="@img/icon_general.svg" />
-            <el-segmented
-                v-model="trigger"
-                :options="options"
-            />
-            <div>月預案變化</div>
-            <div class="chart__waterfall__legend">
-                <div
-                    v-for=" legend in legendList"
-                    :key="legend">
-                    {{ legend }}
-                </div>
-            </div>
-        </div>
+    <div class="chart__waterfall">
         <div
             ref="waterfallContainer"
             class="chart__waterfall__container"
@@ -23,19 +8,20 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import * as echarts from "echarts";
+import axios from "axios";
 
+const route = useRoute();
 const { colorDeepBlue, colorBlue, colorYellow, colorGray } = useDashboardStore();
-const trigger = ref("成案");
-const options = [
-    "成案", "預案",
-];
+const { formateYear } = storeToRefs(useDashboardStore());
+
 const waterfallContainer = ref(null);
-const legendList = [
-    "上月留下", "本月新增", "本月成案", "本月取消",
-];
+let chart = null;
+
 /** 上月留下 */
 const lastMonth = ref([
     48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000, 48000, 44000,
@@ -45,7 +31,7 @@ const thisMonth = ref([
     32000, 30000, 32000, 30000,32000, 30000,32000, 30000,32000, 30000,32000, 30000,
 ]);
 /** 本月成案 */
-const thisMonthComplate = ref([
+const thisMonthComplete = ref([
     26000, 24000, 26000, 24000,26000, 24000,26000, 24000,26000, 24000,26000, 24000,
 ]);
 /** 本月取消 */
@@ -69,7 +55,7 @@ const addCount = ref([
 ]);
 
 /** 上月留下＋本月新增 - 本月成案 */
-const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + thisMonth.value[index] - thisMonthComplate.value[index]));
+const placeholder3 = computed(() => lastMonth.value.map((data, index) => data + thisMonth.value[index] - thisMonthComplete.value[index]));
 /** 上月留下+本月新增 - 本月成案 - 本月取消 */
 const Placeholder4 = computed(() => placeholder3.value.map((data, index) => data - thisMonthCancel.value[index]));
 
@@ -81,19 +67,10 @@ const option = {
         },
         formatter: function (params) {
             let tar;
-            if (params[1] && params[1].value !== "-") {
-                tar = params[1];
-            } else {
-                tar = params[2];
-            }
+            tar = params[1] && params[1].value !== "-" ? params[1] : params[2];
             return tar && `${tar.name}<br/>${tar.seriesName}:${tar.value.toLocaleString()}`;
         },
     },
-    // legend: {
-    //     data: [
-    //         "上月留下", "本月新增", "本月成案", "本月取消",
-    //     ],
-    // },
     grid: {
         top: 30,
         left: 10,
@@ -134,9 +111,7 @@ const option = {
                 fontSize: 10,
             },
             position: "bottom",
-            data: (function () {
-                return addCount.value;
-            })(),
+            data: addCount.value,
             axisTick: {
                 show: false, // 不顯示刻度線
             },
@@ -182,6 +157,9 @@ const option = {
                 width: 1, // 可選，設置線條寬度
             },
         },
+        axisLabel: {
+            fontSize: innerWidth > 1500 ? 9 : 8,
+        },
     },
     series: [
         {
@@ -192,7 +170,7 @@ const option = {
                 position: "top",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `+${formattedValue}`;
+                    return params.value === 0 ? "" : `+${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -243,8 +221,7 @@ const option = {
                 position: "top",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `+${formattedValue}`;
-
+                    return params.value === 0 ? "" : `+${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -285,7 +262,7 @@ const option = {
                 position: "bottom",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `-${formattedValue}`;
+                    return params.value === 0 ? "" : `-${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -294,7 +271,7 @@ const option = {
             itemStyle: {
                 color: colorYellow,
             },
-            data: thisMonthComplate.value,
+            data: thisMonthComplete.value,
         },
         {
             name: "Placeholder4",
@@ -326,7 +303,7 @@ const option = {
                 position: "bottom",
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `- ${formattedValue}`;
+                    return params.value === 0 ? "" : `-${formattedValue}`;
                 },
                 textStyle: {
                     fontSize: 8,
@@ -340,78 +317,81 @@ const option = {
     ],
 };
 
+const getMonthInfo = async () => {
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/month-info`, {
+            params: {
+                year: formateYear.value,
+            },
+        });
+        if (res.data.code === 1000) {
+            lastMonth.value = res.data.result.lastMonth;
+            thisMonth.value = res.data.result.thisMonth;
+            thisMonthCancel.value = res.data.result.thisMonthCancel;
+            thisMonthComplete.value = res.data.result.thisMonthComplete;
+            addCount.value = res.data.result.addCount;
+        }
+        console.log(res.data.result);
+    }
+    catch (error) {
+        console.error(error);
+    }
+};
+
+if (route.name !== "test") getMonthInfo();
+watch(formateYear, () => route.name !== "test" && getMonthInfo());
+
+watch(
+    [
+        lastMonth, thisMonth, thisMonthComplete, thisMonthCancel, placeholder3, Placeholder4, addCount,
+    ],
+    ([
+        newLastMonth, newThisMonth, newthisMonthComplete, newThisMonthCancel, newPlaceholder3, newPlaceholder4, newAddCount,
+    ]) => {
+        if (chart) {
+            chart.setOption({
+                xAxis: [
+                    {
+                        data: (function () {
+                            let list = [];
+                            for (let i = 1; i <= 12; i++) {
+                                list.push(`${i}月`);
+                            }
+                            return list;
+                        })(),
+                    },
+                    {
+                        data: newAddCount,
+                    },
+                ],
+                series: [
+                    { data: newLastMonth },
+                    { data: newLastMonth },
+                    { data: newThisMonth },
+                    { data: newPlaceholder3 },
+                    { data: newthisMonthComplete },
+                    { data: newPlaceholder4 },
+                    { data: newThisMonthCancel },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
+
 onMounted(() => {
-    const chart = echarts.init(waterfallContainer.value);
+    chart = echarts.init(waterfallContainer.value);
     chart.setOption(option);
 });
 </script>
 
 <style lang="scss" scoped>
 .chart__waterfall {
-    height: calc(100% - 35px);
-    min-height: 181px;
-    margin-top: 15px;
-
-    &__detail {
-        display: flex;
-        align-items: center;
-        width: 100%;
-
-        img {
-            margin-right: 10px;
-        }
-    }
+    height: calc(100% - 32px);
 
     &__container {
         width: 100%;
-        height: calc(100% - 32px)
-    }
-
-    &__legend {
-        display: flex;
-        margin-left: 150px;
-        font-size: 10px;
-        color: var(--text-color);
-
-        div {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-
-            &::before {
-                content: "";
-                display: block;
-                width: 8px;
-                height: 8px;
-                margin-right: 5px;
-                background: var(--color-deep-blue);
-            }
-
-            &:nth-child(2)::before {
-                background: var(--color-blue);
-            }
-
-            &:nth-child(3)::before {
-                background: var(--color-yellow);
-            }
-
-            &:nth-child(4)::before {
-                background: var(--color-gray);
-            }
-        }
-    }
-}
-
-:deep(.el-segmented) {
-    --el-segmented-item-selected-bg-color: var(--color-deep-blue);
-    --el-segmented-bg-color: #fff;
-    margin-right: 10px;
-    padding: 0;
-    border: 1px solid var(--border-color);
-    font-size: 14px;
-
-    .el-segmented__item {
-        padding: 2px 22px;
+        height: 100%
     }
 }
 

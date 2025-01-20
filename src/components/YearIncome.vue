@@ -1,13 +1,15 @@
 <template>
     <div class="dashboard__box year">
         <div class="year__title">
-            2024
+            {{ formateYear }}
             <span>年度收入</span>
         </div>
         <div class="year__content">
             <div class="year__detail">
-                <div>成案  <span>NTD</span> {{ completeCount.toLocaleString()}}</div>
-                <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}} </div>
+                <div>成案
+                    <span>NTD</span>{{ completeCount.toLocaleString()}}（{{  completePercentage }}%）
+                </div>
+                <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}}（{{  planPercentage }}%）</div>
                 <div>年度KPI  <span>NTD</span> {{ kpiCount.toLocaleString() }}</div>
             </div>
             <div class="progress">
@@ -17,7 +19,9 @@
                     :percentage="completePercentage"
                     :color="colorYellow"
                     class="bar plan"
-                />
+                >
+                    <span />
+                </el-progress>
                 <el-progress
                     :text-inside="true"
                     :stroke-width="14"
@@ -25,7 +29,7 @@
                     :color="colorBlue"
                     class="bar complete"
                 >
-                    <span>{{ planPercentage }}%</span>
+                    <span />
                 </el-progress>
             </div>
         </div>
@@ -33,11 +37,15 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 import axios from "axios";
 
+const route = useRoute();
 const { colorBlue, colorYellow } = useDashboardStore();
+const { updateTime, formateYear } = storeToRefs(useDashboardStore());
 
 let planCount = ref(600000);
 let completeCount = ref(400000);
@@ -45,25 +53,26 @@ let kpiCount = ref(1200000);
 
 let planPercentage = computed(() => {
     const value = (planCount.value / kpiCount.value) * 100;
-    return Number(value.toFixed(2));
+    return Number(value.toFixed(2)) || 0;
 });
 let completePercentage = computed(() => {
     const value = (completeCount.value / kpiCount.value) * 100;
-    return Number(value.toFixed(2));
+    return Number(value.toFixed(2)) || 0;
 });
 
 const getTitleData = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/title`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
-            planCount.value = res.data.result.planCount;
-            completeCount.value = res.data.result.completeCount;
-            kpiCount.value = res.data.result.kpiCount;
-            //console.log(res.data.result);
+            planCount.value = res.data.result.planCount || 0;
+            completeCount.value = res.data.result.completeCount || 0;
+            kpiCount.value = res.data.result.kpiCount || 0;
+            updateTime.value = res.data.result.time;
+
         }
     }
     catch (error) {
@@ -71,13 +80,16 @@ const getTitleData = async () => {
     }
 };
 
-getTitleData();
+if (route.name !== "test") getTitleData();
+
+watch(formateYear, () => route.name !== "test" && getTitleData());
 </script>
 
 <style lang="scss" scoped>
 
 .year {
     display: flex;
+    height: 74px;
     margin-top: 11px;
     padding: 15px 20px 16px 29px;
 }
@@ -108,11 +120,31 @@ getTitleData();
     color: var(--text-color);
 
     div {
-		font-size: 14px;
-		font-weight: bold;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: bold;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 8px;
+            height: 8px;
+            margin-right: 5px;
+            background: var(--color-yellow);
+        }
+
+        &:nth-child(2)::before  {
+            background: var(--color-blue);
+        }
+
+        &:nth-child(3)::before  {
+            background: #ECECEC;
+        }
     }
 
     span {
+        margin: 0 5px 0 13px;
         font-size: 12px;
         font-weight: normal;
     }
@@ -140,7 +172,6 @@ getTitleData();
 
     &.complete {
         z-index: 1;
-        //transform: translateY(-14px);
     }
 }
 

@@ -18,7 +18,7 @@
                     v-for="total in progressData"
                     :key="total.name"
                 >
-                    NTD{{ total.total.toLocaleString() }}
+                    NTD {{ total.total.toLocaleString() }}
                 </div>
             </div>
             <div class="chart__progress__complate__bar">
@@ -61,33 +61,18 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 
+const { progressData } = defineProps([
+    "progressData",
+]);
 const { colorBlue, colorYellow, colorRed } = useDashboardStore();
 
-/** 成案進展 */
-const progressData = ref([
-    {
-        name: "進行中",
-        total: 100000,
-        count: 4,
-    },
-    {
-        name: "已終止",
-        total: 120000,
-        count: 6,
-    },
-    {
-        name: "已結案",
-        total: 180000,
-        count: 9,
-    },
-]);
-const progressDataTotal = computed(() => progressData.value[0].total + progressData.value[1].total + progressData.value[2].total);
+const progressDataTotal = computed(() => progressData[0].total + progressData[1].total + progressData[2].total);
 
-const percentage = (index) => (progressData.value[index].total / progressDataTotal.value) * 100;
+const percentage = (index) => (progressData[index].total / progressDataTotal.value) * 100 || 0;
 
 </script>
 
@@ -96,8 +81,8 @@ const percentage = (index) => (progressData.value[index].total / progressDataTot
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: 57%;
-    min-height: 128px;
+    width: calc(60% - 5px);
+    min-height: 143px;
     margin-top: 10px;
 
     &__content {
@@ -141,6 +126,11 @@ const percentage = (index) => (progressData.value[index].total / progressDataTot
         justify-content: space-between;
         font-size: 14px;
         color: var(--text-color3);
+
+		@media (max-width: 1500px) {
+			//
+			font-size: 10px;
+        }
     }
 
     &__bar {
@@ -157,13 +147,12 @@ const percentage = (index) => (progressData.value[index].total / progressDataTot
     left: 0;
     width: 100%;
 
-    :deep(.el-progress-bar__outer) {
-        background-color: transparent;
-    }
-
     &__1 {
         z-index: 2;
-        //transform: translateY(18px);
+
+        :deep(.el-progress-bar__outer) {
+            background-color: transparent;
+        }
 
         :deep(.el-progress-bar__inner) {
           border-radius: 100px 0 0 100px;
@@ -173,6 +162,10 @@ const percentage = (index) => (progressData.value[index].total / progressDataTot
 	&__2 {
         z-index: 1;
 
+        :deep(.el-progress-bar__outer) {
+            background-color: transparent;
+        }
+
         :deep(.el-progress-bar__inner) {
           border-radius: 100px 0 0 100px;
         }
@@ -180,7 +173,6 @@ const percentage = (index) => (progressData.value[index].total / progressDataTot
 
 	&__3 {
         z-index: 0;
-		//transform: translateY(-18px);
     }
 }
 </style>

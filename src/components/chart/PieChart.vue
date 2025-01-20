@@ -34,18 +34,14 @@ const option = {
         trigger: "item",
         formatter: "{a} <br/>{b} : {c} ({d}%)",
     },
-    grid: {
-        right: 5,
-        bottom: 0,
-        left: 0,
-        containLabel: true,
-    },
     series: [
         {
-            //name: "Access From",
+            name: "金額",
             type: "pie",
-            radius: "80%",
+            radius: innerWidth > 1500 ? "70%" : "55%",
             data: amountRatio,
+            avoidLabelOverlap: true,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -54,40 +50,35 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 20,
-                //formatter: "{b}", // 顯示名稱
+                lineHeight: innerWidth > 1500 ? 20 : 13,
+                fontSize: innerWidth > 1500 ? 12 : 8,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${params.name}`;
-                },
-                textStyle: {
-                    fontSize: 10,
                 },
             },
             labelLine: {
                 length: 10,
                 length2: 5,
             },
+            labelLayout: {
+                hideOverlap: false, // 確保標籤不會因重疊而隱藏
+                //moveOverlap: "shiftY", // 遇到重疊時移動標籤
+            },
             color: [
                 colorBlue, colorGreen, colorRed,
             ],
-            //  高亮樣式
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
         },
         {
             name: "金額比例",
             type: "pie",
-            radius: "80%",
+            radius: innerWidth > 1500 ? "70%" : "55%",
             data: amountRatio,
+            z: 1, // 設定為更高層級
             itemStyle: {
-                borderColor: "#fff", // 分隔線的顏色，可依需求修改
-                borderWidth: 1, // 分隔線的寬度，可依需求調整
+                fontSize: 8,
+                borderColor: "#fff",
+                borderWidth: 1,
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",
@@ -97,14 +88,9 @@ const option = {
                 position: "inside",
                 formatter: "{d}%", // 顯示百分比
                 color: "#fff",
+                fontSize: innerWidth > 1500 ? 10 : 8,
             },
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
+
         },
     ],
 };
@@ -137,8 +123,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__pie {
-    width: 100%;
-    margin-left: 10px;
+    width: calc(40% - 5px);
 
     &__wrapper {
         display: flex;

@@ -1,0 +1,33 @@
+/* fade - 淡入淡出 */
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+    opacity: 1;
+}
+
+/* slide-fade - slide + 淡出 */
+.slide-fade-enter-active {
+    transition: all .5s ease-out;
+}
+
+.slide-fade-leave-active {
+    transition: all .3s cubic-bezier(1, .5, .8, 1);
+}
+
+.slide-fade-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+}
+.slide-fade-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+}

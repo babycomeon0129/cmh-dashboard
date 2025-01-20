@@ -30,18 +30,14 @@ const option = {
         trigger: "item",
         formatter: "{a} <br/>{b} : {c} ({d}%)",
     },
-    grid: {
-        // right: 5,
-        bottom: 0,
-        // left: 0,
-        containLabel: true,
-    },
     series: [
         {
-            //name: "Access From",
+            name: "金額（筆數）",
             type: "pie",
             radius: "60%",
             data: amountRatio.map(data => data.total),
+            avoidLabelOverlap: true,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -50,32 +46,27 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -200,
                 minMargin: 10,
-                lineHeight: 20,
+                lineHeight: innerWidth > 1500 ? 20 : 13,
+                fontSize: innerWidth > 1500 ? 12 : 8,
                 //formatter: "{b}", // 顯示名稱
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
                     return `NTD ${formattedValue}\n${amountRatio[params.dataIndex].name}(${amountRatio[params.dataIndex].count}筆)`;
                 },
-                textStyle: {
-                    fontSize: 10,
-                },
+            },
+            labelLayout: {
+                hideOverlap: false, // 確保標籤不會因重疊而隱藏
+                //moveOverlap: "shiftY", // 遇到重疊時移動標籤
             },
             color: [
                 colorYellow ,colorBlue,
             ],
-            //  高亮樣式
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-            },
         },
         {
             name: "金額比例",
             type: "pie",
-            radius: "70%",
+            radius: "60%",
+            z: 1,
             data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff",
@@ -89,12 +80,8 @@ const option = {
                 position: "inside",
                 formatter: "{d}%",
                 color: "#fff",
-            },
-            emphasis: {
-                itemStyle: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: "rgba(0, 0, 0, 0.5)",
+                textStyle: {
+                    fontSize: innerWidth > 1500 ? 10 : 8 ,
                 },
             },
         },
@@ -129,14 +116,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .chart__pie {
-    width: 100%;
-    //height: 170px;
+    width: calc(40% - 5px);
     aspect-ratio: 1.65;
     margin-top: 10px;
-    margin-left: 10px;
 
     &__container {
+        width: 100%;
         height: 100%;
+        max-height: 99%;
     }
 }
 </style>

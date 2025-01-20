@@ -1,11 +1,11 @@
 <template>
-    <div class="dashboard__box project__box ">
+    <div class="dashboard__box project__box">
         <ProjectTitle
             :type="2"
-            :money="400000"
-            :count="10"
-            :gross-margin="45"
-            :achievement="64"
+            :total-amount="titleInfo.totalAmount"
+            :total-count="titleInfo.totalCount"
+            :gross-margin="titleInfo.grossMargin"
+            :confirm-rate="titleInfo.confirmRate"
         />
         <div class="charts">
             <div class="charts__row">
@@ -21,7 +21,7 @@
                 />
             </div>
             <div class="charts__row">
-                <ComplateProgressChart />
+                <ComplateProgressChart :progress-data="progressData" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="2"
@@ -33,14 +33,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
 import ComplateProgressChart from "@/components/chart/ComplateProgressChart.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PieChart from "@/components/chart/PieChart.vue";
+import { storeToRefs } from "pinia";
 import axios from "axios";
 
+const route = useRoute();
+const { formateYear } = storeToRefs(useDashboardStore());
+/** 標題資訊 */
+const titleInfo = ref({
+    totalAmount: 400000,
+    totalCount: 10,
+    grossMargin: 45,
+    confirmRate: 64,
+});
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
     20, 40, 70, 50,
@@ -56,16 +68,35 @@ const serviceCount = ref([
 /** 成案服務比例 */
 const amountRatio = ref([
     {
-        value: 100000,
+        value: 1000000,
         name: "紙本",
     },
     {
-        value: 140000,
+        value: 1400000,
         name: "數位",
     },
     {
-        value: 160000,
+        value: 1600000,
         name: "活動",
+    },
+]);
+
+/** 成案進展 */
+const progressData = ref([
+    {
+        name: "進行中",
+        total: 100000,
+        count: 4,
+    },
+    {
+        name: "已終止",
+        total: 120000,
+        count: 6,
+    },
+    {
+        name: "已結案",
+        total: 180000,
+        count: 9,
     },
 ]);
 
@@ -87,7 +118,7 @@ const getProjectInfo = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/project-info`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
@@ -96,6 +127,11 @@ const getProjectInfo = async () => {
             colData.value = res.data.result.projectAmount.colData;
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
+            titleInfo.value.totalCount = res.data.result.totalCount;
+            titleInfo.value.totalAmount = res.data.result.totalAmount;
+            titleInfo.value.grossMargin = res.data.result.grossMargin;
+            titleInfo.value.confirmRate = res.data.result.confirmRate;
+            progressData.value = res.data.result.projectProgressData;
         }
 
         console.log(res.data.result);
@@ -105,7 +141,9 @@ const getProjectInfo = async () => {
     }
 };
 
-getProjectInfo();
+if (route.name !== "test") getProjectInfo();
+
+watch(formateYear, () => route.name !== "test" && getProjectInfo());
 </script>
 
 <style lang="scss" scoped>

@@ -2,10 +2,10 @@
     <div class="dashboard__box project__box">
         <ProjectTitle
             :type="1"
-            :money="400000"
-            :count="10"
-            :gross-margin="45"
-            :achievement="64"
+            :total-amount="titleInfo.totalAmount"
+            :total-count="titleInfo.totalCount"
+            :gross-margin="titleInfo.grossMargin"
+            :confirm-rate="titleInfo.confirmRate"
         />
         <div class="charts">
             <div class="charts__row">
@@ -15,10 +15,10 @@
                     :service-count="serviceCount"
                     :type="1"
                 />
-                <SuccessRate />
+                <SuccessRate :success-rate="successRate" />
             </div>
             <div class="charts__row">
-                <PlanProgressChart :progress-plan="progressPlanData" />
+                <PlanProgressChart :progress-plan="progressPlan" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="1"
@@ -29,15 +29,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
 import SuccessRate from "@/components/chart/SuccessRate.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PlanProgressChart from "@/components/chart/PlanProgressChart.vue";
-
+import { storeToRefs } from "pinia";
 import axios from "axios";
 
+const route = useRoute();
+const { formateYear } = storeToRefs(useDashboardStore());
+/** 標題資訊 */
+const titleInfo = ref({
+    totalAmount: 400000,
+    totalCount: 10,
+    grossMargin: 45,
+    confirmRate: 64,
+});
 /** 服務成案比例-毛利率 */
 const colGrossProfit = ref([
     20, 40, 70, 50,
@@ -66,26 +77,50 @@ const sourceProportion = ref([
 ]);
 
 /** 預案進展 */
-const progressPlanData = ref([
+const progressPlan = ref([
     {
-        value: 100000,
         name: "待簽約",
+        total: 100000,
+        count: 1,
     },
     {
-        value: 160000,
         name: "審批中",
+        total: 160000,
+        count: 1,
     },
     {
-        value: 140000,
         name: "曾被駁回",
+        total: 140000,
+        count: 1,
     },
     {
-        value: 100000,
         name: "進行中",
+        total: 100000,
+        count: 1,
     },
     {
-        value: 160000,
         name: "已取消",
+        total: 160000,
+        count: 1,
+    },
+]);
+/** 預案服務成案率 */
+const successRate = ref([
+    {
+        name: "純CUE<br />紙本",
+        rate: 10,
+    },
+    {
+        name: "純CUE<br />數位",
+        rate: 20,
+    },
+    {
+        name: "純CUE<br />紙數",
+        rate: 40,
+    },
+    {
+        name: "企劃案",
+        rate: 30,
     },
 ]);
 
@@ -93,7 +128,7 @@ const getProjectInfo = async () => {
     try {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/dashboard/pre-project-info`, {
             params: {
-                year: 2024,
+                year: formateYear.value,
             },
         });
         if (res.data.code === 1000) {
@@ -101,8 +136,13 @@ const getProjectInfo = async () => {
             colData.value = res.data.result.projectAmount.colData;
             serviceCount.value = res.data.result.projectAmount.serviceCount;
             sourceProportion.value = res.data.result.projectSourceProportion;
+            successRate.value = res.data.result.successRate;
+            progressPlan.value = res.data.result.projectProgressData;
+            titleInfo.value.totalCount = res.data.result.totalCount;
+            titleInfo.value.totalAmount = res.data.result.totalAmount;
+            titleInfo.value.grossMargin = res.data.result.grossMargin;
+            titleInfo.value.confirmRate = res.data.result.confirmRate;
         }
-
         console.log(res.data.result);
     }
     catch (error) {
@@ -110,7 +150,9 @@ const getProjectInfo = async () => {
     }
 };
 
-getProjectInfo();
+if (route.name !== "test") getProjectInfo();
+
+watch(formateYear, () => route.name !== "test" && getProjectInfo());
 </script>
 
 <style lang="scss" scoped>

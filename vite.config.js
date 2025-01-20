@@ -9,6 +9,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
 // https://vite.dev/config/
 export default defineConfig({
+    base: "/dashboard/",
     plugins: [
         vue(),
         vueDevTools(),
@@ -30,5 +31,8 @@ export default defineConfig({
             "@style": fileURLToPath(new URL("./src/assets/styles", import.meta.url)),
             "@data": fileURLToPath(new URL("./src/assets/data", import.meta.url)),
         },
+    },
+    server: {
+        host: true,
     },
 });

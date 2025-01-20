@@ -14,11 +14,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import ChartTitle from "@/components/common/ChartTitle.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import * as echarts from "echarts";
 
+const { progressPlan } = defineProps([
+    "progressPlan",
+]);
 const { colorBlue, colorYellow, colorRed, colorGray, colorDeepBlue } = useDashboardStore();
 const colors = [
     colorDeepBlue, colorYellow, colorRed, colorBlue, colorGray,
@@ -27,45 +30,21 @@ const colors = [
 const pieContainer = ref(null);
 let chart = null;
 
-const progressPlanData = ref([
-    {
-        value: 100000,
-        name: "待簽約",
-    },
-    {
-        value: 160000,
-        name: "審批中",
-    },
-    {
-        value: 140000,
-        name: "曾被駁回",
-    },
-    {
-        value: 100000,
-        name: "進行中",
-    },
-    {
-        value: 160000,
-        name: "已取消",
-    },
-]);
-
 const option = {
+
     tooltip: {
         trigger: "item",
     },
-    grid: {
-        bottom: 0,
-        containLabel: true,
-    },
     series: [
         {
-            name: "Access From",
+            name: "進展金額",
             type: "pie",
             radius: [
-                "25%", "62%",
+                "25%", "70%",
             ],
-            avoidLabelOverlap: false,
+            avoidLabelOverlap: true, // 設true可以強制所有label顯示
+            minShowLabelAngle: 0,
+            z: 1,
             label: {
                 show: true,
                 position: "outer",
@@ -74,46 +53,44 @@ const option = {
                 edgeDistance: 0,
                 distanceToLabelLine: -300,
                 minMargin: 10,
-                lineHeight: 17,
+                lineHeight: innerWidth > 1500 ? 14 : 10,
+                fontSize: innerWidth > 1500 ? 10 : 8,
                 formatter: (params) => {
                     const formattedValue = params.value.toLocaleString();
-                    return `NTD ${formattedValue}\n${params.name}`;
-                },
-                textStyle: {
-                    fontSize: 10,
+                    const index = params.dataIndex;
+                    return `NTD ${formattedValue}\n${progressPlan[index].name}`;
                 },
             },
             labelLine: {
+                showAbove: true,
                 length: 10,
                 length2: 100,
+                //maxSurfaceAngle: 130,
             },
-            emphasis: {
-                label: {
-                    show: true,
-                    fontSize: 12,
-                    fontWeight: "bold",
-                },
-            },
-            itemStyle: {
-                borderColor: "#fff",
-                borderWidth: 1,
+            labelLayout: {
+                draggable: true,
+                hideOverlap: true,
+                //moveOverlap: "shiftY",
+                //align: "right",
             },
             color: colors,
-            data: progressPlanData.value,
+            data: progressPlan.map(data => data.total),
         },
         {
-            name: "Access From",
+            name: "進展比例",
             type: "pie",
             radius: [
-                "25%", "65%",
+                "25%", "70%",
             ],
+            z: 1,
+            minShowLabelAngle: 0,
             avoidLabelOverlap: false,
             label: {
                 show: true,
                 position: "inside",
                 formatter:(params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
-                fontSize: 8,
+                fontSize: innerWidth > 1500 ? 10 : 7,
             },
             emphasis: {
                 label: {
@@ -130,10 +107,29 @@ const option = {
                 show: false,
             },
             color: colors,
-            data: progressPlanData.value,
+            data: progressPlan.map(data => data.total),
         },
     ],
 };
+
+watch(
+    () => progressPlan,
+    (newValue) => {
+        if (chart) {
+            chart.setOption({
+                series: [
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                    {
+                        data: newValue.map(data => data.total),
+                    },
+                ],
+            });
+        }
+    },
+    { deep: true },
+);
 
 onMounted(() => {
     chart = echarts.init(pieContainer.value);
@@ -147,8 +143,8 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: 57%;
-    aspect-ratio: 2.7;
+    width: calc(60% - 5px);
+    min-height: 143px;
     margin-top: 10px;
 
     &__content{
@@ -161,8 +157,12 @@ onMounted(() => {
 }
 
 .chart__pie__container {
-    width: 60%;
+    width: 65%;
     height: 100%;
+
+    @media (max-width: 1500px)  {
+      width: 80%;
+    }
 }
 
 </style>

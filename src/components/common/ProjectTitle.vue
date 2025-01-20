@@ -8,14 +8,14 @@
         </div>
         <div class="project__type2">{{  type === 1 ? "預" : "成" }}案</div>
         <div class="detail">共計
-            <span>NTD {{ money }}</span>，<span>{{ count }}</span>筆，毛利率 <span>{{grossMargin}}%</span>，達成率 <span>{{achievement}}%</span>
+            <span>NTD {{ totalAmount.toLocaleString() }}</span>，<span>{{ totalCount }}</span>筆，毛利率 <span>{{grossMargin.toFixed(2)}}%</span>，{{ type === 1 ? "成案": "達成" }}率 <span>{{confirmRate.toFixed(2)}}%</span>
         </div>
     </div>
 </template>
 
 <script setup>
-const { type, money,count, grossMargin, achievement } = defineProps([
-    "type", "money", "count", "grossMargin", "achievement",
+const { type, totalAmount, totalCount, grossMargin, confirmRate } = defineProps([
+    "type", "totalAmount", "totalCount", "grossMargin", "confirmRate",
 ]);
 </script>
 
@@ -39,6 +39,13 @@ const { type, money,count, grossMargin, achievement } = defineProps([
     color: #fff;
     background: var(--color-yellow);
 
+    @media (max-width: 1500px) {
+        width: 25px;
+        height: 25px;
+        margin-right: 3px;
+        font-size: 13px;
+    }
+
     &.plan {
         background: var(--color-deep-blue);
     }
@@ -48,16 +55,28 @@ const { type, money,count, grossMargin, achievement } = defineProps([
     margin-right: 6px;
     font-size: 20px;
     color: var(--main-text-color);
+
+    @media (max-width: 1500px) {
+        font-size: 14px;
+    }
 }
 
 .detail {
     font-size: 14px;
     color: var(--text-color2);
 
+    @media (max-width: 1500px) {
+        font-size: 10px;
+    }
+
     span {
         font-size: 20px;
         font-weight: bold;
         color: var(--color-deep-blue);
+
+        @media (max-width: 1500px) {
+        font-size: 16px;
+    }
     }
 }
 </style>
