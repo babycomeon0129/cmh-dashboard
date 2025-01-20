@@ -11,6 +11,8 @@ declare module 'vue' {
     ColumnChart: typeof import('./src/components/chart/ColumnChart.vue')['default']
     ComplateProgressChart: typeof import('./src/components/chart/ComplateProgressChart.vue')['default']
     copy: typeof import('./src/components/chart/PieChart copy.vue')['default']
+    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSegmented: typeof import('element-plus/es')['ElSegmented']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
