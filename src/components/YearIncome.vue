@@ -98,13 +98,13 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     flex-direction: column;
     flex-shrink: 0;
     margin-right: 29px;
-    font-size: 20px;
+    font-size: 1.43rem;
     font-weight: bold;
     line-height: 24px;
     color: var(--main-text-color);
 
     span {
-        font-size: 14px;
+        font-size: 1rem;
     }
 }
 
@@ -122,7 +122,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     div {
         display: flex;
         align-items: center;
-        font-size: 14px;
+        font-size: 1rem;
         font-weight: bold;
 
         &::before {
@@ -145,7 +145,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 
     span {
         margin: 0 5px 0 13px;
-        font-size: 12px;
+        font-size: 0.86rem;
         font-weight: normal;
     }
 }
@@ -176,7 +176,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 }
 
 :deep(.el-progress-bar__inner) {
-  font-size: 12px;
+    font-size: 0.86rem;
 }
 
 </style>

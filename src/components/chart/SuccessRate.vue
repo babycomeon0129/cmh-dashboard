@@ -58,7 +58,7 @@ const colors = [
     &__title {
         flex-shrink: 0;
         margin-right: 10px;
-        font-size: 10px;
+        font-size: 0.7rem;
         color: var(--text-color3);
     }
 
@@ -69,6 +69,6 @@ const colors = [
 
 :deep(.el-progress__text) {
     min-width: 20px;
-    font-size: 12px !important;
+    font-size: 0.86rem !important;
 }
 </style>

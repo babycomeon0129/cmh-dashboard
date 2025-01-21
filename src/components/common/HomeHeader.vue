@@ -42,14 +42,14 @@ header {
 
 h1 {
     margin: 0;
-    font-size: 28px;
+    font-size: 2rem;
     line-height: 1;
 }
 
 .title {
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 .date {

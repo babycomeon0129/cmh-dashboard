@@ -330,12 +330,8 @@ onMounted(() => {
         display: flex;
         align-items: center;
         margin-bottom: 10px;
-        font-size: 20px;
+        font-size: 1.43rem;
         color: var(--main-text-color);
-
-        @media (max-width: 1500px) {
-            font-size: 16px;
-        }
 
         .title {
             margin-right: 12px;
@@ -349,8 +345,8 @@ onMounted(() => {
 	&__legend {
 		display: flex;
 		flex-wrap: wrap;
-        margin-top: 15px;
-		font-size: 11px;
+    margin-top: 15px;
+    font-size: 0.785rem;
 
 		div {
 			position: relative;
@@ -386,21 +382,13 @@ onMounted(() => {
     &__detail {
         display: flex;
         align-items: baseline;
-        font-size: 14px;
+        font-size: 1rem;
         color: var(--text-color2);
 
-        @media (max-width: 1500px) {
-                font-size: 10px;
-        }
-
         span {
-            font-size: 20px;
+            font-size: 1.43rem;
             font-weight: bold;
             color: var(--color-deep-blue);
-
-            @media (max-width: 1500px) {
-                font-size: 13px;
-            }
         }
     }
 }

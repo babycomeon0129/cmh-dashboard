@@ -18,7 +18,7 @@ const { title, type } = defineProps([
     position: relative;
     width: 100%;
     padding-left: 8px;
-    font-size: 14px;
+    font-size: 1rem;
     color: var(--title-color);
 
     &::before {

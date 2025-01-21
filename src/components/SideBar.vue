@@ -93,13 +93,13 @@ aside {
         width: 30px;
         height: 35px;
         border-radius: 0  100% 100% 0;
-        font-size: 16px;
+        font-size: 1.14rem;
         background: var(--main-bg-color);
         cursor: pointer;
         transition: .3s;
 
         &:hover {
-            font-size: 20px;
+            font-size: 1.43rem;
             font-weight: bold;
         }
 
@@ -128,7 +128,7 @@ li:not(.logo) {
     flex-direction: column;
     align-items: center;
     padding: 20px 0;
-    font-size: 16px;
+    font-size: 1.143rem;
     transition: .3s;
     cursor: pointer;
 

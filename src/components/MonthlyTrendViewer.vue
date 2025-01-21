@@ -72,7 +72,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
     &__legend {
         display: flex;
         margin-left: 150px;
-        font-size: 10px;
+        font-size: 0.7rem;
         color: var(--text-color);
 
         div {
@@ -124,7 +124,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
     margin-right: 10px;
     padding: 0;
     border: 1px solid var(--border-color);
-    font-size: 14px;
+    font-size: 1rem;
 
     &.project {
         --el-segmented-item-selected-bg-color: var(--color-yellow);

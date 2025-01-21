@@ -220,11 +220,7 @@ onMounted(() => {
     &__legend {
         display: flex;
         margin-top: 20px;
-        font-size: 10px;
-
-        @media (max-width: 1500px) {
-            font-size: 8px;
-        }
+        font-size: 0.7rem;
 
         div {
             display: flex;
@@ -242,7 +238,6 @@ onMounted(() => {
                 @media (max-width: 1500px) {
                     width: 5px;
                     height: 5px;
-                    font-size: 7px;
                 }
             }
 

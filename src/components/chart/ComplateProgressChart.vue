@@ -95,7 +95,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     &__legend {
         display: flex;
         margin-top: 15px;
-        font-size: 10px;
+        font-size: 0.714rem;
 
         div {
             display: flex;
@@ -124,7 +124,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     &__total {
         display: flex;
         justify-content: space-between;
-        font-size: 14px;
+        font-size: 1rem;
         color: var(--text-color3);
 
 		@media (max-width: 1500px) {
