@@ -11,6 +11,14 @@
         <div class="chart__row__detail">
             已開發票<span>{{ invoiceRate.toFixed(2) }}%</span>，已收回款項<span>{{ actualRate.toFixed(2) }}%</span>
         </div>
+        <div class="chart__row__legend">
+            <div
+                v-for="legend in legendList"
+                :key="legend"
+            >
+                {{ legend }}
+            </div>
+        </div>
         <div
             ref="rowContainer"
             class="chart__row__container"
@@ -30,6 +38,10 @@ const route = useRoute();
 const { formateYear } = storeToRefs(useDashboardStore());
 const rowContainer = ref(null);
 let chart = null;
+/** 面板說明清單 */
+const legendList = [
+    "已開發票金額", "已沖帳", "本月實收金額",
+];
 /**已開發票比例*/
 const invoiceRate = ref(50);
 /** 已收回款項比例 */
@@ -59,20 +71,6 @@ const toolCount = computed((() => {
 }));
 
 const option = {
-    legend: {
-        data: [
-            "已開發票金額", "已冲帳", "本月實收金額",
-        ],
-        left: "left",
-        itemWidth: 8,
-        itemHeight: 8,
-        itemStyle: {
-            borderWidth: 1,
-        },
-        textStyle: {
-            fontSize: innerWidth > 1500 ? 10 : 9,
-        },
-    },
     tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -80,7 +78,7 @@ const option = {
         },
     },
     grid: {
-        top: 20,
+        top: 0,
         right: 75,
         left: 0,
         bottom: 0,
@@ -348,10 +346,41 @@ onMounted(() => {
         }
     }
 
+	&__legend {
+		display: flex;
+		flex-wrap: wrap;
+        margin-top: 15px;
+		font-size: 11px;
+
+		div {
+			position: relative;
+			display: flex;
+			align-items: center;
+			margin-right: 20px;
+
+			&::before {
+                content: "";
+				display: block;
+				width: 8px;
+				height: 8px;
+                margin-right: 5px;
+				background:#0098FA;
+			}
+
+            &:first-child::before {
+                border: 1px solid #0098FA;
+                background: #fff;
+            }
+
+            &:last-child::before {
+                background: #F99606;
+            }
+		}
+	}
+
     &__container {
         width: 100%;
         height: calc(100% - 90px);
-        margin-top: 15px;
     }
 
     &__detail {
