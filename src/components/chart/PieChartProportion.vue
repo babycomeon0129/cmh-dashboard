@@ -34,7 +34,7 @@ const option = {
         {
             name: "金額（筆數）",
             type: "pie",
-            radius: "60%",
+            radius: innerWidth > 1300 ? "60%" : "50%",
             data: amountRatio.map(data => data.total),
             avoidLabelOverlap: true,
             z: 1,
@@ -65,12 +65,12 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: "60%",
+            radius: innerWidth > 1300 ? "60%" : "50%",
             z: 1,
             data: amountRatio.map(data => data.total),
             itemStyle: {
                 borderColor: "#fff",
-                borderWidth: 3,
+                borderWidth: innerWidth > 1500 ? 3 : 2,
             },
             color: [
                 "#4CA8FF", "#4EC478", "#F97F6C",

@@ -38,6 +38,10 @@ header {
     display: flex;
     justify-content: space-between;
     flex-shrink: 0;
+
+    @media (max-width: 1500px) {
+      height: 27px;
+    }
 }
 
 h1 {

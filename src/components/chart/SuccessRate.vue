@@ -14,7 +14,6 @@
                     v-html="rate.name"
                     class="chart__successRate__title" />
                 <el-progress
-                    :stroke-width="12"
                     :percentage="rate.rate"
                     :color="colors[index]"
                     class="chart__successRate__bar"
@@ -70,5 +69,13 @@ const colors = [
 :deep(.el-progress__text) {
     min-width: 20px;
     font-size: 0.86rem !important;
+}
+
+:deep(.el-progress-bar__outer) {
+	height: 12px !important;
+
+	@media (max-width: 1500px) {
+		height: 8px !important;
+	}
 }
 </style>

@@ -24,14 +24,12 @@
             <div class="chart__progress__complate__bar">
                 <el-progress
                     :text-inside="true"
-                    :stroke-width="18"
                     :percentage="percentage(0)"
                     :color="colorBlue"
                     class="bar bar__1"
                 />
                 <el-progress
                     :text-inside="true"
-                    :stroke-width="18"
                     :percentage="percentage(0) + percentage(1)"
                     :color="colorYellow"
                     class="bar bar__2"
@@ -40,7 +38,6 @@
                 </el-progress>
                 <el-progress
                     :text-inside="true"
-                    :stroke-width="18"
                     :percentage="percentage(0) + percentage(1) + percentage(2)"
                     :color="colorRed"
                     class="bar bar__3"
@@ -85,6 +82,10 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     min-height: 143px;
     margin-top: 10px;
 
+    @media (max-width: 1500px) {
+        min-height: 130px;
+    }
+
     &__content {
         display: flex;
         flex-direction: column;
@@ -96,6 +97,10 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
         display: flex;
         margin-top: 15px;
         font-size: 0.714rem;
+
+        @media (max-width: 1500px)  {
+            margin-top: 8px;
+        }
 
         div {
             display: flex;
@@ -138,6 +143,11 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
         width: 100%;
         height: 18px;
         margin: 5px 0;
+
+        @media (max-width: 1500px) {
+            height: 12px;
+            margin: 3px 0;
+        }
     }
 }
 
@@ -147,6 +157,15 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
     left: 0;
     width: 100%;
 
+    :deep(.el-progress-bar__outer) {
+        height: 18px !important;
+
+        @media (max-width: 1500px) {
+            height: 12px !important;
+            font-size: 7px;
+        }
+    }
+
     &__1 {
         z-index: 2;
 
@@ -155,7 +174,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
         }
 
         :deep(.el-progress-bar__inner) {
-          border-radius: 100px 0 0 100px;
+            border-radius: 100px 0 0 100px;
         }
     }
 
@@ -174,5 +193,9 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
 	&__3 {
         z-index: 0;
     }
+}
+
+:deep(.el-progress-bar__innerText) {
+    font-size: 7px;
 }
 </style>

@@ -149,5 +149,9 @@ watch(formateYear, () => route.name !== "test" && getProjectInfo());
 <style lang="scss" scoped>
 .charts {
     margin-top: 15px;
+
+    @media (max-width: 1500px) {
+        margin-top: 10px;
+    }
 }
 </style>

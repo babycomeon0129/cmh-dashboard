@@ -222,6 +222,10 @@ onMounted(() => {
         margin-top: 20px;
         font-size: 0.7rem;
 
+        @media (max-width: 1500px)  {
+            margin-top: 8px;
+        }
+
         div {
             display: flex;
             align-items: center;

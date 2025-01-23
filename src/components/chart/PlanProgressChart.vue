@@ -147,6 +147,10 @@ onMounted(() => {
     min-height: 143px;
     margin-top: 10px;
 
+    @media (max-width: 1500px) {
+        min-height: 130px;
+    }
+
     &__content{
         display: flex;
         flex-direction: column;

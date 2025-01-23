@@ -12,10 +12,18 @@
     padding: 10px;
     border-radius: 8px;
     background: #fff;
+
+    @media (max-width: 1500px) {
+        padding: 8px;
+    }
 }
 
 .project__box {
     width: calc(50% - 7.5px);
+
+    @media (max-width: 1500px) {
+        width: calc(50% - 5px);
+    }
 }
 
 .chart {

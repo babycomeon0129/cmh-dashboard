@@ -15,7 +15,6 @@
             <div class="progress">
                 <el-progress
                     :text-inside="true"
-                    :stroke-width="14"
                     :percentage="completePercentage"
                     :color="colorYellow"
                     class="bar plan"
@@ -24,7 +23,6 @@
                 </el-progress>
                 <el-progress
                     :text-inside="true"
-                    :stroke-width="14"
                     :percentage="planPercentage + completePercentage"
                     :color="colorBlue"
                     class="bar complete"
@@ -90,8 +88,13 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 .year {
     display: flex;
     height: 74px;
-    margin-top: 11px;
+    margin-top: 10px;
     padding: 15px 20px 16px 29px;
+
+    @media (max-width: 1500px) {
+        height: 50px;
+        padding: 7px 20px 7px 14px;
+    }
 }
 .year__title {
     display: flex;
@@ -100,7 +103,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     margin-right: 29px;
     font-size: 1.43rem;
     font-weight: bold;
-    line-height: 24px;
+    line-height: 1.5;
     color: var(--main-text-color);
 
     span {
@@ -119,11 +122,19 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     margin-bottom: 5px;
     color: var(--text-color);
 
+    @media (max-width: 1500px) {
+        margin-bottom: 4px;
+    }
+
     div {
         display: flex;
         align-items: center;
         font-size: 1rem;
         font-weight: bold;
+
+        @media (max-width: 1500px) {
+            height: 16px;
+        }
 
         &::before {
             content: "";
@@ -132,6 +143,11 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
             height: 8px;
             margin-right: 5px;
             background: var(--color-yellow);
+
+            @media (max-width: 1500px) {
+                width: 6px;
+                height: 6px;
+            }
         }
 
         &:nth-child(2)::before  {
@@ -177,6 +193,14 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 
 :deep(.el-progress-bar__inner) {
     font-size: 0.86rem;
+}
+
+:deep(.el-progress-bar__outer) {
+    height: 14px !important;
+
+    @media (max-width: 1500px) {
+        height: 10px !important;
+    }
 }
 
 </style>

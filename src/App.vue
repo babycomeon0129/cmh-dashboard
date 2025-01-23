@@ -34,12 +34,16 @@ const route = useRoute();
 main {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     width: 100%;
-    // min-width: 1800px;
     height: 100vh;
     margin-left: 0;
     padding: 15px;
     transition: margin-left 0.3s ease-in-out;
+
+    @media (max-width: 1500px) {
+        padding: 10px;
+    }
 
 	&.show {
         margin-left: var(--side-width);

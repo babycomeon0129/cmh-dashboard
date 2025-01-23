@@ -48,6 +48,10 @@ import RowChart from "@/components/chart/RowChart.vue";
     width: 100%;
     padding-top: 14px;
     flex-grow: 1;
+
+    @media (max-width: 1500px) {
+		padding-top: 10px;
+    }
 }
 
 .project {

@@ -100,7 +100,11 @@ const option = {
             axisLine: { show: false },
             axisTick: { show: false },
             splitLine: { show: false },
+            axisLabel: {
+                fontSize: innerWidth > 1500 ? 14 : 9,
+            },
             data: Array.from({ length: 12 }, (_, i) => `${12 - i}月`),
+
         },
         {
             type: "category",
@@ -124,7 +128,7 @@ const option = {
                 },
                 position: "right",
                 color: "#0098FA",
-                fontSize: 11,
+                fontSize: 9,
             },
             itemStyle: {
                 color: "rgba(255, 255, 255, 0)", // 完全透明
@@ -134,7 +138,7 @@ const option = {
                 borderWidth: 1,
                 borderColor: "#0098FA",
             },
-            barWidth: "14px",
+            barWidth: innerWidth > 1500 ? "14px" : "12px",
             data: amountInvoice.value,
         },
         {
@@ -154,8 +158,7 @@ const option = {
                     50, 50, 50, 50,
                 ],
             },
-            barWidth: "10px", // 保证宽度一致
-            barGap: "-85%",
+            barWidth: innerWidth > 1500 ? "10px" : "8px",
             data: toolCount.value,
         },
         {
@@ -170,7 +173,7 @@ const option = {
                     const formattedValue = (amountRush.value[params.dataIndex] / amountInvoice.value[params.dataIndex]) * 100 ;
                     return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
-                fontSize: 8,
+                fontSize: 6,
             },
             itemStyle: {
                 color: "#0098FA",
@@ -178,8 +181,8 @@ const option = {
                     50, 50, 50, 50,
                 ],
             },
-            barWidth: "10px", // 保证宽度一致
-            barGap: "-85%",
+            barWidth: 10,
+            barGap: innerWidth > 1500 ? "-85%" : "-83%",
             data: amountRush.value.map((data, index) => {
                 const res = data - toolCount.value[index] * 2;
                 const percentage = (amountRush.value[index] / amountInvoice.value[index]) * 100;
@@ -223,7 +226,7 @@ const option = {
                 },
                 position: "right",
                 color: "#F99606",
-                fontSize: 11,
+                fontSize: 9,
             },
             itemStyle: {
                 color: "#F99606",
@@ -231,8 +234,8 @@ const option = {
                     50, 50, 50, 50,
                 ],
             },
-            barWidth: "14px", // 保持宽度一致
-            barGap: 20,
+            barWidth: innerWidth > 1500 ? 14 : 12,
+            barGap: innerWidth > 1500 ? 20 : 15,
             data: amountIncome.value,
         },
     ],
@@ -326,6 +329,10 @@ onMounted(() => {
     width: 100%;
     margin-left: 15px;
 
+    @media (max-width: 1500px) {
+        margin-left: 10px;
+    }
+
     &__title {
         display: flex;
         align-items: center;
@@ -348,6 +355,10 @@ onMounted(() => {
     margin-top: 15px;
     font-size: 0.785rem;
 
+    @media (max-width: 1500px)  {
+            margin-top: 8px;
+        }
+
 		div {
 			position: relative;
 			display: flex;
@@ -359,8 +370,13 @@ onMounted(() => {
 				display: block;
 				width: 8px;
 				height: 8px;
-                margin-right: 5px;
+				margin-right: 5px;
 				background:#0098FA;
+
+				@media (max-width: 1500px) {
+					width: 6px;
+					height: 6px;
+				}
 			}
 
             &:first-child::before {
