@@ -71,6 +71,11 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
 
         img {
             margin-right: 10px;
+
+            @media (max-width: 1500px) {
+              width: 22px;
+
+            }
         }
     }
 
@@ -136,12 +141,20 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
     border: 1px solid var(--border-color);
     font-size: 1rem;
 
+    @media (max-width: 1500px) {
+        min-height: 16px;
+    }
+
     &.project {
         --el-segmented-item-selected-bg-color: var(--color-yellow);
     }
 
     .el-segmented__item {
         padding: 2px 22px;
+
+        @media (max-width: 1500px) {
+            padding: 2px 14px;
+        }
     }
 }
 

@@ -66,7 +66,7 @@ const option = {
                 interval: 0,
                 align: "center",
                 formatter: (value, index) => `{color|${value}}\n${index + 1}月`,
-                fontSize: 11,
+                fontSize: innerWidth > 1500 ? 11 : 8,
                 rich: {
                     color: {
                         fontSize: 9,
