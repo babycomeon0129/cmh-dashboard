@@ -38,7 +38,7 @@ const option = {
         {
             name: "金額",
             type: "pie",
-            radius: innerWidth > 1500 ? "70%" : "55%",
+            radius: "70%",
             data: amountRatio,
             avoidLabelOverlap: true,
             z: 1,
@@ -72,7 +72,7 @@ const option = {
         {
             name: "金額比例",
             type: "pie",
-            radius: innerWidth > 1500 ? "70%" : "55%",
+            radius: "70%",
             data: amountRatio,
             z: 1, // 設定為更高層級
             itemStyle: {
@@ -86,7 +86,7 @@ const option = {
             label: {
                 show: true,
                 position: "inside",
-                formatter: "{d}%", // 顯示百分比
+                formatter: (params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
                 fontSize: innerWidth > 1500 ? 10 : 8,
             },

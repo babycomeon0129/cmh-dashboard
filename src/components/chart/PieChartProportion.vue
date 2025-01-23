@@ -78,7 +78,7 @@ const option = {
             label: {
                 show: true,
                 position: "inside",
-                formatter: "{d}%",
+                formatter: (params) => `${params.percent.toFixed(0)}%`,
                 color: "#fff",
                 textStyle: {
                     fontSize: innerWidth > 1500 ? 10 : 8 ,
