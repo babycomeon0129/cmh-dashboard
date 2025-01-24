@@ -17,6 +17,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
     /** 資料年份 */
     const year = ref(new Date());
     const formateYear = computed(() => moment(year.value).format("YYYY"));
+    const openFullscreen = ref(false);
 
     return {
         colorBlue,
@@ -30,5 +31,6 @@ export const useDashboardStore = defineStore("dashboard", () => {
         showSideBar,
         year,
         formateYear,
+        openFullscreen,
     };
 });

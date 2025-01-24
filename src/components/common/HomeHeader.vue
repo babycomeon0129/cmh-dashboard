@@ -6,14 +6,20 @@
                 數據更新時間： {{ updateTime }}
             </div>
         </div>
-        <div class="date-picker">
-            <el-date-picker
-                v-model="year"
-                :clearable="false"
-                :disabled-date="disabledDate"
-                type="year"
-                placeholder="Pick a year"
+        <div class="icons">
+            <component
+                :is="openFullscreen ? Hide : View"
+                @click="openFullscreen  = !openFullscreen"
             />
+            <div class="date-picker">
+                <el-date-picker
+                    v-model="year"
+                    :clearable="false"
+                    :disabled-date="disabledDate"
+                    type="year"
+                    placeholder="Pick a year"
+                />
+            </div>
         </div>
     </header>
 </template>
@@ -21,9 +27,10 @@
 <script setup>
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
+import { View, Hide } from "@element-plus/icons-vue";
 
 const store = useDashboardStore();
-const { updateTime, year } = storeToRefs(store);
+const { updateTime, year, openFullscreen } = storeToRefs(store);
 
 const disabledDate = (date) => {
     const currentYear = new Date().getFullYear();
@@ -54,6 +61,17 @@ h1 {
     display: flex;
     align-items: center;
     font-size: 1rem;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        color: var(--text-color2);
+    }
 }
 
 .date {

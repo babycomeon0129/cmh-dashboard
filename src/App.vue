@@ -7,6 +7,7 @@
                 mode="out-in"
             >
                 <main
+                    ref="dashboard"
                     :key="route.name"
                     :class="{show: showSideBar}"
                 >
@@ -19,15 +20,22 @@
 </template>
 
 <script setup>
+import { watch, ref } from "vue";
 import { RouterView, useRoute } from "vue-router";
 import SideBar from "@/components/SideBar.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
-
+import { useFullscreen } from "@/composable/useFullscreen.js";
 const store = useDashboardStore();
-const { showSideBar } = storeToRefs(store);
+const { showSideBar, openFullscreen } = storeToRefs(store);
 
 const route = useRoute();
+const dashboard = ref(null);
+const { toggleFullscreen, exitFullscreen } = useFullscreen();
+
+watch(openFullscreen, (newValue) => {
+    newValue ? toggleFullscreen(dashboard.value) : exitFullscreen();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -39,6 +47,7 @@ main {
     height: 100vh;
     margin-left: 0;
     padding: 15px;
+    background-color: #F2F3F7;
     transition: margin-left 0.3s ease-in-out;
 
     @media (max-width: 1500px) {

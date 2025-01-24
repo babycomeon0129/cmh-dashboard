@@ -41,7 +41,7 @@ const { title, type } = defineProps([
     }
 
     &.plan::before {
-		background: var(--color-deep-blue);
+        background: var(--color-deep-blue);
     }
 }
 </style>
