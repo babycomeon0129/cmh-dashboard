@@ -173,7 +173,7 @@ const option = {
                     const formattedValue = (amountRush.value[params.dataIndex] / amountInvoice.value[params.dataIndex]) * 100 ;
                     return formattedValue ? `${formattedValue.toFixed(0)}%` : "";
                 },
-                fontSize: 6,
+                fontSize: innerWidth > 1500 ? 8 : 6,
             },
             itemStyle: {
                 color: "#0098FA",
