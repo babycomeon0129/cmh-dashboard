@@ -11,7 +11,10 @@
                     :key="route.name"
                     :class="{show: showSideBar}"
                 >
-                    <component :is="Component" />
+                    <component
+                        :is="Component"
+                        :key="componentKey"
+                    />
                 </main>
             </transition>
         </router-view>
@@ -30,12 +33,17 @@ const store = useDashboardStore();
 const { showSideBar, openFullscreen } = storeToRefs(store);
 
 const route = useRoute();
+const { toggleFullscreen, exitFullscreen, isFullscreen } = useFullscreen();
 const dashboard = ref(null);
-const { toggleFullscreen, exitFullscreen } = useFullscreen();
+const componentKey = ref(0);
 
 watch(openFullscreen, (newValue) => {
     newValue ? toggleFullscreen(dashboard.value) : exitFullscreen();
+    setTimeout(() => componentKey.value ++ , 100);
 });
+
+watch(isFullscreen, newValue => openFullscreen.value = newValue);
+
 </script>
 
 <style lang="scss" scoped>
