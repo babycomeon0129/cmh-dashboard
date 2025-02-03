@@ -8,7 +8,7 @@
         </div>
         <div class="icons">
             <component
-                :is="openFullscreen ? Hide : View"
+                :is="openFullscreen ? ZoomOut : ZoomIn"
                 @click="openFullscreen  = !openFullscreen"
             />
             <div class="date-picker">
@@ -27,7 +27,7 @@
 <script setup>
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
-import { View, Hide } from "@element-plus/icons-vue";
+import { ZoomIn, ZoomOut } from "@element-plus/icons-vue";
 
 const store = useDashboardStore();
 const { updateTime, year, openFullscreen } = storeToRefs(store);
