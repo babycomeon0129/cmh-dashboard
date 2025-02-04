@@ -39,10 +39,12 @@ const componentKey = ref(0);
 
 watch(openFullscreen, (newValue) => {
     newValue ? toggleFullscreen(dashboard.value) : exitFullscreen();
-    setTimeout(() => componentKey.value ++ , 100);
 });
 
-watch(isFullscreen, newValue => openFullscreen.value = newValue);
+watch(isFullscreen, (newValue) => {
+    openFullscreen.value = newValue;
+    componentKey.value ++;
+});
 
 </script>
 
