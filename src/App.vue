@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <SideBar />
+        <SideBar v-if="route.name !== 'login'" />
         <router-view v-slot="{ Component }">
             <transition
                 name="slide-fade"
@@ -56,13 +56,8 @@ main {
     width: 100%;
     height: 100vh;
     margin-left: 0;
-    padding: 15px;
     background-color: #F2F3F7;
-    transition: margin-left 0.3s ease-in-out;
-
-    @media (max-width: 1500px) {
-        padding: 10px;
-    }
+    transition: margin-left .3s ease-in-out;
 
 	&.show {
         margin-left: var(--side-width);

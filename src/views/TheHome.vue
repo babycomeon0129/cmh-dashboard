@@ -35,6 +35,11 @@ import RowChart from "@/components/chart/RowChart.vue";
     flex-direction: column;
     width: 100%;
     height: 100%;
+    padding: 15px;
+
+    @media (max-width: 1500px) {
+        padding: 10px;
+    }
 }
 
 .container {

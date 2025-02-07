@@ -1,0 +1,64 @@
+h1 {
+    margin: 0 0 30px 0;
+    font-size: 40px;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(@img/login__bg.jpg);
+    background-size: contain;
+}
+
+.login__wrapper {
+    display: flex;
+    overflow: hidden;
+    width: 63.5%;
+    border-radius: 20px;
+    aspect-ratio: 1220 / 680;
+
+    > div {
+        width: 50%;
+    }
+}
+
+.login__img {
+
+    background-image: url(@img/login__img.png);
+    background-size: cover;
+}
+
+.login__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.login__form {
+    width: 85%;
+}
+
+.el-button {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.tips {
+    height: 20px;
+    font-size: 14px;
+    color: #FA3B3B;
+}
+
+.copyright {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    font-size: 16px;
+    transform: translateX(-50%);
+}
