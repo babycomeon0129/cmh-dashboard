@@ -1,7 +1,7 @@
 <template>
     <aside :class="{ show: showSideBar}">
+        <div class="logo"><img src="@img/logo_bw.png" /></div>
         <ul>
-            <li class="logo"><img src="@img/logo_bw.png" /></li>
             <li
                 v-for="icon in iconList"
                 :key="icon.name"
@@ -12,6 +12,10 @@
                 {{ icon.name }}
             </li>
         </ul>
+        <div class="logout">
+            <img src="@img/icon_logout.svg" />
+            登出
+        </div>
         <el-icon
             class="arrow"
             @click="showSideBar = !showSideBar"
@@ -32,14 +36,6 @@ const store = useDashboardStore();
 const { showSideBar } = storeToRefs(store);
 
 const iconList = [
-    {
-        routeName: "board",
-        name: "專案看板",
-        url: "https://dasherptest.cmh.com.tw/",
-        route: "",
-        img: "icon_project_board",
-        component: "Platform",
-    },
     {
         routeName: "home",
         name: "專案管理",
@@ -71,6 +67,9 @@ aside {
     top: 0;
     left: calc(-1 * var(--side-width) + 5px);
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: var(--side-width);
     padding: 20px 0;
     color: #fff;
@@ -123,7 +122,11 @@ aside {
     }
 }
 
-li:not(.logo) {
+ul {
+    flex-grow: 1;
+}
+
+li, .logout {
     display: flex;
     flex-direction: column;
     align-items: center;

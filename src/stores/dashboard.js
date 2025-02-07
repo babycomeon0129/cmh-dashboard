@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import moment from "moment";
 
 export const useDashboardStore = defineStore("dashboard", () => {
+    const isLogin = ref(false);
     const colorBlue = "#4CA8FF";
     const colorYellow = "#FFAE41";
     const colorGreen = "#4EC478";
@@ -20,6 +21,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
     const openFullscreen = ref(false);
 
     return {
+        isLogin,
         colorBlue,
         colorYellow,
         colorGreen,

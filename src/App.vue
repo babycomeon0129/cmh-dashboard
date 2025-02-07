@@ -24,15 +24,16 @@
 
 <script setup>
 import { watch, ref } from "vue";
-import { RouterView, useRoute } from "vue-router";
+import { RouterView, useRoute, useRouter } from "vue-router";
 import SideBar from "@/components/SideBar.vue";
 import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
 import { useFullscreen } from "@/composable/useFullscreen.js";
 const store = useDashboardStore();
-const { showSideBar, openFullscreen } = storeToRefs(store);
+const { showSideBar, openFullscreen, isLogin } = storeToRefs(store);
 
 const route = useRoute();
+const router = useRouter();
 const { toggleFullscreen, exitFullscreen, isFullscreen } = useFullscreen();
 const dashboard = ref(null);
 const componentKey = ref(0);
@@ -46,6 +47,7 @@ watch(isFullscreen, (newValue) => {
     componentKey.value ++;
 });
 
+if (!isLogin.value) router.push({ path: "/login" });
 </script>
 
 <style lang="scss" scoped>

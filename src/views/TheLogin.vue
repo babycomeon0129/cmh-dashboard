@@ -12,17 +12,27 @@
                     <el-form-item>
                         <el-input
                             v-model="form.userName"
-                            :prefix-icon="User"
+                            :prefix-icon="UserFilled"
                         />
                     </el-form-item>
                     <el-form-item>
                         <el-input
                             v-model="form.password"
                             :prefix-icon="Lock"
+                            type="password"
                         />
                     </el-form-item>
-                    <div class="tips">您輸入的用戶名或密碼有誤，請重新輸入</div>
-                    <el-button type="primary">登錄</el-button>
+                    <div
+                        class="tips"
+                    >
+                        {{ showTips }}
+                    </div>
+                    <el-button
+                        type="primary"
+                        @click="login"
+                    >
+                        登錄
+                    </el-button>
                 </el-form>
             </div>
         </div>
@@ -31,13 +41,60 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
-import { User, Lock } from "@element-plus/icons-vue";
+import { reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
+import { UserFilled, Lock } from "@element-plus/icons-vue";
+import axios from "axios";
 
+const router = useRouter();
+const { isLogin } = storeToRefs(useDashboardStore());
 const form = reactive({
     userName: "",
     password: "",
 });
+
+const departNo = ref(null);
+const showTips = ref("");
+const login = async () => {
+    try {
+        const res = await axios.post(`${import.meta.env.VITE_LOGIN_API}/login`, {
+            username: form.userName,
+            password: form.password,
+            deviceId: 0,
+        });
+
+        if (res.data.code === 1000) {
+
+            await getProFile();
+            isLogin.value = true;
+            router.push({ path: "/" });
+        } else {
+            showTips.value = "您輸入的用戶名或密碼有誤，請重新輸入";
+        }
+        console.log(res);
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
+/** 查詢 User 資料  */
+const getProFile = async () => {
+    try {
+        const res = await axios.get(`${import.meta.env.VITE_LOGIN_API}/ProFile/${form.userName}`);
+        if (res.status === 200 && res.data.result) {
+            console.log(res);
+            departNo.value = res.data.result.departNo;
+        }
+
+    }
+    catch (error) {
+        console.error(error);
+    }
+};
+
 </script>
 
 <style lang="scss" scoped>
