@@ -12,7 +12,10 @@
                 {{ icon.name }}
             </li>
         </ul>
-        <div class="logout">
+        <div
+            class="logout"
+            @click="logout"
+        >
             <img src="@img/icon_logout.svg" />
             登出
         </div>
@@ -33,7 +36,7 @@ import { storeToRefs } from "pinia";
 const route = useRoute();
 const router = useRouter();
 const store = useDashboardStore();
-const { showSideBar } = storeToRefs(store);
+const { showSideBar, isLogin } = storeToRefs(store);
 
 const iconList = [
     {
@@ -57,6 +60,12 @@ const iconList = [
 const goToLink = (url, route) => {
     showSideBar.value = !showSideBar.value;
     url ? window.open(url) : router.push({ path: route });
+};
+
+const logout = async () => {
+    showSideBar.value = false;
+    isLogin.value = false;
+    router.push({ path: "/login" });
 };
 
 </script>
