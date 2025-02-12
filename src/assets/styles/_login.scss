@@ -62,3 +62,7 @@ h1 {
     font-size: 16px;
     transform: translateX(-50%);
 }
+
+:deep(input:-internal-autofill-selected) {
+    background: #fff;
+}
