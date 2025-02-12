@@ -30,7 +30,7 @@
                         </div>
                         <el-button
                             type="primary"
-                            @click="login"
+                            @click="getPermission"
                         >
                             登錄
                         </el-button>
@@ -57,8 +57,33 @@ const form = reactive({
     password: "",
 });
 
-const departNo = ref(null);
 const showTips = ref("");
+
+const getPermission = async () => {
+    if (!form.userName || !form.password) {
+        showTips.value = "用戶名或密碼不可為空";
+        return;
+    }
+
+    try {
+        let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/permission/get-permission`, {
+            params: {
+                employeeId: form.userName,
+            },
+        });
+
+        if (res.data.code === 1000) {
+            await login();
+        } else {
+            showTips.value = "您輸入的用戶名沒有登錄權限";
+        }
+    }
+    catch (error) {
+        console.log(error);
+        showTips.value = "您輸入的用戶名沒有登錄權限";
+    }
+};
+
 const login = async () => {
     try {
         const res = await axios.post(`${import.meta.env.VITE_LOGIN_API}/login`, {
@@ -68,8 +93,6 @@ const login = async () => {
         });
 
         if (res.data.code === 1000) {
-
-            await getProFile();
             isLogin.value = true;
             router.push({ path: "/" });
         } else {
@@ -79,21 +102,6 @@ const login = async () => {
     }
     catch (error) {
         console.log(error);
-    }
-};
-
-/** 查詢 User 資料  */
-const getProFile = async () => {
-    try {
-        const res = await axios.get(`${import.meta.env.VITE_LOGIN_API}/ProFile/${form.userName}`);
-        if (res.status === 200 && res.data.result) {
-            console.log(res);
-            departNo.value = res.data.result.departNo;
-        }
-
-    }
-    catch (error) {
-        console.error(error);
     }
 };
 
