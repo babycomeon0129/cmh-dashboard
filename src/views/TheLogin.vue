@@ -69,6 +69,7 @@ const getPermission = async () => {
         let res = await axios.get(`${import.meta.env.VITE_APP_BASEURL}/permission/get-permission`, {
             params: {
                 employeeId: form.userName,
+                permissionName: "dashboard",
             },
         });
 
@@ -77,6 +78,8 @@ const getPermission = async () => {
         } else {
             showTips.value = "您輸入的用戶名沒有登錄權限";
         }
+
+        console.log(res);
     }
     catch (error) {
         console.log(error);
