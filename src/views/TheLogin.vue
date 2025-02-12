@@ -1,39 +1,41 @@
 <template>
     <div class="login">
-        <div class="login__wrapper">
-            <div class="login__img" />
-            <div class="login__container">
-                <h1>ERP2.0 dashboard</h1>
-                <el-form
-                    :model="form"
-                    label-width="auto"
-                    class="login__form"
-                >
-                    <el-form-item>
-                        <el-input
-                            v-model="form.userName"
-                            :prefix-icon="UserFilled"
-                        />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-input
-                            v-model="form.password"
-                            :prefix-icon="Lock"
-                            type="password"
-                        />
-                    </el-form-item>
-                    <div
-                        class="tips"
+        <div class="login__ui">
+            <div class="login__wrapper">
+                <div class="login__img" />
+                <div class="login__container">
+                    <h1>ERP2.0 dashboard</h1>
+                    <el-form
+                        :model="form"
+                        label-width="auto"
+                        class="login__form"
                     >
-                        {{ showTips }}
-                    </div>
-                    <el-button
-                        type="primary"
-                        @click="login"
-                    >
-                        登錄
-                    </el-button>
-                </el-form>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.userName"
+                                :prefix-icon="UserFilled"
+                            />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-input
+                                v-model="form.password"
+                                :prefix-icon="Lock"
+                                type="password"
+                            />
+                        </el-form-item>
+                        <div
+                            class="tips"
+                        >
+                            {{ showTips }}
+                        </div>
+                        <el-button
+                            type="primary"
+                            @click="login"
+                        >
+                            登錄
+                        </el-button>
+                    </el-form>
+                </div>
             </div>
         </div>
         <div class="copyright">Copyright 2024 cmh. com.tw All Rights Reserved.</div>
