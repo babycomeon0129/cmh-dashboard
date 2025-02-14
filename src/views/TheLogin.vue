@@ -76,14 +76,14 @@ const getPermission = async () => {
         if (res.data.code === 1000) {
             await login();
         } else {
-            showTips.value = "您輸入的用戶名沒有登錄權限";
+            showTips.value = "您沒有看板瀏覽權限，如有需求，請洽TOC曾庭涵 分機#6018，謝謝!";
         }
 
         console.log(res);
     }
     catch (error) {
         console.log(error);
-        showTips.value = "您輸入的用戶名沒有登錄權限";
+        showTips.value = "您沒有看板瀏覽權限，如有需求，請洽TOC曾庭涵 分機#6018，謝謝!";
     }
 };
 
