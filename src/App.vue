@@ -47,7 +47,7 @@ watch(isFullscreen, (newValue) => {
     componentKey.value ++;
 });
 
-if (!isLogin.value) router.push({ path: "/login" });
+//if (!isLogin.value) router.push({ path: "/login" });
 </script>
 
 <style lang="scss" scoped>
