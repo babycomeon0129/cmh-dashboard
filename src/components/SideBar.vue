@@ -39,14 +39,14 @@ const store = useDashboardStore();
 const { showSideBar, isLogin } = storeToRefs(store);
 
 const iconList = [
-    // {
-    //     routeName: "home",
-    //     name: "專案管理",
-    //     url: "",
-    //     route: "/",
-    //     img: "icon_customer_board",
-    //     component: "TrendCharts",
-    // },
+    {
+        routeName: "home",
+        name: "專案管理",
+        url: "",
+        route: "/home",
+        img: "icon_customer_board",
+        component: "TrendCharts",
+    },
     {
         routeName: "test",
         name: "測試數據",
