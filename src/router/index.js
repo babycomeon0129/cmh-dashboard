@@ -6,7 +6,11 @@ const router = createRouter({
     routes: [
         {
             path: "/",
-            name: "home",
+            redirect: "/test",
+        },
+        {
+            path: "/server",
+            name: "server",
             component: TheHome,
         },
         {
