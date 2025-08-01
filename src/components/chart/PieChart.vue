@@ -1,13 +1,13 @@
 <template>
-    <div class="chart chart__pie">
+    <div class="pie-chart chart">
         <ChartTitle
             :title="`${titleType}案服務金額比例`"
             :type="type"
         />
-        <div class="chart__pie__wrapper">
+        <div class="pie-chart__wrapper">
             <div
                 ref="pieContainer"
-                class="chart__pie__container"
+                class="pie-chart__container"
             />
         </div>
     </div>
@@ -122,7 +122,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.chart__pie {
+.pie-chart {
     width: calc(40% - 5px);
 
     &__wrapper {
