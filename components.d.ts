@@ -20,6 +20,7 @@ declare module 'vue' {
     ElSegmented: typeof import('element-plus/es')['ElSegmented']
     HomeHeader: typeof import('./src/components/common/HomeHeader.vue')['default']
     MonthlyColumnChart: typeof import('./src/components/chart/MonthlyColumnChart.vue')['default']
+    MonthlyTrend: typeof import('./src/components/MonthlyTrend.vue')['default']
     MonthlyTrendViewer: typeof import('./src/components/MonthlyTrendViewer.vue')['default']
     PieChart: typeof import('./src/components/chart/PieChart.vue')['default']
     PieChartProportion: typeof import('./src/components/chart/PieChartProportion.vue')['default']

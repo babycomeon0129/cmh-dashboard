@@ -1,20 +1,16 @@
 <template>
-    <div class="MonthlyTrendViewer card">
-        <div class="MonthlyTrendViewer__detail">
+    <div class="monthlyTrend card">
+        <div class="monthlyTrend__detail">
             <img src="@img/icon_general.svg" />
             <el-segmented
                 v-model="trigger"
                 :options="options"
                 :class="{
-                    project: trigger === '成案'
+                    'monthlyTrend__detail--type': trigger === '成案'
                 }"
             />
             <div>{{ showRemark }}</div>
-            <div
-                class="MonthlyTrendViewer__legend"
-                :class="{
-                    project: trigger === '成案'
-                }">
+            <div class="monthlyTrend__legend">
                 <div
                     v-for=" legend in legendList"
                     :key="legend">
@@ -54,7 +50,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
 </script>
 
 <style lang="scss" scoped>
-.MonthlyTrendViewer  {
+.monthlyTrend  {
     height: calc(100% - 15px);
     min-height: 190px;
     margin-top: 15px;
@@ -73,7 +69,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
             margin-right: 10px;
 
             @media (max-width: 1500px) {
-              width: 22px;
+                width: 22px;
 
             }
         }
@@ -116,20 +112,6 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
                 background: var(--color-gray);
             }
         }
-
-        &.project {
-            div {
-
-                &::before {
-                    background: var(--color-yellow);
-                }
-
-                &:nth-child(2)::before {
-                    height: 2px;
-                    background: var(--color-purple);
-            }
-            }
-        }
     }
 }
 
@@ -145,7 +127,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
         min-height: 16px;
     }
 
-    &.project {
+    &.monthlyTrend__detail--type {
         --el-segmented-item-selected-bg-color: var(--color-yellow);
     }
 

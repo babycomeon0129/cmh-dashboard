@@ -10,7 +10,7 @@
                         <ProjectPlan />
                     </div>
                     <div class="page-home__change">
-                        <MonthlyTrendViewer />
+                        <MonthlyTrend />
                     </div>
                 </div>
                 <RowChart />
@@ -24,7 +24,7 @@ import HomeHeader from "@/components/common/HomeHeader.vue";
 import YearIncome from "@/components/YearIncome.vue";
 import ProjectComplete from "@/components/ProjectComplete.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
-import MonthlyTrendViewer from "@/components/MonthlyTrendViewer.vue";
+import MonthlyTrend from "@/components/MonthlyTrend.vue";
 import RowChart from "@/components/chart/RowChart.vue";
 
 </script>
