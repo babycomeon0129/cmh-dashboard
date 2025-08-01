@@ -1,23 +1,24 @@
-aside {
+.sidebar {
     position: fixed;
     top: 0;
-    left: calc(-1 * var(--side-width) + 5px);
+    left: 0;
     z-index: 10;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: var(--side-width);
+    height: 100vh;
     padding: 20px 0;
     color: #fff;
     background: var(--main-bg-color);
-    height: 100vh;
-    transition: .3s;
+    transition: transform .3s;
+    transform: translateX(calc(-1 * var(--side-width) + 5px));
 
-    &.show {
-        left: 0;
+    &--show {
+        transform: translateX(0);
     }
 
-    .arrow {
+    &__toggle {
         content: ">";
         position: absolute;
         top: 53px;
@@ -31,7 +32,7 @@ aside {
         font-size: 1.14rem;
         background: var(--main-bg-color);
         cursor: pointer;
-        transition: .3s;
+        transition: transform .3s;
 
         &:hover {
             font-size: 1.43rem;
@@ -39,7 +40,7 @@ aside {
         }
 
         svg {
-            transition: .5s;
+            transition: transform .5s;
 
             &.close {
                 transform: rotateY(180deg);
@@ -48,7 +49,7 @@ aside {
     }
 }
 
-.logo {
+.sidebar__logo {
     width: 100%;
     margin-bottom: 15px;
     text-align: center;
@@ -58,11 +59,12 @@ aside {
     }
 }
 
-ul {
+.sidebar__nav {
     flex-grow: 1;
 }
 
-li, .logout {
+.sidebar__nav-item,
+.sidebar__logout {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,25 +73,25 @@ li, .logout {
     transition: .3s;
     cursor: pointer;
 
-    svg,
-    img {
+    > svg,
+    > img {
         width: 28px;
         stroke: #fff;
-        transition: .3s;
+        transition: transform .3s;
     }
 
-    &.active {
+    &--active {
         color:  var(--main-bg-color);
         background: #fff;
 
-        svg {
+        > svg {
             stroke: var(--main-bg-color);
         }
     }
 
     &:hover {
-        svg,
-        img {
+        > svg,
+        > img {
             transform: scale(1.2) rotate(-10deg);
         }
     }

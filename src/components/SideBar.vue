@@ -1,11 +1,17 @@
 <template>
-    <aside :class="{ show: showSideBar}">
-        <div class="logo"><img src="@img/logo_bw.png" /></div>
-        <ul>
+    <aside
+        class="sidebar"
+        :class="{ 'sidebar--show': showSideBar}"
+    >
+        <div class="sidebar__logo">
+            <img src="@img/logo_bw.png" />
+        </div>
+        <ul class="sidebar__nav">
             <li
                 v-for="icon in iconList"
                 :key="icon.name"
-                :class="{active: route.name === icon.routeName}"
+                class="sidebar__nav-item"
+                :class="{'sidebar__nav-item--active': route.name === icon.routeName}"
                 @click="goToLink(icon.url, icon.route)"
             >
                 <component :is="icon.component" />
@@ -13,14 +19,14 @@
             </li>
         </ul>
         <div
-            class="logout"
+            class="sidebar__logout"
             @click="logout"
         >
             <img src="@img/icon_logout.svg" />
             登出
         </div>
         <el-icon
-            class="arrow"
+            class="sidebar__toggle"
             @click="showSideBar = !showSideBar"
         >
             <ArrowRightBold :class="{close: showSideBar}" />
