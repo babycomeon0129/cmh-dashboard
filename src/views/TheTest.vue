@@ -6,7 +6,7 @@
             <div class="page-test__charts">
                 <div class="page-test__project">
                     <div class="page-test__detail">
-                        <ProjectComplate />
+                        <ProjectComplete />
                         <ProjectPlan />
                     </div>
                     <div class="page-test__change">
@@ -22,7 +22,7 @@
 <script setup>
 import HomeHeader from "@/components/common/HomeHeader.vue";
 import YearIncome from "@/components/YearIncome.vue";
-import ProjectComplate from "@/components/ProjectComplate.vue";
+import ProjectComplete from "@/components/ProjectComplete.vue";
 import ProjectPlan from "@/components/ProjectPlan.vue";
 import MonthlyTrendViewer from "@/components/MonthlyTrendViewer.vue";
 import RowChart from "@/components/chart/RowChart.vue";

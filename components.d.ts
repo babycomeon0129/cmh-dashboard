@@ -25,6 +25,7 @@ declare module 'vue' {
     PieChartProportion: typeof import('./src/components/chart/PieChartProportion.vue')['default']
     PlanProgressChart: typeof import('./src/components/chart/PlanProgressChart.vue')['default']
     ProjectComplate: typeof import('./src/components/ProjectComplate.vue')['default']
+    ProjectComplete: typeof import('./src/components/ProjectComplete.vue')['default']
     ProjectPlan: typeof import('./src/components/ProjectPlan.vue')['default']
     ProjectTitle: typeof import('./src/components/common/ProjectTitle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
