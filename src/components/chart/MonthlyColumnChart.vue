@@ -1,8 +1,8 @@
 <template>
-    <div class="chart__MonthlyColumn">
+    <div class="monthly-column">
         <div
             ref="monthlyColContainer"
-            class="chart__MonthlyColumn__container"
+            class="monthly-column__container"
         />
     </div>
 </template>
@@ -229,7 +229,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.chart__MonthlyColumn {
+.monthly-column {
     height: calc(100% - 32px);
 
     &__container {
