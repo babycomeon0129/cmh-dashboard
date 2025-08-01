@@ -1,5 +1,5 @@
 <template>
-    <div class="project__box card">
+    <div class="grid-item card">
         <ProjectTitle
             :type="2"
             :total-amount="titleInfo.totalAmount"

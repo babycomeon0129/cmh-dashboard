@@ -1,10 +1,10 @@
 <template>
-    <div class="chart chart__col">
+    <div class="chart column-chart">
         <ChartTitle
             :title="`${titleType}案服務比例`"
             :type="type"
         />
-        <div class="chart__col__legend">
+        <div class="column-chart__legend">
             <div
                 v-for=" legend in legendList"
                 :key="legend">
@@ -13,7 +13,7 @@
         </div>
         <div
             ref="colContainer"
-            class="chart__col__container"
+            class="column-chart__container"
         />
     </div>
 </template>
@@ -212,7 +212,7 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.chart__col {
+.column-chart {
     flex-shrink: 0;
     width: calc(60% - 5px);
     aspect-ratio: 16 / 9;
