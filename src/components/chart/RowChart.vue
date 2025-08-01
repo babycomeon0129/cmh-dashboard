@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard__box chart__row">
+    <div class="chart__row card">
         <div class="chart__row__title">
             <div class="title">
                 催收進展

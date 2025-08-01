@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard__box year">
+    <div class="year card">
         <div class="year__title">
             {{ formateYear }}
             <span>年度收入</span>
@@ -12,12 +12,12 @@
                 <div>預案  <span>NTD</span> {{ planCount.toLocaleString()}}（{{  planPercentage }}%）</div>
                 <div>年度KPI  <span>NTD</span> {{ kpiCount.toLocaleString() }}</div>
             </div>
-            <div class="progress">
+            <div class="year__progress">
                 <el-progress
                     :text-inside="true"
                     :percentage="completePercentage"
                     :color="colorYellow"
-                    class="bar plan"
+                    class="year__bar year__bar--plan"
                 >
                     <span />
                 </el-progress>
@@ -25,7 +25,7 @@
                     :text-inside="true"
                     :percentage="planPercentage + completePercentage"
                     :color="colorBlue"
-                    class="bar complete"
+                    class="year__bar year__bar--complete"
                 >
                     <span />
                 </el-progress>
@@ -166,19 +166,19 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
     }
 }
 
-.progress {
+.year__progress {
     position: relative;
     display: flex;
     width: 100%;
 }
 
-.bar {
+.year__bar {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
 
-    &.plan {
+    &--plan {
         z-index: 2;
 
         :deep(.el-progress-bar__outer) {
@@ -186,7 +186,7 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
         }
     }
 
-    &.complete {
+    &--complete {
         z-index: 1;
     }
 }

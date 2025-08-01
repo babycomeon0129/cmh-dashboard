@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard__box MonthlyTrendViewer">
+    <div class="MonthlyTrendViewer card">
         <div class="MonthlyTrendViewer__detail">
             <img src="@img/icon_general.svg" />
             <el-segmented

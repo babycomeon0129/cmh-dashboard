@@ -1,5 +1,5 @@
 <template>
-    <div class="dashboard__box project__box">
+    <div class="project__box card">
         <ProjectTitle
             :type="1"
             :total-amount="titleInfo.totalAmount"

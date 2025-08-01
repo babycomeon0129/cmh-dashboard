@@ -1,15 +1,15 @@
 <template>
-    <div class="page">
+    <div class="page-home">
         <HomeHeader />
-        <div class="container">
+        <div class="page-home__container">
             <YearIncome />
-            <div class="charts">
-                <div class="project">
-                    <div class="project__detail">
+            <div class="page-home__charts">
+                <div class="page-home__project">
+                    <div class="page-home__detail">
                         <ProjectComplate />
                         <ProjectPlan />
                     </div>
-                    <div class="change">
+                    <div class="page-home__change">
                         <MonthlyTrendViewer />
                     </div>
                 </div>
@@ -30,7 +30,7 @@ import RowChart from "@/components/chart/RowChart.vue";
 </script>
 
 <style lang="scss" scoped>
-.page {
+.page-home {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -42,37 +42,33 @@ import RowChart from "@/components/chart/RowChart.vue";
     }
 }
 
-.container {
+.page-home__container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.charts {
+.page-home__charts {
     display: flex;
     width: 100%;
     padding-top: 14px;
     flex-grow: 1;
-
-    @media (max-width: 1500px) {
-		padding-top: 10px;
-    }
 }
 
-.project {
+.page-home__project {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     width: 80%;
-
-    &__detail {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-    }
 }
 
-.change {
+.page-home__detail {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.page-home__change {
     flex-grow: 1;
 }
 </style>
