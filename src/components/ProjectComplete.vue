@@ -21,7 +21,7 @@
                 />
             </div>
             <div class="charts__row">
-                <CompleteProgressChart :progress-data="progressData" />
+                <ProgressChart :progress-data="progressData" />
                 <PieChartProportion
                     :amount-ratio="sourceProportion"
                     :type="2"
@@ -38,7 +38,7 @@ import { useRoute } from "vue-router";
 import { useDashboardStore } from "@/stores/dashboard";
 import ProjectTitle from "@/components/common/ProjectTitle.vue";
 import ColumnChart from "@/components/chart/ColumnChart.vue";
-import CompleteProgressChart from "@/components/chart/CompleteProgressChart.vue";
+import ProgressChart from "@/components/chart/ProgressChart.vue";
 import PieChartProportion from "@/components/chart/PieChartProportion.vue";
 import PieChart from "@/components/chart/PieChart.vue";
 import { storeToRefs } from "pinia";

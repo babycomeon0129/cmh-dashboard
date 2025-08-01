@@ -1,10 +1,10 @@
 <template>
-    <div class="chart chart__progress__complate">
+    <div class="progress-chart chart">
         <ChartTitle
             title="成案進展"
             :type="2"
         />
-        <div class="chart__progress__complate__legend">
+        <div class="progress-chart__legend">
             <div
                 v-for="legend in progressData"
                 :key="legend.name"
@@ -12,8 +12,8 @@
                 {{ legend.name }}
             </div>
         </div>
-        <div class="chart__progress__complate__content">
-            <div class="chart__progress__complate__total">
+        <div class="progress-chart__content">
+            <div class="progress-chart__total">
                 <div
                     v-for="total in progressData"
                     :key="total.name"
@@ -21,18 +21,18 @@
                     NTD {{ total.total.toLocaleString() }}
                 </div>
             </div>
-            <div class="chart__progress__complate__bar">
+            <div class="progress-chart__bar-list">
                 <el-progress
                     :text-inside="true"
                     :percentage="percentage(0)"
                     :color="colorBlue"
-                    class="bar bar__1"
+                    class="progress-chart__bar progress-chart__bar--blue"
                 />
                 <el-progress
                     :text-inside="true"
                     :percentage="percentage(0) + percentage(1)"
                     :color="colorYellow"
-                    class="bar bar__2"
+                    class="progress-chart__bar progress-chart__bar--yellow"
                 >
                     <span>{{ percentage(1) }}%</span>
                 </el-progress>
@@ -40,12 +40,12 @@
                     :text-inside="true"
                     :percentage="percentage(0) + percentage(1) + percentage(2)"
                     :color="colorRed"
-                    class="bar bar__3"
+                    class="progress-chart__bar progress-chart__bar--red"
                 >
                     <span>{{ percentage(2) }}%</span>
                 </el-progress>
             </div>
-            <div class="chart__progress__complate__total">
+            <div class="progress-chart__total">
                 <div
                     v-for="count in progressData"
                     :key="count.name"
@@ -74,7 +74,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
 </script>
 
 <style lang="scss" scoped>
-.chart__progress__complate {
+.progress-chart {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -138,7 +138,7 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
         }
     }
 
-    &__bar {
+    &__bar-list {
         position: relative;
         width: 100%;
         height: 18px;
@@ -149,53 +149,53 @@ const percentage = (index) => (progressData[index].total / progressDataTotal.val
             margin: 3px 0;
         }
     }
-}
 
-.bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-
-    :deep(.el-progress-bar__outer) {
-        height: 18px !important;
-
-        @media (max-width: 1500px) {
-            height: 12px !important;
-            font-size: 7px;
-        }
-    }
-
-    &__1 {
-        z-index: 2;
+    &__bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
 
         :deep(.el-progress-bar__outer) {
-            background-color: transparent;
+            height: 18px !important;
+
+            @media (max-width: 1500px) {
+                height: 12px !important;
+                font-size: 7px;
+            }
         }
 
-        :deep(.el-progress-bar__inner) {
-            border-radius: 100px 0 0 100px;
+        &--blue {
+            z-index: 2;
+
+            :deep(.el-progress-bar__outer) {
+                background-color: transparent;
+            }
+
+            :deep(.el-progress-bar__inner) {
+                border-radius: 100px 0 0 100px;
+            }
         }
-    }
 
-	&__2 {
-        z-index: 1;
+      &--yellow {
+            z-index: 1;
 
-        :deep(.el-progress-bar__outer) {
-            background-color: transparent;
+            :deep(.el-progress-bar__outer) {
+                background-color: transparent;
+            }
+
+            :deep(.el-progress-bar__inner) {
+              border-radius: 100px 0 0 100px;
+            }
         }
 
-        :deep(.el-progress-bar__inner) {
-          border-radius: 100px 0 0 100px;
+      &--red {
+            z-index: 0;
         }
-    }
-
-	&__3 {
-        z-index: 0;
     }
 }
 
 :deep(.el-progress-bar__innerText) {
-    font-size: 7px;
+    font-size: 10px;
 }
 </style>
