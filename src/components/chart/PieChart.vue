@@ -123,7 +123,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .pie-chart {
-    width: calc(40% - 5px);
 
     &__wrapper {
         display: flex;

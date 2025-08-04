@@ -41,7 +41,7 @@ import RowChart from "@/components/chart/RowChart.vue";
   /* 2 個等寬主欄 + 1 個窄側欄 */
   grid-template-columns: 40% 40% 20%;
   /* 2 列 (你可用固定高或 auto) */
-  grid-template-rows: auto;
+  grid-template-rows: calc(100% - 190px) 190px;
   /* 命名版位方便閱讀 */
   grid-template-areas:
     "a b d"

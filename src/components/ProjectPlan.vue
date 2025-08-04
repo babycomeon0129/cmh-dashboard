@@ -8,23 +8,20 @@
             :confirm-rate="titleInfo.confirmRate"
         />
         <div class="charts">
-            <div class="charts__row">
-                <ColumnChart
-                    :gross-profit="colGrossProfit"
-                    :col-data="colData"
-                    :service-count="serviceCount"
-                    :type="1"
-                />
-                <SuccessRate :success-rate="successRate" />
-            </div>
-            <div class="charts__row">
-                <PlanProgressChart :progress-plan="progressPlan" />
-                <PieChartProportion
-                    :amount-ratio="sourceProportion"
-                    :type="1"
-                />
-            </div>
+            <ColumnChart
+                :gross-profit="colGrossProfit"
+                :col-data="colData"
+                :service-count="serviceCount"
+                :type="1"
+            />
+            <SuccessRate :success-rate="successRate" />
+            <PlanProgressChart :progress-plan="progressPlan" />
+            <PieChartProportion
+                :amount-ratio="sourceProportion"
+                :type="1"
+            />
         </div>
+
     </div>
 </template>
 
@@ -157,10 +154,12 @@ watch(formateYear, () => route.name !== "test" && getProjectInfo());
 
 <style lang="scss" scoped>
 .charts {
-    margin-top: 15px;
-
-    @media (max-width: 1500px) {
-        margin-top: 10px;
-    }
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: 70% 30%;
+  gap: 10px;
+  width: calc(100% - 10px);
+  height: calc(100% - 32px - 30px);
+  margin-top: 15px;
 }
 </style>

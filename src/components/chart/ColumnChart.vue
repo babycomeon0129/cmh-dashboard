@@ -213,9 +213,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .column-chart {
-    flex-shrink: 0;
-    width: calc(60% - 5px);
-    aspect-ratio: 16 / 9;
 
     &__legend {
         display: flex;
@@ -265,7 +262,7 @@ onMounted(() => {
     }
 
     &__container {
-        height: 100%;
+        height: 80%;
         margin-top: 5px;
     }
 }

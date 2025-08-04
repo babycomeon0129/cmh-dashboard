@@ -52,10 +52,8 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
 <style lang="scss" scoped>
 .monthly-trend {
     height: 100%;
-    min-height: 190px;
 
     @media (max-width: 1500px) {
-        height: calc(100% - 10px);
         margin-top: 10px;
     }
 

@@ -1,13 +1,13 @@
 <template>
-    <div class="chart chart__progress__plan">
+    <div class="progress-chart chart">
         <ChartTitle
             title="預案進展"
             :type="1"
         />
-        <div class="chart__progress__plan__content">
+        <div class="progress-chart__content">
             <div
                 ref="pieContainer"
-                class="chart__pie__container"
+                class="progress-chart__container"
             />
         </div>
     </div>
@@ -139,17 +139,10 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.chart__progress__plan {
+.progress-chart {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: calc(60% - 5px);
-    min-height: 143px;
-    margin-top: 10px;
-
-    @media (max-width: 1500px) {
-        min-height: 130px;
-    }
 
     &__content{
         display: flex;
@@ -158,14 +151,14 @@ onMounted(() => {
         align-items: center;
         height: 100%;
     }
-}
 
-.chart__pie__container {
-    width: 65%;
-    height: 100%;
+    &__container {
+        width: 65%;
+        height: 100%;
 
-    @media (max-width: 1500px)  {
-      width: 80%;
+        @media (max-width: 1500px)  {
+          width: 80%;
+        }
     }
 }
 
