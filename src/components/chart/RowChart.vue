@@ -1,17 +1,17 @@
 <template>
-    <div class="chart__row card">
-        <div class="chart__row__title">
+    <div class="row-chart card">
+        <div class="row-chart__title">
             <div class="title">
                 催收進展
             </div>
-            <div class="chart__row__detail">
+            <div class="row-chart__detail">
                 共計<span>NTD {{ totalAmount.toLocaleString() }}</span>
             </div>
         </div>
-        <div class="chart__row__detail">
+        <div class="row-chart__detail">
             已開發票<span>{{ invoiceRate.toFixed(2) }}%</span>，已收回款項<span>{{ actualRate.toFixed(2) }}%</span>
         </div>
-        <div class="chart__row__legend">
+        <div class="row-chart__legend">
             <div
                 v-for="legend in legendList"
                 :key="legend"
@@ -21,7 +21,7 @@
         </div>
         <div
             ref="rowContainer"
-            class="chart__row__container"
+            class="row-chart__container"
         />
     </div>
 </template>
@@ -325,13 +325,8 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.chart__row {
+.row-chart {
     width: 100%;
-    margin-left: 15px;
-
-    @media (max-width: 1500px) {
-        margin-left: 10px;
-    }
 
     &__title {
         display: flex;

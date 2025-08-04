@@ -1,20 +1,12 @@
 <template>
     <div class="page-test">
         <HomeHeader />
-        <div class="page-test__container">
-            <YearIncome />
-            <div class="page-test__charts">
-                <div class="page-test__project">
-                    <div class="page-test__detail">
-                        <ProjectComplete />
-                        <ProjectPlan />
-                    </div>
-                    <div class="page-test__change">
-                        <MonthlyTrend />
-                    </div>
-                </div>
-                <RowChart />
-            </div>
+        <YearIncome />
+        <div class="page-test__charts">
+            <ProjectComplete class="page-test__charts--a" />
+            <ProjectPlan class="page-test__charts--b" />
+            <MonthlyTrend class="page-test__charts--c" />
+            <RowChart class="page-test__charts--d" />
         </div>
     </div>
 </template>
@@ -31,44 +23,48 @@ import RowChart from "@/components/chart/RowChart.vue";
 <style lang="scss" scoped>
 
 .page-test {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    column-gap: 10px;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     padding: 15px;
+    overflow: hidden;
 
     @media (max-width: 1500px) {
         padding: 10px;
     }
 }
 
-.page-test__container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
 .page-test__charts {
-    display: flex;
-    width: 100%;
-    padding-top: 14px;
-    flex-grow: 1;
+  display: grid;
+  /* 2 個等寬主欄 + 1 個窄側欄 */
+  grid-template-columns: 40% 40% 20%;
+  /* 2 列 (你可用固定高或 auto) */
+  grid-template-rows: auto;
+  /* 命名版位方便閱讀 */
+  grid-template-areas:
+    "a b d"
+    "c c d";
+  gap: 10px;
+  width: calc(100% - 25px);
+  height: calc(100vh - 32px - 74px - 60px);
+
+  &--a {
+      grid-area: a;
+  }
+
+  &--b {
+      grid-area: b;
+  }
+
+  &--c {
+      grid-area: c;
+  }
+
+  &--d {
+      grid-area: d;
+  }
 }
 
-.page-test__project {
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    width: 80%;
-}
-
-.page-test__detail {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.page-test__change {
-    flex-grow: 1;
-}
 </style>

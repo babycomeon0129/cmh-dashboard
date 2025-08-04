@@ -1,16 +1,16 @@
 <template>
-    <div class="monthlyTrend card">
-        <div class="monthlyTrend__detail">
+    <div class="monthly-trend card">
+        <div class="monthly-trend__detail">
             <img src="@img/icon_general.svg" />
             <el-segmented
                 v-model="trigger"
                 :options="options"
                 :class="{
-                    'monthlyTrend__detail--type': trigger === '成案'
+                    'monthly-trend__detail--type': trigger === '成案'
                 }"
             />
             <div>{{ showRemark }}</div>
-            <div class="monthlyTrend__legend">
+            <div class="monthly-trend__legend">
                 <div
                     v-for=" legend in legendList"
                     :key="legend">
@@ -50,10 +50,9 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
 </script>
 
 <style lang="scss" scoped>
-.monthlyTrend  {
-    height: calc(100% - 15px);
+.monthly-trend {
+    height: 100%;
     min-height: 190px;
-    margin-top: 15px;
 
     @media (max-width: 1500px) {
         height: calc(100% - 10px);
@@ -127,7 +126,7 @@ const showRemark = computed(() => trigger.value === "成案" ? "月新增成案"
         min-height: 16px;
     }
 
-    &.monthlyTrend__detail--type {
+    &.monthly-trend__detail--type {
         --el-segmented-item-selected-bg-color: var(--color-yellow);
     }
 

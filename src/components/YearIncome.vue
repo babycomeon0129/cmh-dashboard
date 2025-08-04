@@ -88,7 +88,6 @@ watch(formateYear, () => route.name !== "test" && getTitleData());
 .year {
     display: flex;
     height: 74px;
-    margin-top: 10px;
     padding: 15px 20px 16px 29px;
 
     @media (max-width: 1500px) {
